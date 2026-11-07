@@ -49,7 +49,7 @@ def test_entities_construct():
     from custom_components.deye_bridge.sensor import SENSORS, DeyeSensor
     from custom_components.deye_bridge.switch import (
         DeyeBatteryExportSwitch,
-        DeyeBridgeEnabledSwitch,
+        DeyeControlEnabledSwitch,
     )
 
     class FakeEntry:
@@ -76,7 +76,7 @@ def test_entities_construct():
     assert values["bridge_state"] == "charging"
     assert values["applied_charge_power"] == 4992
 
-    assert DeyeBridgeEnabledSwitch(coordinator).is_on is False
+    assert DeyeControlEnabledSwitch(coordinator).is_on is False
     assert DeyeBatteryExportSwitch(coordinator).is_on is True
     assert DeyeConflictPolicySelect(coordinator).current_option == "charge_priority"
     assert DeyeConnectedBinarySensor(coordinator).is_on is True
