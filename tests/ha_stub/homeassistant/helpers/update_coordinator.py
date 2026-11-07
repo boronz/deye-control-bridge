@@ -1,7 +1,18 @@
 from typing import Generic, TypeVar
 T = TypeVar("T")
 class UpdateFailed(Exception): pass
-class Entity: pass
+class Entity:
+    @property
+    def unique_id(self):
+        return getattr(self, "_attr_unique_id", None)
+
+    @property
+    def device_info(self):
+        return getattr(self, "_attr_device_info", None)
+
+    @property
+    def has_entity_name(self):
+        return getattr(self, "_attr_has_entity_name", False)
 class CoordinatorEntity(Generic[T], Entity):
     def __init__(self, coordinator):
         self.coordinator = coordinator

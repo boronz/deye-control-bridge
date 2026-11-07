@@ -100,11 +100,35 @@ class GridTransport(FakeTransport):
         self.voltage = voltage
 
     def read_holding(self, address: int, count: int) -> list[int]:
-        if address == 587:
-            return [self.voltage, self.soc, 0, 0, 0]
+        if address == 586:
+            block = [0] * count
+            block[0] = 1250            # temperature, 25.0 C
+            block[1] = self.voltage     # 587 battery voltage
+            block[2] = self.soc         # 588 battery SOC
+            block[4] = 0                # 590 battery power
+            return block
         if address == 625:
             block = [0] * count
             block[0] = self.grid_power & 0xFFFF
+            return block
+        if address == 24:
+            return [1]
+        if address == 210:
+            block = [0] * count
+            block[0] = 5600             # charge voltage 56.00 V
+            block[1] = 4600             # discharge voltage 46.00 V
+            block[2] = 100              # charge current limit
+            block[3] = 100              # discharge current limit
+            block[4] = self.soc         # SOC
+            block[5] = self.voltage     # voltage
+            block[6] = 10               # current
+            block[7] = 1250            # temperature
+            block[8] = 120              # max charge current
+            block[9] = 120              # max discharge current
+            block[13] = 14              # type
+            block[14] = 99              # SOH
+            block[16] = 280             # rated Ah
+            block[19] = 14              # brand: Deye
             return block
         return [0] * count
 
@@ -120,6 +144,30 @@ def _self_consumption(grid_power: int, enabled: bool = True):
     )
     data = asyncio.run(coordinator._async_update_data())
     return coordinator, transport, data
+
+
+def test_battery_block_is_parsed():
+    runtime = DeyeRuntime()
+    transport = GridTransport(grid_power=0, soc=60, voltage=5300)
+    coordinator = DeyeCoordinator(FakeHass(), FakeEntry(), transport, runtime)
+    data = asyncio.run(coordinator._async_update_data())
+
+    assert data.battery_count == 1
+    assert len(data.batteries) == 1
+
+    battery = data.batteries[0]
+    assert battery.soc == 60
+    assert battery.voltage == 53.0
+    assert battery.current == 10
+    assert battery.temperature == 25.0
+    assert battery.charge_voltage == 56.0
+    assert battery.discharge_voltage == 46.0
+    assert battery.max_charge_current == 120
+    assert battery.soh == 99
+    assert battery.capacity_ah == 280
+    assert battery.brand == 14
+    assert battery.brand_name == "Deye"
+    assert battery.online is True
 
 
 def test_self_consumption_absorbs_export():

@@ -42,11 +42,16 @@ def test_modules_import():
 
 def test_entities_construct():
     from custom_components.deye_bridge.binary_sensor import DeyeConnectedBinarySensor
-    from custom_components.deye_bridge.coordinator import DeyeData
+    from custom_components.deye_bridge.coordinator import BatteryData, DeyeData
     from custom_components.deye_bridge.number import NUMBERS, DeyeNumber
     from custom_components.deye_bridge.runtime import DeyeRuntime
     from custom_components.deye_bridge.select import DeyeConflictPolicySelect
-    from custom_components.deye_bridge.sensor import SENSORS, DeyeSensor
+    from custom_components.deye_bridge.sensor import (
+        BATTERY_SENSORS,
+        SENSORS,
+        DeyeBatterySensor,
+        DeyeSensor,
+    )
     from custom_components.deye_bridge.switch import (
         DeyeBatteryExportSwitch,
         DeyeControlEnabledSwitch,
@@ -62,6 +67,16 @@ def test_entities_construct():
         data = DeyeData(
             50.0, 52.0, -1000.0, 500.0, 2000.0, 1200.0,
             "charging", "test", 96.0, 0.0,
+            batteries=[BatteryData(
+                index=1, soc=60.0, voltage=53.0, current=10.0, power=-500.0,
+                temperature=25.0, charge_voltage=56.0, discharge_voltage=46.0,
+                charge_current_limit=100.0, discharge_current_limit=100.0,
+                max_charge_current=120.0, max_discharge_current=120.0,
+                soh=99.0, capacity_ah=280.0, alarm=0, fault=0,
+                battery_type=14, brand=14, software_version=1,
+                hardware_version=2, online=True,
+            )],
+            battery_count=1,
         )
         last_update_success = True
 
@@ -80,6 +95,21 @@ def test_entities_construct():
     assert DeyeBatteryExportSwitch(coordinator).is_on is True
     assert DeyeConflictPolicySelect(coordinator).current_option == "charge_priority"
     assert DeyeConnectedBinarySensor(coordinator).is_on is True
+
+    battery_sensors = [
+        DeyeBatterySensor(coordinator, description, 1)
+        for description in BATTERY_SENSORS
+    ]
+    battery_values = {
+        sensor.entity_description.key: sensor.native_value
+        for sensor in battery_sensors
+    }
+    assert battery_values["soc"] == 60.0
+    assert battery_values["voltage"] == 53.0
+    assert battery_values["soh"] == 99.0
+    assert battery_values["brand"] == "Deye"
+    assert battery_sensors[0].unique_id.endswith("_battery1_soc")
+    assert battery_sensors[0].device_info["name"] == "Deye battery 1"
 
 
 if __name__ == "__main__":

@@ -5,7 +5,13 @@ from . import EntityDescription
 class SensorEntity: pass
 
 class SensorDeviceClass:
-    BATTERY = "battery"; VOLTAGE = "voltage"; POWER = "power"; ENUM = "enum"; ENERGY = "energy"
+    BATTERY = "battery"
+    VOLTAGE = "voltage"
+    POWER = "power"
+    ENUM = "enum"
+    ENERGY = "energy"
+    CURRENT = "current"
+    TEMPERATURE = "temperature"
 
 class SensorStateClass:
     MEASUREMENT = "measurement"; TOTAL_INCREASING = "total_increasing"

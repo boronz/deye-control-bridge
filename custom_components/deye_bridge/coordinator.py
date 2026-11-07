@@ -63,6 +63,18 @@ SNAPSHOT_BLOCKS = [(154, 6), (166, 6), (172, 6)]
 
 MIN_WRITE_INTERVAL_S = 5.0
 
+# Battery information (three-phase LV protocol)
+REG_BATTERY_COUNT = 24             # 0/1 = one input, 2 = two inputs
+BATTERY_DETAIL_REGISTER = {1: 210, 2: 241}   # 18 registers each
+BATTERY_BRAND_REGISTER = {1: 229, 2: 230}
+
+BATTERY_BRANDS = {
+    0: "HereYin", 1: "Pylon", 2: "Solax", 3: "Dyness", 4: "CCGX",
+    5: "Alpha ESS", 6: "Sungo", 7: "Vision", 8: "WattSonic", 9: "Kunlan",
+    10: "GS Energy", 11: "GS Hub", 12: "BYD", 13: "Aobo", 14: "Deye",
+    15: "CFE", 16: "DMEGC", 17: "UZ Energy", 18: "Growatt",
+}
+
 
 def _s16(value: int) -> int:
     """Decode a two's-complement 16-bit register."""
@@ -72,6 +84,65 @@ def _s16(value: int) -> int:
 def _u32(low: int, high: int) -> int:
     """Deye energy counters are 32-bit, low word first."""
     return (high << 16) | low
+
+
+def _battery(index: int, detail: list[int], main: dict[int, int], brand: int) -> BatteryData:
+    """Decode one 18-register battery block (210..227 or 241..258)."""
+    power_register = 590 if index == 1 else 595
+    return BatteryData(
+        index=index,
+        soc=float(detail[4]),
+        voltage=detail[5] / 100.0,
+        current=float(_s16(detail[6])),
+        power=float(_s16(main.get(power_register, 0))),
+        temperature=(detail[7] - 1000) / 10.0,
+        charge_voltage=detail[0] / 100.0,
+        discharge_voltage=detail[1] / 100.0,
+        charge_current_limit=float(detail[2]),
+        discharge_current_limit=float(detail[3]),
+        max_charge_current=float(detail[8]),
+        max_discharge_current=float(detail[9]),
+        soh=float(detail[14]),
+        capacity_ah=float(detail[16]),
+        alarm=int(detail[10]),
+        fault=int(detail[11]),
+        battery_type=int(detail[13]),
+        brand=int(brand),
+        software_version=int(detail[15]),
+        hardware_version=int(detail[17]),
+        online=detail[5] > 100,
+    )
+
+
+@dataclass
+class BatteryData:
+    """One battery input as reported by the inverter."""
+
+    index: int
+    soc: float
+    voltage: float
+    current: float
+    power: float
+    temperature: float
+    charge_voltage: float
+    discharge_voltage: float
+    charge_current_limit: float
+    discharge_current_limit: float
+    max_charge_current: float
+    max_discharge_current: float
+    soh: float
+    capacity_ah: float
+    alarm: int
+    fault: int
+    battery_type: int
+    brand: int
+    software_version: int
+    hardware_version: int
+    online: bool
+
+    @property
+    def brand_name(self) -> str:
+        return BATTERY_BRANDS.get(self.brand, f"Unknown ({self.brand})")
 
 
 @dataclass
@@ -89,6 +160,8 @@ class DeyeData:
     charge_current_a: float
     export_power_w: float
     energy: dict[str, float] = field(default_factory=dict)
+    batteries: list[BatteryData] = field(default_factory=list)
+    battery_count: int = 0
     last_error: str | None = None
 
     @property
@@ -177,7 +250,10 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
     # Blocking I/O (run in the executor)
     # ------------------------------------------------------------------
     def _read_all(self) -> dict:
-        battery = self.transport.read_holding(587, 5)     # 587..591
+        main = {
+            586 + index: value
+            for index, value in enumerate(self.transport.read_holding(586, 11))
+        }
         grid = self.transport.read_holding(625, 29)       # 625..653
         pv = self.transport.read_holding(672, 2)          # 672..673
         energy_block = self.transport.read_holding(514, 16)   # 514..529
@@ -198,15 +274,45 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
             "pv_total": _u32(pv_total[0], pv_total[1]) * 0.1,
         }
 
+        batteries, battery_count = self._read_batteries(main)
+
         return {
-            "voltage": battery[0] / 100.0,
-            "soc": float(battery[1]),
-            "battery_power": float(_s16(battery[3])),
+            "voltage": main[587] / 100.0,
+            "soc": float(main[588]),
+            "battery_power": float(_s16(main[590])),
             "grid_power": float(_s16(grid[0])),
             "load_power": float(_s16(grid[28])),
             "pv_power": float(pv[0] + pv[1]),
             "energy": energy,
+            "batteries": batteries,
+            "battery_count": battery_count,
         }
+
+    def _read_batteries(self, main: dict[int, int]) -> tuple[list[BatteryData], int]:
+        """Read the per-battery detail blocks.
+
+        These live in the settings area and are not present on every firmware,
+        so a failure only costs the battery entities, not the whole poll.
+        """
+        try:
+            count_raw = self.transport.read_holding(REG_BATTERY_COUNT, 1)[0]
+            detail1 = self.transport.read_holding(BATTERY_DETAIL_REGISTER[1], 21)
+        except TransportError as exc:
+            _LOGGER.debug("Battery detail registers unavailable: %s", exc)
+            return [], 1
+
+        count = 1 if count_raw in (0, 1) else min(int(count_raw), 2)
+        batteries = [
+            _battery(1, detail1[:18], main, detail1[19])
+        ]
+        if count >= 2:
+            try:
+                detail2 = self.transport.read_holding(BATTERY_DETAIL_REGISTER[2], 18)
+            except TransportError as exc:
+                _LOGGER.debug("Second battery registers unavailable: %s", exc)
+            else:
+                batteries.append(_battery(2, detail2, main, detail1[20]))
+        return batteries, count
 
     def _deadband(self, address: int) -> float:
         if address == REG_GRID_CHARGE_CURRENT:
@@ -421,5 +527,7 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
                 charge_current_a=plan.charge_current_a,
                 export_power_w=plan.export_power_w,
                 energy=raw["energy"],
+                batteries=raw["batteries"],
+                battery_count=raw["battery_count"],
                 last_error=self._last_error,
             )

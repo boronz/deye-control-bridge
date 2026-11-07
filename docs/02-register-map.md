@@ -95,7 +95,52 @@ unit — the protocol only says "signed").
 
 ---
 
-## 3. Register writes: rules of thumb
+## 3. Battery data
+
+The inverter forwards a detail block for each battery input. The integration uses it to
+create one HA device per battery.
+
+| Reg | Name | Scale | Notes |
+|---|---|---|---|
+| 24 | Battery input number | — | `0`/`1` = one input, `2` = two inputs |
+| 210 | Battery 1 charge voltage | 0.01 V | BMS setting mirrored by the inverter |
+| 211 | Battery 1 discharge voltage | 0.01 V | |
+| 212 | Battery 1 charge current limit | 1 A | |
+| 213 | Battery 1 discharge current limit | 1 A | |
+| 214 | Battery 1 SOC | 1 % | live |
+| 215 | Battery 1 voltage | 0.01 V | live |
+| 216 | Battery 1 current | 1 A (s16) | live |
+| 217 | Battery 1 temperature | 0.1 °C + 1000 | live |
+| 218 | Battery 1 max charge current | 1 A | |
+| 219 | Battery 1 max discharge current | 1 A | |
+| 220 | Battery 1 alarm flags | bit field | |
+| 221 | Battery 1 fault flags | bit field | |
+| 223 | Battery 1 type | — | BMS protocol id |
+| 224 | Battery 1 SOH | 1 % | |
+| 225 | Battery 1 software version | — | |
+| 226 | Battery 1 rated capacity | 1 Ah | |
+| 227 | Battery 1 hardware version | — | |
+| 229 / 230 | Battery 1 / 2 brand code | — | see the protocol appendix |
+| 241–258 | Battery 2 | | same layout as 210–227 |
+| 586 | Battery 1 temperature | 0.1 °C + 1000 | live summary |
+| 587 | Battery 1 voltage | 0.01 V | |
+| 588 | Battery 1 SOC | 1 % | |
+| 589 | Battery 2 SOC | 1 % | |
+| 590 | Battery 1 power | 1 W (s16) | |
+| 591 | Battery 1 current | 0.01 A (s16) | |
+| 592 | Corrected capacity | 1 Ah | |
+| 593 | Battery 2 voltage | 0.01 V | |
+| 594 | Battery 2 current | 0.01 A (s16) | |
+| 595 | Battery 2 power | 1 W (s16) | |
+| 596 | Battery 2 temperature | 0.1 °C + 1000 | |
+
+> The detail block sits in the writable settings area. Reading is safe; the integration
+> never writes it. If a firmware does not answer for 210+ the coordinator catches the
+> error and keeps the rest of the poll working.
+
+---
+
+## 4. Register writes: rules of thumb
 
 1. **Always use FC16** (`write_multiple_holding_registers`), even for a single
    register. The protocol only officially supports `03H` and `10H`.

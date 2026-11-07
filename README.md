@@ -7,12 +7,14 @@ hybrid inverter** — SUN-5…12K-SG04LP3 / SG05LP3, including the
 * **Grid charge power** — how much to import from the grid to charge the battery, in watts.
 * **Export power** — how much may leave to the grid, in watts (`0` = zero export, the
   house is still served first).
+* **Battery devices** — one HA device per battery input, with the full BMS data the
+  inverter forwards.
 
 Internally it drives the inverter's real rule engine (work mode, solar sell, max sell
 power, grid-charge switch/current/SOC, and a *flattened* time-of-use schedule) with a
 state machine that only writes what changed.
 
-> **Status:** the translation logic is unit-tested (38 tests) and the integration code
+> **Status:** the translation logic is unit-tested (39 tests) and the integration code
 > imports cleanly against Home Assistant stubs, but it has **not** been run against a
 > live inverter yet. Do the commissioning steps in
 > [docs/03-translation.md](docs/03-translation.md#6-commissioning-procedure) before
@@ -60,6 +62,27 @@ is in [docs/01-solarman-and-deye-control.md](docs/01-solarman-and-deye-control.m
 Copy `custom_components/deye_bridge` into `/config/custom_components/` and restart.
 
 ---
+
+## Battery devices
+
+The inverter exposes a detail block for each battery input. The integration reads the
+battery count (register 24), the first block at 210–230 and the second at 241–258, and
+creates one HA device per battery:
+
+| Device | Entities | Created when |
+|---|---|---|
+| `Deye battery 1` | `sensor.deye_battery_1_*` | always |
+| `Deye battery 2` | `sensor.deye_battery_2_*` | register 24 reports two inputs |
+
+Each battery gets SOC, voltage, current, power, temperature, state of health, rated
+capacity, charge/discharge voltage, charge/discharge current limit, max charge/discharge
+current, alarm flags, fault flags, battery type, brand, software version and hardware
+version. The devices are linked to the inverter with `via_device`.
+
+If the firmware does not expose the detail block, the integration keeps working and the
+battery devices simply show as unavailable — the inverter-level `sensor.deye_inverter_*`
+battery sensors still work. Reload the config entry after adding a second battery so
+its entities are created.
 
 ## Safety: control is off by default
 
@@ -322,7 +345,7 @@ The long form is in [docs/03-translation.md](docs/03-translation.md#6-commission
 
 ```bash
 python tests/test_core.py        # 32 translation tests
-python tests/test_coordinator.py # 6 interlock / self-consumption tests
+python tests/test_coordinator.py # 7 interlock / self-consumption / battery tests
 python tests/test_imports.py     # imports the integration against HA stubs
 python tools/dry_run.py          # prints the register plan for scenarios
 python tools/probe_transport.py 192.168.1.50
