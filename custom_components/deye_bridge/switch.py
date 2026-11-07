@@ -24,17 +24,21 @@ async def async_setup_entry(
     coordinator: DeyeCoordinator = entry.runtime_data
     async_add_entities(
         [
-            DeyeBridgeEnabledSwitch(coordinator),
+            DeyeControlEnabledSwitch(coordinator),
             DeyeBatteryExportSwitch(coordinator),
         ]
     )
 
 
-class DeyeBridgeEnabledSwitch(DeyeEntity, SwitchEntity, RestoreEntity):
-    """Turns the whole translation on or off (off = restore the snapshot)."""
+class DeyeControlEnabledSwitch(DeyeEntity, SwitchEntity, RestoreEntity):
+    """Master interlock: off means the integration never writes to the inverter.
 
-    _attr_name = "Bridge enabled"
-    _attr_icon = "mdi:connection"
+    It is off on a fresh install. Turning it on snapshots the inverter's current
+    control registers first; turning it off writes that snapshot back.
+    """
+
+    _attr_name = "Control enabled"
+    _attr_icon = "mdi:shield-check"
 
     def __init__(self, coordinator: DeyeCoordinator) -> None:
         super().__init__(coordinator, "enabled")

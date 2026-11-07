@@ -213,6 +213,11 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
         return 0.0
 
     def _execute(self, plan) -> int:
+        # Hard interlock: with control disabled nothing may reach the inverter,
+        # whatever plan the caller built.
+        if not self.runtime.enabled:
+            return 0
+
         written = 0
         for write in plan.writes:
             address = write.address
