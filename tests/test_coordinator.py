@@ -246,6 +246,32 @@ def test_absorption_interval_is_configurable():
     assert coordinator.update_interval.total_seconds() == 60
 
 
+def test_import_hands_back_to_self_consumption():
+    entry = FakeEntry()
+    entry.options = {
+        "verify_every": 0,
+        "absorb_enter_hold": 0,
+        "absorb_exit_hold": 3600,   # would hold forever without the import rule
+    }
+    runtime = DeyeRuntime()
+    runtime.enabled = True
+    runtime.mode = MODE_SELF_CONSUMPTION
+    transport = GridTransport(grid_power=-2000)
+    coordinator = DeyeCoordinator(FakeHass(), entry, transport, runtime)
+
+    data = asyncio.run(coordinator._async_update_data())
+    assert data.state == "absorbing"
+    assert (146, [0]) in transport.writes        # TOU off while charging
+
+    transport.grid_power = 800                  # house is importing now
+    coordinator._last_write.clear()             # pretend the poll interval passed
+    data = asyncio.run(coordinator._async_update_data())
+    assert data.state == "self_consumption"
+    assert (146, [255]) in transport.writes      # TOU on: battery may discharge
+    assert (145, [0]) in transport.writes        # no export
+    assert (142, [2]) in transport.writes        # zero export to CT
+
+
 def test_self_consumption_absorbs_export():
     _, transport, data = _self_consumption(grid_power=-2000)
     assert data.state == "absorbing"

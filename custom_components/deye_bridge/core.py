@@ -240,6 +240,7 @@ class ExcessConfig:
     exit_hold_s: float = 30.0       # no export must persist this long to stop
     absorb_ratio: float = 0.95      # charge this fraction of the export
     min_absorb_w: float = 50.0      # ignore tiny targets
+    import_exit_w: float = 100.0    # importing more than this cancels absorption at once
 
     def __post_init__(self) -> None:
         if self.exit_export_w > self.enter_export_w:
@@ -285,6 +286,14 @@ class ExcessController:
         cfg = self.config
 
         if soc >= max_soc - 0.5:
+            self.reset()
+            return 0.0
+
+        # The moment the house is importing, absorption is the wrong state: the
+        # self-consumption plan lets the inverter discharge to cover the load.
+        # This overrides the exit hold so a passing cloud never leaves us
+        # importing while the battery is held idle.
+        if self.absorbing and grid_power_w > cfg.import_exit_w:
             self.reset()
             return 0.0
 

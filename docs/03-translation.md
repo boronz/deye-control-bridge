@@ -150,6 +150,7 @@ export_w = max(0, -grid_power)          # register 625, positive = import
 | export ≥ 150 W for 10 s | absorbing = true |
 | export < 50 W for 30 s | absorbing = false |
 | export between 50 and 150 W | keep the previous state |
+| import > 100 W | absorbing = false immediately (no exit hold) |
 | SOC ≥ charge ceiling | absorbing = false, target 0 |
 
 While absorbing, the plan is the **CHARGING** plan of 2.1 with
@@ -172,6 +173,11 @@ Consequences and tuning:
 * All five thresholds (`enter_export_w`, `exit_export_w`, `enter_hold_s`,
   `exit_hold_s`, `absorb_ratio`) are exposed in the options flow.
 * The 5 % bias keeps a small export rather than importing to charge.
+* Import cancels absorption at once. The discharge side is not driven by this
+  controller: the self-consumption plan leaves the inverter's own zero-export CT
+  loop in charge, which discharges the battery to keep the CT at zero down to the
+  floor. The integration only has to hand over quickly, which the `import_exit_w`
+  rule does.
 * With the battery full there is nowhere for the surplus to go; it exports.
 
 ---

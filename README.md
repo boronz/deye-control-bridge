@@ -14,7 +14,7 @@ Internally it drives the inverter's real rule engine (work mode, solar sell, max
 power, grid-charge switch/current/SOC, and a *flattened* time-of-use schedule) with a
 state machine that only writes what changed.
 
-> **Status:** the translation logic is unit-tested (42 tests) and the integration code
+> **Status:** the translation logic is unit-tested (44 tests) and the integration code
 > imports cleanly against Home Assistant stubs, but it has **not** been run against a
 > live inverter yet. Do the commissioning steps in
 > [docs/03-translation.md](docs/03-translation.md#6-commissioning-procedure) before
@@ -312,7 +312,15 @@ In `self_consumption` mode the coordinator reads grid power (register 625) every
 | Export > 150 W for 10 s | Start absorbing. Charge the battery at ≈ 95 % of the export: TOU off, grid charge enabled, `128` = export / battery voltage |
 | Export between 50–150 W | Keep the current state (hysteresis) |
 | Export < 50 W for 30 s | Stop absorbing, return to normal zero-export self-consumption (TOU on, battery discharges to the floor) |
+| **Import > 100 W** | **Cancel absorbing immediately** and hand back to self-consumption so the battery discharges |
 | Battery at charge ceiling | Stop absorbing |
+
+On the other side of zero, the discharge is already handled by the inverter's own
+fast zero-export CT loop: the self-consumption plan (TOU on, discharge floor, zero
+export) lets it discharge the battery until the CT is back at zero — as long as the
+battery is above the floor. The integration's job is the hand-over: the moment the CT
+reports import (> 100 W) absorption is cancelled immediately rather than waiting out
+the exit hold, so the battery is never left idle while the house is importing.
 
 The 95 % bias means the loop prefers a small export over importing. The ratio and the
 four timing thresholds are all in **Configure**; while the loop is active (or export is
@@ -381,8 +389,8 @@ The long form is in [docs/03-translation.md](docs/03-translation.md#6-commission
 ## Development
 
 ```bash
-python tests/test_core.py        # 32 translation tests
-python tests/test_coordinator.py # 10 interlock / self-consumption / battery / CT tests
+python tests/test_core.py        # 33 translation tests
+python tests/test_coordinator.py # 11 interlock / self-consumption / battery / CT tests
 python tests/test_imports.py     # imports the integration against HA stubs
 python tools/dry_run.py          # prints the register plan for scenarios
 python tools/probe_transport.py 192.168.1.50

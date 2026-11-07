@@ -330,6 +330,16 @@ def test_absorb_stops_after_the_exit_hold():
     assert controller.absorbing is False
 
 
+def test_absorb_cancels_immediately_on_import():
+    controller = _controller(enter_hold_s=0, exit_hold_s=3600)
+    controller.update(0, -500, 50, 100)
+    assert controller.absorbing is True
+
+    # importing: do not sit in the exit hold, hand back to self-consumption
+    assert controller.update(1, 500, 50, 100) == 0.0
+    assert controller.absorbing is False
+
+
 def test_absorb_stops_at_the_charge_ceiling():
     controller = _controller(enter_hold_s=0)
     controller.update(0, -2000, 50, 100)
