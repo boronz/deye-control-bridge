@@ -160,6 +160,7 @@ class DeyeData:
     charge_current_a: float
     export_power_w: float
     energy: dict[str, float] = field(default_factory=dict)
+    grid_detail: dict[str, float] = field(default_factory=dict)
     batteries: list[BatteryData] = field(default_factory=list)
     battery_count: int = 0
     last_error: str | None = None
@@ -254,7 +255,14 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
             586 + index: value
             for index, value in enumerate(self.transport.read_holding(586, 11))
         }
-        grid = self.transport.read_holding(625, 29)       # 625..653
+        grid = {
+            598 + index: value
+            for index, value in enumerate(self.transport.read_holding(598, 28))
+        }                                                  # 598..625
+        tail = {
+            626 + index: value
+            for index, value in enumerate(self.transport.read_holding(626, 28))
+        }                                                  # 626..653
         pv = self.transport.read_holding(672, 2)          # 672..673
         energy_block = self.transport.read_holding(514, 16)   # 514..529
         pv_total = self.transport.read_holding(534, 2)        # 534..535
@@ -276,14 +284,34 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
 
         batteries, battery_count = self._read_batteries(main)
 
+        grid_detail = {
+            # Selected CT (internal or external, depending on register 142)
+            "voltage_l1": grid[598] / 10.0,
+            "voltage_l2": grid[599] / 10.0,
+            "voltage_l3": grid[600] / 10.0,
+            "power_l1": float(_s16(grid[622])),
+            "power_l2": float(_s16(grid[623])),
+            "power_l3": float(_s16(grid[624])),
+            "frequency": grid[609] / 100.0,
+            # The external clamps, independent of the selected CT
+            "external_ct_l1": float(_s16(grid[616])),
+            "external_ct_l2": float(_s16(grid[617])),
+            "external_ct_l3": float(_s16(grid[618])),
+            "external_ct_total": float(_s16(grid[619])),
+            "external_ct_current_l1": _s16(grid[613]) / 100.0,
+            "external_ct_current_l2": _s16(grid[614]) / 100.0,
+            "external_ct_current_l3": _s16(grid[615]) / 100.0,
+        }
+
         return {
             "voltage": main[587] / 100.0,
             "soc": float(main[588]),
             "battery_power": float(_s16(main[590])),
-            "grid_power": float(_s16(grid[0])),
-            "load_power": float(_s16(grid[28])),
+            "grid_power": float(_s16(grid[625])),
+            "load_power": float(_s16(tail[653])),
             "pv_power": float(pv[0] + pv[1]),
             "energy": energy,
+            "grid_detail": grid_detail,
             "batteries": batteries,
             "battery_count": battery_count,
         }
@@ -527,6 +555,7 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
                 charge_current_a=plan.charge_current_a,
                 export_power_w=plan.export_power_w,
                 energy=raw["energy"],
+                grid_detail=raw["grid_detail"],
                 batteries=raw["batteries"],
                 battery_count=raw["battery_count"],
                 last_error=self._last_error,

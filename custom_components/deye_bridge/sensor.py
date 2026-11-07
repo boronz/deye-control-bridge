@@ -148,8 +148,45 @@ SENSORS = SENSORS + (
     _energy("battery_charge_total", "Battery charge total", "mdi:battery-plus"),
     _energy("battery_discharge_today", "Battery discharge today", "mdi:battery-minus"),
     _energy("battery_discharge_total", "Battery discharge total", "mdi:battery-minus"),
+
     _energy("load_today", "Load energy today", "mdi:home-lightning-bolt"),
     _energy("load_total", "Load energy total", "mdi:home-lightning-bolt"),
+)
+
+
+def _grid(
+    key: str,
+    name: str,
+    unit: str | None,
+    device_class: SensorDeviceClass | None,
+    icon: str,
+) -> DeyeSensorDescription:
+    return DeyeSensorDescription(
+        key=key,
+        name=name,
+        icon=icon,
+        native_unit_of_measurement=unit,
+        device_class=device_class,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda data: data.grid_detail.get(key),
+    )
+
+
+SENSORS = SENSORS + (
+    _grid("grid_voltage_l1", "Grid voltage L1", "V", SensorDeviceClass.VOLTAGE, "mdi:transmission-tower"),
+    _grid("grid_voltage_l2", "Grid voltage L2", "V", SensorDeviceClass.VOLTAGE, "mdi:transmission-tower"),
+    _grid("grid_voltage_l3", "Grid voltage L3", "V", SensorDeviceClass.VOLTAGE, "mdi:transmission-tower"),
+    _grid("grid_power_l1", "Grid power L1", UnitOfPower.WATT, SensorDeviceClass.POWER, "mdi:transmission-tower"),
+    _grid("grid_power_l2", "Grid power L2", UnitOfPower.WATT, SensorDeviceClass.POWER, "mdi:transmission-tower"),
+    _grid("grid_power_l3", "Grid power L3", UnitOfPower.WATT, SensorDeviceClass.POWER, "mdi:transmission-tower"),
+    _grid("external_ct_l1", "External CT power L1", UnitOfPower.WATT, SensorDeviceClass.POWER, "mdi:current-ac"),
+    _grid("external_ct_l2", "External CT power L2", UnitOfPower.WATT, SensorDeviceClass.POWER, "mdi:current-ac"),
+    _grid("external_ct_l3", "External CT power L3", UnitOfPower.WATT, SensorDeviceClass.POWER, "mdi:current-ac"),
+    _grid("external_ct_total", "External CT power total", UnitOfPower.WATT, SensorDeviceClass.POWER, "mdi:current-ac"),
+    _grid("external_ct_current_l1", "External CT current L1", "A", SensorDeviceClass.CURRENT, "mdi:current-ac"),
+    _grid("external_ct_current_l2", "External CT current L2", "A", SensorDeviceClass.CURRENT, "mdi:current-ac"),
+    _grid("external_ct_current_l3", "External CT current L3", "A", SensorDeviceClass.CURRENT, "mdi:current-ac"),
+    _grid("frequency", "Grid frequency", "Hz", SensorDeviceClass.FREQUENCY, "mdi:sine-wave"),
 )
 
 

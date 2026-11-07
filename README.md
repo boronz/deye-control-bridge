@@ -14,7 +14,7 @@ Internally it drives the inverter's real rule engine (work mode, solar sell, max
 power, grid-charge switch/current/SOC, and a *flattened* time-of-use schedule) with a
 state machine that only writes what changed.
 
-> **Status:** the translation logic is unit-tested (39 tests) and the integration code
+> **Status:** the translation logic is unit-tested (40 tests) and the integration code
 > imports cleanly against Home Assistant stubs, but it has **not** been run against a
 > live inverter yet. Do the commissioning steps in
 > [docs/03-translation.md](docs/03-translation.md#6-commissioning-procedure) before
@@ -62,6 +62,28 @@ is in [docs/01-solarman-and-deye-control.md](docs/01-solarman-and-deye-control.m
 Copy `custom_components/deye_bridge` into `/config/custom_components/` and restart.
 
 ---
+
+## CT clamps and the Energy dashboard
+
+The inverter exposes three layers of grid data, all available as sensors:
+
+| Layer | Registers | Sensors |
+|---|---|---|
+| Selected CT (what the inverter regulates on) | 622–625 | `grid_power_l1/l2/l3` + `grid_power` |
+| External clamps (SM2 CT terminals) | 613–619 | `external_ct_power_l1/l2/l3`, `external_ct_power_total`, `external_ct_current_l1/l2/l3` |
+| Grid voltages and frequency | 598–600, 609 | `grid_voltage_l1/l2/l3`, `grid_frequency` |
+
+Sign convention: **positive = import, negative = export**, matching the inverter's
+display. The per-phase values are signed the same way.
+
+For the HA **Energy dashboard**, the grid counters are already there:
+`sensor.deye_inverter_grid_import_total` and `sensor.deye_inverter_grid_export_total`
+(plus the `_today` variants). If you want to replace a P1 meter with the CT clamps, those
+two totals are the ones to configure — the live `grid_power`/`grid_power_l1..l3` sensors
+are the same measurement in watts and can drive your own template/Riemann sensors.
+
+> Phase mapping is physical: L1/L2/L3 follow the CT terminals. If a clamp is reversed,
+> that phase will show the opposite sign — fix it at the clamp rather than in software.
 
 ## Battery devices
 
@@ -159,7 +181,13 @@ name if you rename it.
 | `sensor.deye_inverter_battery_soc` | sensor | Battery SOC |
 | `sensor.deye_inverter_battery_voltage` | sensor | Battery voltage (used for W → A) |
 | `sensor.deye_inverter_battery_power` | sensor | Battery power (W) |
-| `sensor.deye_inverter_grid_power` | sensor | Grid power, positive = import |
+| `sensor.deye_inverter_grid_power` | sensor | Grid power, positive = import, negative = export |
+| `sensor.deye_inverter_grid_power_l1/l2/l3` | sensor | Per-phase grid power from the selected CT |
+| `sensor.deye_inverter_grid_voltage_l1/l2/l3` | sensor | Per-phase grid voltage |
+| `sensor.deye_inverter_external_ct_power_l1/l2/l3` | sensor | External CT clamp power per phase |
+| `sensor.deye_inverter_external_ct_power_total` | sensor | External CT clamp total |
+| `sensor.deye_inverter_external_ct_current_l1/l2/l3` | sensor | External CT clamp current per phase |
+| `sensor.deye_inverter_grid_frequency` | sensor | Grid frequency |
 | `sensor.deye_inverter_pv_power` | sensor | PV power |
 | `sensor.deye_inverter_load_power` | sensor | Load power |
 | `sensor.deye_inverter_applied_charge_power` | sensor | The charge power the plan asked for |
@@ -345,7 +373,7 @@ The long form is in [docs/03-translation.md](docs/03-translation.md#6-commission
 
 ```bash
 python tests/test_core.py        # 32 translation tests
-python tests/test_coordinator.py # 7 interlock / self-consumption / battery tests
+python tests/test_coordinator.py # 8 interlock / self-consumption / battery / CT tests
 python tests/test_imports.py     # imports the integration against HA stubs
 python tools/dry_run.py          # prints the register plan for scenarios
 python tools/probe_transport.py 192.168.1.50

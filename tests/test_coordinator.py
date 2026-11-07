@@ -107,10 +107,26 @@ class GridTransport(FakeTransport):
             block[2] = self.soc         # 588 battery SOC
             block[4] = 0                # 590 battery power
             return block
-        if address == 625:
+        if address == 598:
             block = [0] * count
-            block[0] = self.grid_power & 0xFFFF
+            block[0] = 2300             # L1 voltage 230.0 V
+            block[1] = 2310             # L2
+            block[2] = 2290             # L3
+            block[11] = 5000            # 609 grid frequency 50.00 Hz
+            block[15] = 1000            # 613 external CT current L1 10 A
+            block[16] = 1000
+            block[17] = 1000
+            block[18] = (-1000) & 0xFFFF  # 616 external CT power L1
+            block[19] = (-1000) & 0xFFFF
+            block[20] = (-1000) & 0xFFFF
+            block[21] = (-3000) & 0xFFFF  # 619 external CT total
+            block[24] = (-1000) & 0xFFFF  # 622 selected CT power L1
+            block[25] = (-1000) & 0xFFFF
+            block[26] = (-1000) & 0xFFFF
+            block[27] = self.grid_power & 0xFFFF  # 625 grid total
             return block
+        if address == 626:
+            return [0] * count
         if address == 24:
             return [1]
         if address == 210:
@@ -168,6 +184,25 @@ def test_battery_block_is_parsed():
     assert battery.brand == 14
     assert battery.brand_name == "Deye"
     assert battery.online is True
+
+
+def test_ct_and_phase_values_are_parsed():
+    runtime = DeyeRuntime()
+    transport = GridTransport(grid_power=-3000, soc=50, voltage=5200)
+    coordinator = DeyeCoordinator(FakeHass(), FakeEntry(), transport, runtime)
+    data = asyncio.run(coordinator._async_update_data())
+
+    assert data.grid_power == -3000
+    assert data.grid_detail["voltage_l1"] == 230.0
+    assert data.grid_detail["voltage_l2"] == 231.0
+    assert data.grid_detail["voltage_l3"] == 229.0
+    assert data.grid_detail["frequency"] == 50.0
+    assert data.grid_detail["power_l1"] == -1000
+    assert data.grid_detail["power_l2"] == -1000
+    assert data.grid_detail["power_l3"] == -1000
+    assert data.grid_detail["external_ct_l1"] == -1000
+    assert data.grid_detail["external_ct_total"] == -3000
+    assert data.grid_detail["external_ct_current_l1"] == 10.0
 
 
 def test_self_consumption_absorbs_export():

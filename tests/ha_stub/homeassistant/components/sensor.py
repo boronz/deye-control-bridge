@@ -12,6 +12,7 @@ class SensorDeviceClass:
     ENERGY = "energy"
     CURRENT = "current"
     TEMPERATURE = "temperature"
+    FREQUENCY = "frequency"
 
 class SensorStateClass:
     MEASUREMENT = "measurement"; TOTAL_INCREASING = "total_increasing"

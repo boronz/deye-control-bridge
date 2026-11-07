@@ -140,7 +140,33 @@ create one HA device per battery.
 
 ---
 
-## 4. Register writes: rules of thumb
+## 4. Grid and CT measurements
+
+| Reg | Name | Scale | Notes |
+|---|---|---|---|
+| 598–600 | Grid phase voltage L1–L3 | 0.1 V | |
+| 604–606 | Internal (built-in) CT power L1–L3 | 1 W (s16) | |
+| 607 | Internal CT total power | 1 W (s16) | |
+| 609 | Grid frequency | 0.01 Hz | |
+| 610–612 | Internal CT current L1–L3 | 0.01 A (s16) | |
+| 613–615 | External CT current L1–L3 | 0.01 A (s16) | |
+| 616–618 | External CT power L1–L3 | 1 W (s16) | |
+| 619 | External CT total power | 1 W (s16) | |
+| 622–624 | **Selected** CT power L1–L3 | 1 W (s16) | internal or external, per register 142 |
+| 625 | **Selected** CT total power | 1 W (s16) | what `sensor.deye_inverter_grid_power` uses |
+| 626–629 | Inverter output phase voltage L1–L3 | 0.1 V | |
+| 630–632 | Inverter output phase current L1–L3 | 0.01 A (s16) | |
+| 636 | Inverter output total power | 1 W (s16) | |
+| 653 | Load total power | 1 W (s16) | |
+
+Positive power = import, negative = export. The per-phase powers at 622–624 are the
+values the inverter's own control loop uses, so they are the right source for a
+grid/P1 replacement. The external clamp group (613–619) is independent of the
+selected CT and is useful when diagnosing a reversed clamp.
+
+---
+
+## 5. Register writes: rules of thumb
 
 1. **Always use FC16** (`write_multiple_holding_registers`), even for a single
    register. The protocol only officially supports `03H` and `10H`.
