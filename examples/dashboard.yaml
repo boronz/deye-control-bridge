@@ -5,7 +5,7 @@ cards:
   - type: entities
     title: Deye Power Bridge
     entities:
-      - entity: switch.deye_inverter_bridge_enabled
+      - entity: switch.deye_inverter_control_enabled
       - entity: sensor.deye_inverter_bridge_state
       - entity: select.deye_inverter_both_sliders_policy
       - entity: switch.deye_inverter_allow_battery_export

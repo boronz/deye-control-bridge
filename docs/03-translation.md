@@ -17,7 +17,7 @@ Two writable numbers, both in watts, plus a small set of safety settings:
 | `number.deye_inverter_charge_ceiling_soc` | 10 … 100 % | Charge ceiling (safety) |
 | `switch.deye_inverter_allow_battery_export` | — | If off, only PV surplus may be exported; the battery holds |
 | `select.deye_inverter_both_sliders_policy` | — | What to do when both sliders are > 0 |
-| `switch.deye_inverter_bridge_enabled` | — | Master switch; off = restore the original settings |
+| `switch.deye_inverter_control_enabled` | — | Master interlock, off by default; off = read-only, on = control (and snapshot) |
 
 The HEMS writes the two numbers (`number.set_value`) every price interval, or as
 often as it likes. Nothing else is required from it.
@@ -198,7 +198,7 @@ Do this once, before letting a HEMS drive it. Keep the app/display handy.
    143 = 1000, 145 = 1, 142 = 0. Confirm ~1 kW leaves at the meter (or less, if the
    house is consuming).
 6. **Export stop.** Set it back to 0. Confirm 145 = 0 and the meter settles at ~0.
-7. **Restore.** Turn off `switch.deye_inverter_bridge_enabled` and confirm the
+7. **Restore.** Turn off `switch.deye_inverter_control_enabled` and confirm the
    snapshot values are back.
 
 If step 5 does not export battery power, check in this order:

@@ -61,6 +61,13 @@ Copy `custom_components/deye_bridge` into `/config/custom_components/` and resta
 
 ---
 
+## Safety: control is off by default
+
+A fresh install is **read-only**. `switch.deye_inverter_control_enabled` starts off,
+and while it is off the integration never writes to the inverter on its own — it only
+polls measurements. Turning it on snapshots the current control registers first; turning it
+off writes that snapshot back. Nothing on the inverter changes until you flip it.
+
 ## ⚠️ One Modbus master at a time
 
 The inverter / Solarman dongle accepts a **single** Modbus connection. This integration
@@ -121,7 +128,7 @@ name if you rename it.
 | `number.deye_inverter_export_power` | number (W) | **Export power** — grid export ceiling |
 | `number.deye_inverter_discharge_floor_soc` | number (%) | Discharge floor (default 20) |
 | `number.deye_inverter_charge_ceiling_soc` | number (%) | Charge ceiling (default 100) |
-| `switch.deye_inverter_bridge_enabled` | switch | Master switch; off = restore the snapshot |
+| `switch.deye_inverter_control_enabled` | switch | **Master interlock, off by default**; off = read-only, on = control (and snapshot) |
 | `switch.deye_inverter_allow_battery_export` | switch | Off = only PV surplus may be exported |
 | `select.deye_inverter_both_sliders_policy` | select | `charge_priority` / `export_priority` / `net` |
 | `sensor.deye_inverter_bridge_state` | sensor | `charging` / `exporting` / `self_consumption` / `blocked` / `disabled` |
@@ -140,7 +147,7 @@ name if you rename it.
 
 | Service | Description |
 |---|---|
-| `deye_bridge.snapshot` | Save the current control registers (also done when you enable the bridge) |
+| `deye_bridge.snapshot` | Save the current control registers (also done when you enable control) |
 | `deye_bridge.restore` | Write the saved snapshot back |
 | `deye_bridge.apply` | Re-run the translation now instead of waiting for the next poll |
 
@@ -151,6 +158,10 @@ All three accept an optional `entry_id` to target one inverter.
 ## Use
 
 ```yaml
+# one-time: allow the integration to write to the inverter
+- service: switch.turn_on
+  target: { entity_id: switch.deye_inverter_control_enabled }
+
 # charge 4 kW from the grid
 - service: number.set_value
   target: { entity_id: number.deye_inverter_grid_charge_power }
@@ -244,7 +255,7 @@ Register map: [docs/02-register-map.md](docs/02-register-map.md).
 
 1. Add the integration and confirm `sensor.deye_inverter_battery_soc` matches the
    inverter display.
-2. Turn on **Bridge enabled** — this takes the snapshot. Check `deye_bridge.snapshot`
+2. Turn on **Control enabled** — this takes the snapshot. Check `deye_bridge.snapshot`
    returns data (or look at the diagnostics).
 3. Set **Grid charge power** to 1000 W and watch `sensor.deye_inverter_battery_power`
    and the register 128/130 values in the diagnostics.
@@ -252,7 +263,7 @@ Register map: [docs/02-register-map.md](docs/02-register-map.md).
 5. Set **Export power** to 1000 W and watch the meter. If battery export does not start,
    check `142 = 0`, `145 = 1`, `146 = 0x00FF`, and the firmware caveat about the
    "sell" bit in registers 172–177.
-6. Turn off **Bridge enabled** and confirm the original settings are back.
+6. Turn off **Control enabled** and confirm the original settings are back.
 
 The long form is in [docs/03-translation.md](docs/03-translation.md#6-commissioning-procedure).
 
