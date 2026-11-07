@@ -1,0 +1,48 @@
+# Example Lovelace view for the Deye Power Bridge integration.
+# Entity ids assume the device is called "Deye inverter".
+type: vertical-stack
+cards:
+  - type: entities
+    title: Deye Power Bridge
+    entities:
+      - entity: switch.deye_inverter_bridge_enabled
+      - entity: sensor.deye_inverter_bridge_state
+      - entity: select.deye_inverter_both_sliders_policy
+      - entity: switch.deye_inverter_allow_battery_export
+      - entity: binary_sensor.deye_inverter_connected
+
+  - type: gauge
+    entity: number.deye_inverter_grid_charge_power
+    name: Grid charge power
+    min: 0
+    max: 12000
+    needle: true
+    severity:
+      green: 0
+      yellow: 6000
+      red: 10000
+
+  - type: gauge
+    entity: number.deye_inverter_export_power
+    name: Export power
+    min: 0
+    max: 12000
+    needle: true
+    severity:
+      green: 0
+      yellow: 6000
+      red: 10000
+
+  - type: entities
+    title: Limits
+    entities:
+      - entity: number.deye_inverter_discharge_floor_soc
+      - entity: number.deye_inverter_charge_ceiling_soc
+
+  - type: history-graph
+    title: Last 24 h
+    hours_to_show: 24
+    entities:
+      - entity: sensor.deye_inverter_battery_soc
+      - entity: sensor.deye_inverter_battery_power
+      - entity: sensor.deye_inverter_grid_power

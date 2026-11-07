@@ -1,0 +1,3090 @@
+Hybrid-Wechselrichter
+ SUN-4K-SG05LP3-EU-SM2
+ SUN-5K-SG05LP3-EU-SM2
+ SUN-6K-SG05LP3-EU-SM2
+ SUN-8K-SG05LP3-EU-SM2
+                                         05/28/2019 15:34:40
+
+
+
+
+ SUN-10K-SG05LP3-EU-SM2   0 8.30
+                               KW
+
+
+
+
+                             25%
+
+                          0 -2.00
+                                KW
+                                     12
+
+
+
+
+                                     8
+                                                  ON
+                                                               0 -3.00
+                                                                    KW
+
+
+
+
+                                                               0 3.00
+                                                                    KW
+                                                                         8
+
+
+
+
+                                                                         8
+
+
+
+
+ SUN-12K-SG05LP3-EU-SM2
+
+Benutzerhandbuch
+Inhalt
+1. Einführung in die Sicherheit ………………………………………………… 01-02
+2. Produktvorstellung ………………………………………………… 02-05
+  2.1 Produktübersicht
+  2.2 Produktabmessungen
+  2.3 Produktmerkmale
+  2.4 Grundlegende Systemarchitektur
+3. Installation …………………………………………………………… 06-29
+  3.1 Teileliste
+  3.2 Anforderungen an die Produkthandhabung
+  3.3 Montageanleitung
+  3.4 Batterieanschluss
+  3.5 Netzanschluss und Ersatzlast-Anschluss
+  3.6 PV-Anschluss
+  3.7 CT-Anschluss
+  3.7.1 Zähleranschluss
+  3.8 Erdungsanschluss (obligatorisch)
+  3.9 WiFi-Verbindung
+  3.10 Verdrahtungssystem für Wechselrichter
+  3.11 Verdrahtungsplan
+  3.12 Typisches Anwendungsdiagramm eines Dieselgenerators
+  3.13 Dreiphasen-Parallelschaltplan
+4. BEDIENUNG …………………………………………………………… 30
+  4.1 Einschalten/Ausschalten
+  4.2 Bedien- und Anzeigefeld
+5. Symbole auf der LCD-Anzeige …………………………………………………… 31-44
+  5.1 Hauptbildschirm
+  5.2 Solarstrom-Kurve
+  5.3 Kurvenseite - Solar & Last & Netz
+  5.4 Menü Systemeinstellung
+  5.5 Menü Grundeinstellung
+  5.6 Menü Batterieeinstellung
+  5.7 Einstellmenü für Systemarbeitsmodus
+  5.8 Einstellmenü für Netzstrom
+  5.9 Einstellmenü für Generator-Port
+  5.10 Einstellmenü für erweiterte Funktionen
+  5.11 Einstellmenü für Geräte-Info
+6. Modus …………………………………………………………………… 44-45
+7. Einschränkung der Haftung       ……………………………………………… 45-48
+8. Datenblatt ……………………………………………………………… 49-50
+9. Anhang I …………………………………………………………… 51-53
+10. Anhang II …………………………………………………………… 54
+11. EU-Konformitätserklärung …………………………………… 54-55
+Über dieses Handbuch
+Das Handbuch beschreibt hauptsächlich die Produktinformationen, Anleitung für die
+Installation, Bedienung und Wartung. Es kann keine vollständigen Informationen über die
+Photovoltaik(PV)-Anlage enthalten.
+
+Wie Sie dieses Handbuch verwenden
+Lesen Sie das Handbuch und andere zugehörige Dokumente, bevor Sie mit dem Wechselrichter
+arbeiten. Die Dokumente müssen sorgfältig aufbewahrt werden und jederzeit verfügbar sein.
+Der Inhalt kann aufgrund der Produktentwicklung regelmäßig aktualisiert oder überarbeitet
+werden. Die Informationen in diesem Handbuch können ohne vorherige Ankündigung geändert
+werden. Das aktuelle Handbuch kann über mailto:service@deye.com.cn bezogen werden.
+
+
+1. Einführung in die Sicherheit
+
+Symbolerklärungen
+      Symbol                                            Beschreibung
+
+                    Achtung, Gefahr eines Stromschlags. Das Symbol weist auf wichtige Sicherheitshinweise
+                    hin, die bei Nichtbeachtung zu einem Stromschlag führen können.
+
+
+                    Die DC-Eingangsklemmen des Wechselrichters dürfen nicht geerdet werden.
+
+
+
+                    Heiße Oberfläche. Bitte berühren Sie das Gehäuse des Wechselrichters nicht.
+
+
+                    Die AC- und DC-Stromkreise müssen getrennt voneinander abgeschaltet
+                    werden. Beim Abschalten muss das Wartungspersonal 5 Min. warten, bis sie
+                    komplett ausgeschaltet sind, bevor es mit den Arbeiten beginnt.
+
+
+                    CE-Konformitätszeichen
+
+
+
+                    Bitte lesen Sie vor Gebrauch das Handbuch sorgfältig durch.
+
+
+                    Symbol für die Kennzeichnung von Elektro- und Elektronikgeräten gemäß der Richtlinie
+                    2002/96/EG. Zeigt an, dass das Gerät und Zubehör sowie die Verpackung nicht als
+                    unsortierter Hausmüll entsorgt werden dürfen und am Ende der Nutzung gesondert
+                    gesammelt werden müssen. Bitte beachten Sie die geltenden Vorschriften für die
+                    Entsorgung oder wenden Sie sich an einen autorisierten Vertreter des Herstellers für
+                    Informationen über die Stilllegung von Geräten.
+
+
+
+
+                                               - 01 -
+· Dieses Kapitel enthält wichtige Sicherheits- und Bedienungshinweise. Lesen Sie dieses
+  Handbuch und bewahren Sie es zum späteren Nachschlagen auf.
+· Bevor Sie den Wechselrichter benutzen, lesen Sie bitte die Hinweise und Warnzeichen der
+  Batterie und die entsprechenden Abschnitte im Handbuch.
+· Nehmen Sie den Wechselrichter nicht auseinander. Wenden Sie sich im Falle einer Wartung
+  oder Reparatur an ein professionelles Servicezentrum.
+· Unsachgemäßer Wiederzusammenbau kann zu einem Stromschlag oder Brand führen.
+· Um die Gefahr eines Stromschlags zu verringern, sollten Sie alle Kabel abklemmen, bevor
+  Sie Wartungs- oder Reinigungsarbeiten durchführen. Nur das Geräteausschalten verringert
+  dieses Risiko nicht.
+· Achtung! Nur qualifiziertes Personal darf dieses Gerät mit Batterie installieren.
+· Laden Sie niemals eine eingefrorene Batterie auf.
+· Für optimalen Betrieb dieses Wechselrichters beachten Sie bitte die angegebenen
+  Spezifikationen zur Auswahl geeigneter Kabelgröße. Es ist sehr wichtig, diesen Wechselrichter
+  korrekt zu benutzen.
+· Seien Sie besonders vorsichtig, wenn Sie mit Metallwerkzeugen an oder in der Nähe von
+  Batterien arbeiten. Das Fallenlassen eines Werkzeugs kann einen Funken oder einen
+  Kurzschluss in Batterien oder anderen elektrischen Teilen verursachen und sogar eine
+  Explosion auslösen.
+· Bitte halten Sie sich streng an das Installationsverfahren, wenn Sie AC- oder DC-Klemmen
+  abtrennen. Einzelheiten dazu finden Sie im Kapital "Installation" in diesem Handbuch.
+· Hinweis zur Erdung - Dieser Wechselrichter muss an ein dauerhaft geerdetes Kabelsystem
+  angeschlossen werden. Achten Sie bei der Installation dieses Wechselrichters auf die
+  Einhaltung der geltenden Anforderungen und Vorschriften.
+· Schließen Sie niemals den AC-Ausgang und den DC-Eingang kurz. Schließen Sie das Gerät
+  nicht an das Stromnetz an, wenn der DC-Eingang kurzgeschlossen ist.
+
+
+
+
+2. Produktvorstellung
+Dieser multifunktionale Wechselrichter kombiniert die Funktionen eines Wechselrichters,
+eines Solarladegeräts und eines Batterieladegeräts, um eine unterbrechungsfreie
+Stromversorgung in tragbarer Größe zu ermöglichen. Seine umfassende LCD-Anzeige
+bietet dem Benutzer konfigurierbare und leicht zugängliche Tastenbedienung z.B. zum
+Batterie- oder AC/Solar-Aufladen, und passende Eingangsspannung für verschiedene
+Anwendungen.
+
+
+
+
+                                             - 02 -
+2.1 Produktübersicht
+
+
+
+
+  1
+  2
+                                                            5
+                                                            6
+                                                             7
+                                                             8
+      3                                                    9
+                                                           10
+      4
+                                                           11
+
+  16
+  17                                                               14        15
+
+                 12
+                 13
+
+
+
+
+1: LCD-Anzeige                   7: Parallel-Anschluss           13: DC-Schalter
+2: Funktionstasten               8: Zähler-485-Anschluss         14: PV-Eingang
+3: Batterie-Eingangsanschlüsse   9: Generator-Eingang            15: WiFi-Schnittstelle
+4: Funktionsanschluss            10: Last                        16: DRM-Anschluss
+5: BMS 485/CAN-Anschluss         11: Stromnetz-Anschluss         17: P1-, P2- und DI-
+6: Modbus-Anschluss              12: Ein-/Ausschalttaste         Anschlüsse (optional)
+
+
+                                            - 03 -
+2.2 Produktabmessungen
+
+
+
+
+                   Abmessungen des Wechselrichters
+
+
+
+
+                                - 04 -
+2.3 Produktmerkmale
+- 230V/400V Dreiphasen-Wechselrichter mit reiner Sinuswelle.
+- Für Eigenversorgung und Einspeisung ins Netz.
+- Automatischer Neustart während der AC-Wiederherstellung.
+- Programmierbare Versorgungspriorität für Batterie oder Netz.
+- Mehrere programmierbare Betriebsmodi: Netzparallelbetrieb, Inselbetrieb und USV.
+- Konfigurierbare(r) Batterieladespannung/-strom je nach Anwendung durch LCD-Einstellung.
+- Konfigurierbare AC/Solar/Generator-Ladepriorität durch LCD-Einstellung.
+- Kompatibel mit Netzspannung oder Generatorstrom.
+- Schutz vor Überlast/Übertemperatur/Kurzschluss.
+- Intelligentes Ladedesign für optimierte Batterieleistung
+- Mit Begrenzungsfunktion, um Netzeinspeisung des Stromüberschusses zu verhindern.
+- Unterstützung der WIFI-Überwachung und integrierte 2 Stränge von MPP-Trackern.
+- Intelligente, einstellbare dreistufige MPPT-Ladekontrolle für optimierte Batterieleistung.
+- Funktion "Nutzungszeit".
+- Funktion "Intelligente Last" (Smartlast).
+
+2.4 Grundlegende Systemarchitektur
+Die folgende Abbildung zeigt die grundlegende Anwendung dieses Wechselrichters.
+Es umfasst auch die folgenden Geräte, um ein funktionsfähiges System zu bilden.
+- Generator oder andere Versorgung
+- PV-Module
+Fragen Sie Ihren Systemberater nach weiteren möglichen Systemarchitekturen, je nach Ihren
+Anforderungen.
+Dieser Wechselrichter kann alle Geräte-Arten zu Hause oder im Büro mit Strom versorgen,
+einschließlich motorbetriebener Geräte wie Kühlschränke und Klimageräte.
+
+
+                                                                                        AC-Kabel        DC-Kabel
+
+                                                  WiFI
+                                                  GPRS
+
+                                                              Cloud-Dienste         Handy
+
+
+
+
+    Solar                                     Ersatzlast              Netzgekoppelte Hauslast           Netz
+
+                                                                                                            CT
+
+
+
+
+    Batterie                      Smartlast                Netzgekoppelter Wechselrichter             Generator
+                                                                                                ATS
+
+
+
+
+                                                - 05 -
+3. Installation
+3.1 Teileliste
+Überprüfen Sie das Gerät vor der Installation. Achten Sie darauf, dass nichts in der Verpackung
+beschädigt ist. Sie sollten die folgenden Artikel mit den Paketen erhalten haben:
+
+
+
+
+ Hybrid-Wechselrichter        Wandhalterung        Antikollisionsbolzen aus           Parallel-Kommuni-
+          x1                       x1                Edelstahl M8x80x4                 kationskabel x1
+
+
+
+
+                                                               User
+                                                                                                 Three-Phase Smart Meter
+
+
+
+
+                                                              manual                           SET     ESC
+
+
+
+
+     Sensor-Klemme         Batterie temperature-    Benutzer-handbuch x1               Zähler (optional)
+           x3                    Sensor x1                                                     x1
+
+
+
+
+ Datenlogger (optional)   DC+/DC- Steckverbinder         Solar-PV-Stecker              DRM-Stecker x1
+          x1               mit Metallklemme xN          Spezialschlüssel x1
+
+
+ 1                        2                         3                             4
+
+
+
+
+                            Magnetring für BMS             Magnetring für
+ Magnetring für Ba�erie      und Messzähler             externen Temperatur-            Magnetring x3
+          x1              Kommunika�ons-kabel x2              sensor x1
+
+                                                                                  5
+Packung des Magnetrings
+
+
+
+
+                                                            *1: 80x50x20 mm            Magnetring für
+                                                             2: 33x23x15 mm             AC-Kabel x3*
+                                                             3: 25.9x28x13 mm   * Der Magnetring für den Netz-
+                                                             4: 31x29x19 mm     Anschluss ist nicht in der Verpackung
+                                                             5: 55.5x33x23 mm   des Magnetrings, sondern im
+                                                                                Schlitz des Perlbaumwollbezugs.
+
+                                               - 06 -
+3.2 Anforderungen an die Produkthandhabung
+Heben Sie den Wechselrichter aus dem Verpackungskarton und transportieren Sie ihn zum
+vorgesehenen Installationsort.
+
+
+
+
+                                         Transport des Wechselrichters
+
+
+             ACHTUNG:
+             Falsche Handhabung kann zu Personenschäden führen!
+             · Sorgen Sie dafür, dass eine dem Gewicht des Wechselrichters entsprechende
+               Anzahl von Personen ihn tragen, und dass das Installationspersonal Schutzausrüstung
+               wie Sicherheitsschuhe und Arbeitshandschuhe trägt.
+             · Wenn Sie den Umrichter direkt auf einen harten Boden stellen, kann das Metallgehäuse
+               beschädigt werden. Legen Sie eine Schutzunterlage wie z. B. einen Schwamm oder ein
+               Schaumstoﬀkissen unter den Wechselrichter.
+             · Bewegen Sie den Wechselrichter mit einer oder zwei Personen oder mit Hilfe
+               eines geeigneten Transportmittels.
+             · Zum Bewegen des Wechselrichters fassen Sie ihn an den Griﬀen an, nicht aber
+               an den Klemmen.
+
+
+
+
+3.3 Montageanleitung
+    Vorsichtsmaßnahmen bei der Installation
+Dieser Hybrid-Wechselrichter ist für den Außeneinsatz konzipiert (IP65). Bitte stellen Sie sicher,
+dass der Installationsort die folgenden Bedingungen erfüllt:
+·   Nicht im direkten Sonnenlicht
+·   Nicht in Bereichen, in denen leicht entflammbare Materialien gelagert werden.
+·   Nicht in explosionsgefährdeten Bereichen.
+·   Nicht direkt an der kühlen Luft.
+·   Nicht in der Nähe der Fernsehantenne oder des Antennenkabels.
+·   Nicht höher als etwa 3000 Meter über dem Meeresspiegel.
+·   Nicht in einer Umgebung mit Niederschlag oder Feuchtigkeit (>95%)
+
+
+
+
+                                              - 07 -
+VERMEIDEN Sie während der Installation und des Betriebs direktes Sonnenlicht, Regen und
+Schnee. Bevor Sie alle Kabel anschließen, nehmen Sie bitte den Metalldeckel ab, indem Sie
+die Schrauben wie unten gezeigt entfernen:
+
+
+
+
+Installationswerkzeuge
+Für die Installation können die folgenden Werkzeuge empfohlen werden, auch sonstige
+Werkzeuge vor Ort.
+
+
+
+
+   Schutzbrille         Anti-Staub-Maske   Ohrstöpsel       Arbeitshandschuhe     Arbeitsschuhe     Universalmesser       Schlitzschraubendreher
+
+
+
+
+Kreuzschraubendreher     Schlagbohrer        Zange               Marker           Wasserwaage       Gummihammer             Steckschlüsselsatz
+
+
+
+
+Antistatik-Armband        Drahtschneider   Abisolierzange    Hydraulische Zange   Heißluftpistole   Quetschzange 4-6mm² Solarverbinder-Schlüssel
+
+
+
+
+ Multimeter ≥1100 Vdc   RJ45-Crimpzange      Staubsauger
+
+
+
+
+                                                                 - 08 -
+Beachten Sie vor der Auswahl des Aufstellungsortes die folgenden Punkte:
+·  Wählen Sie für die Installation eine senkrechte Wand mit ausreichender Tragfähigkeit,
+  geeignet für die Installation auf Beton oder anderen nicht brennbaren Oberflächen,
+  Installation siehe unten.
+· Installieren Sie den Wechselrichter in Augenhöhe, damit Sie die LCD-Anzeige jederzeit
+  ablesen können.
+· Es wird eine Umgebungstemperatur zwischen -40~60℃ empfohlen, um einen optimalen
+  Betrieb zu gewährleisten.
+· Achten Sie auf die Abstände zu anderen Objekten und Oberflächen wie in der Abbildung
+   gezeigt sind, um ausreichende Wärmeableitung zu gewährleisten und genügend Platz zum
+   Entfernen von Kabeln zu haben.
+                                         ≥500mm
+
+
+
+
+                                       ≥500mm
+
+
+Für eine gute Luftzirkulation zur Wärmeableitung sollten Sie einen Freiraum von ca. 50cm
+seitlich und ca. 50cm ober- und unterhalb des Gerätes sowie 100cm nach vorne einhalten.
+
+
+
+Montage des Wechselrichters
+Denken Sie daran, dass dieser Wechselrichter schwer ist! Wählen Sie den empfohlenen
+Bohrkopf (wie im Bild unten gezeigt), um 4 Löcher in die Wand zu bohren, mit einer Tiefe
+von 82-90mm.
+1. Mit einem geeigneten Hammer setzen Sie die Spreizbolzen in die Löcher ein.
+2. Tragen Sie den Wechselrichter und halten Sie ihn fest. Richten Sie die Aufhängung auf die
+   Spreizbolzen und befestigen Sie den Wechselrichter an der Wand.
+3. Ziehen Sie die Schraubenköpfe der Spreizbolzen fest, um die Montage abzuschließen.
+
+
+
+
+                                           - 09 -
+      Montage der Wechselrichter-Aufhängeplatte
+
+
+
+
+3.4 Batterieanschluss
+Für einen sicheren Betrieb und die Einhaltung der Vorschriften ist ein separater DC-
+Überstromschutz oder eine Trennvorrichtung zwischen der Batterie und dem Wechselrichter
+erforderlich. Bei einigen Anwendungen sind Schaltvorrichtungen möglicherweise nicht
+erforderlich, aber Überstromschutz ist dennoch erforderlich. Die erforderliche Größe der
+Sicherung oder des Schutzschalters entnehmen Sie bitte den typischen Stromstärken in der
+unteren Tabelle.
+
+
+                                                                       Schraub-
+       Modell             Drahtstärke        Querschnitt (mm2)     Drehmoment (max)
+        4kW                  2AWG                   33                   24.5Nm
+  5/6/8/10/12kW              1AWG                   42                   24.5Nm
+
+                                  Tabelle 3-2 Kabelstärke
+
+
+
+
+                                          - 10 -
+             Alle Verkabelungen müssen von einem Fachmann durchgeführt werden.
+
+
+             Für einen sicheren und eﬀizienten Betrieb des Systems ist es wichtig, die Batterie
+             mit einem geeigneten Kabel anzuschließen (siehe Tabelle 3-2).
+
+
+Bitte führen Sie die folgenden Schritte aus, um die Batterie anzuschließen:
+1. Wählen Sie ein geeignetes Batteriekabel mit dem richtigen Verbinder für die Batterie-Klemmen.
+2. Verwenden Sie einen passenden Schraubendreher, um die Schrauben zu lösen und die
+   Batterieverbinder zu montieren. Ziehen Sie dann die Schrauben mit einem Drehmoment
+   von 24,5 Nm im Uhrzeigersinn fest.
+3. Achten Sie darauf, dass die Polarität der Batterie und des Wechselrichters richtig
+   angeschlossen ist.
+
+
+
+
+                                                                      2
+
+
+
+
+Für Modelle 4-12kW,
+Schraubengröße für Batterieverbinder: M10              1
+
+     15.3/16mm
+
+
+
+                 10.
+                    5mm      1                                    2
+
+
+
+                             Das Batterie-Stromkabel durch        Das BMS-Kommunikationskabel des BMS
+                             den Magnetring führen und 2-mal      durch den Magnetring führen und 4-mal
+ DC-Ba�erieeingang           um ihn wickeln.                      um ihn wickeln.
+
+
+
+ 4. Gegen das Berühren durch Kinder oder Eindringen der Insekten drehen Sie den Verbinder
+ des Wechselrichters im Uhrzeigersinn bis zur wasserdichten Position fest.
+
+             Die Installation muss mit Sorgfalt durchgeführt werden.
+
+             Bevor Sie die endgültige DC-Verbindung herstellen oder den DC-Schutzschalter schließen,
+             stellen Sie sicher, dass Plus (+) an Plus (+) und Minus (-) an Minus (-) angeschlossen sind.
+             Ein verpolter Batterieanschluss wird den Wechselrichters beschädigen.
+
+                                                 - 11 -
+3.4.2 Definition der Funktionsanschlüsse
+                                                                                                                                                ON
+
+                                                                                                                                                1 2
+                                                                                                                                         +5V-Schalter
+
+
+
+                             Wechselricchter
+
+         CN1: TEMP: 1,2             CN2: G_start: 1,2
+              CT_1: 3,4                  G_valve: 3,4
+                                                                                                 BMS 485/CAN Modbus
+              CT_2: 5,6                  Grid_Ry: 5,6
+              CT_3: 7,8   CN1            RSD: 7+, 8-    CN2     RSD_input
+        1 2 3 4 5 6 7 8            1 2 3 4 5 6 7 8               B B + -
+
+                                                                                                              Parallel_A Parallel_B Meter-485
+
+
+
+
+                                                                                                                       DRM
+    Batt Temp
+    Sensor                                                    P1+ P1- P2+ P2- DI+ DI-   BMS 485/CAN: Für die Batterie-Kommunikation.
+                                                                                        Modbus: Reserviert.
+                                                                                        Parallel A: Parallel-Kommunikations-
+                                                                                                    Anschluss 1 (CAN-Schnittstelle).
+                                                                                        Parallel B: Parallel-Kommunikations-
+           CT -L1                                                                                   Anschluss 2 (CAN-Schnittstelle).
+                                                                                        Meter-485: Für die Kommunikation
+                                                                                                    mit dem Energiezähler.
+                                                                                        +5V-Schalter: Zum Ein- und Ausschalten
+                    CT -L2
+                                    Gen start-up                                        des 5V-DC-Ausgangs von Pin-3 des
+                                    N/O Relay                                           Messanschlusses.
+                                                                                        DRM: dient zur Annahme des externen
+                          CT -L3                                                             Eingangssignals (Digitaleingang).
+CN1:                                                                                         Weitere Einzelheiten siehe S.53.
+TEMP (1,2): Temperatursensor für Bleibatterie.
+CT_1 (3,4): Stromwandler (CT1) für den Modus "Null-Export an CT" klemmt an L1 in einem Dreiphasensystem.
+CT_2 (5,6): Stromwandler (CT2) für den Modus "Null-Export an CT" klemmt an L2 in einem Dreiphasensystem.
+CT_3 (7,8): Stromwandler (CT3) für den Modus "Null-Export an CT" klemmt an L3 in einem Dreiphasensystem.
+
+CN2:
+G-Start (1,2): Trockenkontakt-Signal zum Starten des Dieselgenerators.
+Wenn das "GEN-Signal" aktiv ist, schaltet der oﬀene Kontakt (GS) ein (kein Spannungsausgang).
+G-valve (3,4): Trockenkontakt-Ausgang. Wenn der Wechselrichter im Inselmodus ist und das Inselmodus-
+Signal aktiv ist, schaltet sich der Trockenkontakt ein.
+Grid_Ry (5,6): reserviert.                                              Spule
+                                                                                            Relais
+RSD(7+,8-): Wenn die Batterie angeschlossen ist und der               Oﬀener
+                                                                      Kontakt
+Wechselrichter im Status "EIN" ist, wird er 12Vdc liefern.
+
+RSD_input (B,B,+,-): Wenn die Klemme "B"&"B "mit einem
+zusätzlichen Draht kurzgeschlossen wird oder 12Vdc an der                                           G                 S
+Klemme "+ & -" anliegen, dann verschwinden die 12Vdc von                                      GS (Startsignal für Dieselgenerator)
+RSD+ & RSD- sofort, und der Wechselrichter schaltet sich sofort ab.
+
+Diese Anschlüsse sind optional.
+P1+, P1-: Reserviert.
+P2+, P2-: Reserviert.
+DI+, DI-: Gemäß "Artikel 14a des deutschen Energiewirtschaftsgesetzes (EnWG)" (2024) kann die digitale
+Schnittstelle DI der Hybrid-Wechselrichter ein externes Steuersignal empfangen, um die Ladeleistung
+aus dem Netz auf weniger als 4,2 kW zu reduzieren. Wenn das Signal verschwindet, kann der Wechselrichter
+in seinen vorherigen Betriebszustand zurückkehren.
+
+                                                                          - 12 -
+                                      4         4
+                         3
+                                4
+
+
+
+
+Nr.   Funktions- anschluss                Installationsanweisungen
+
+                             Wickle die Kabel dreimal um den Magnetring und führe
+3         TEMP (1,2)         dann die Kabelenden durch den Magnetring.
+
+           CT_1 (3,4)
+                             Wickle die Kabel dreimal um den Magnetring und führe
+4          CT_2 (5,6)
+                             dann die Kabelenden durch den Magnetring.
+           CT_3 (7,8)
+         G_start (1,2)
+                             Wickle die Kabel dreimal um den Magnetring und führe
+4        G_valve (3,4)
+                             dann die Kabelenden durch den Magnetring.
+         Grid_Ry (5,6)
+
+         RSD (7+,8-)         Wickle die Kabel dreimal um den Magnetring und führe
+4     RSD_input (B,B,+,-)    dann die Kabelenden durch den Magnetring.
+
+
+
+
+                                      - 13 -
+3.4.3 Temperatursensor-Anschluss für Bleibatterie
+
+
+
+
+ Wechselrichter
+
+
+
+
+                                            12
+
+
+
+
+                                                    Temp. sensor
+
+
+
+
+                                - 14 -
+  3.5 Netzanschluss und Ersatzlast-Anschluss
+· Vor dem Anschließen an das Netz installieren Sie unbedingt einen separaten AC-Schutzschalter
+  zwischen Wechselrichter und Netz. Es wird auch empfohlen, einen AC-Schutzschalter zwischen
+  Ersatzlast und Wechselrichter zu installieren. Dadurch wird sichergestellt, dass der Wechselrichter
+  bei Wartungsarbeiten sicher getrennt werden kann und vor Überstrom voll geschützt ist. Bei den
+  Modellen 4/5/6/8/10/12kW beträgt der empfohlene AC-Schutzschalter für den Last-Anschluss
+  63A und für den Netz-Anschluss 63A.
+· Es gibt drei Klemmenblöcke mit den Markierungen "Grid"(Netz), "Load"(Last) und "GEN"
+  (Generator). Bitte stecken Sie die Eingangs- und Ausgangsverbinder nicht falsch ein.
+
+
+                 Anmerkung:
+                Bei der endgültigen Installation muss ein gemäß IEC 60947-1 und IEC 60947-2
+                zertifizierter Schutzschalter mit dem Gerät installiert werden.
+                Alle Verkabelungen müssen von qualifiziertem Personal durchgeführt werden.
+                Es ist sehr wichtig für die Sicherheit und den eﬀizienten Betrieb des Systems,
+                ein geeignetes Kabel für den AC-Eingangsanschluss zu verwenden. Um
+                Sicherheitsrisiken zu verringern, verwenden Sie bitte die unten aufgeführten
+                empfohlenen Kabel.
+
+                       Netzanschluss und Ersatzlast-Anschluss (Kupferdraht)
+                                                                   2
+          Modell              Drahtstärke                Kabel (mm )     Schraub-Drehmoment (max)
+           4kW                   14AWG                       1.5                  1.2Nm
+          5/6kW                  12AWG                       2.5                  1.2Nm
+           8kW                   10AWG                       4.0                  1.2Nm
+         10/12kW                  8AWG                       6.0                  1.2Nm
+
+                   Netzanschluss und Ersatzlast-Anschluss (Kupferdraht) (Bypass)
+                                                                   2
+          Modell              Drahtstärke                Kabel (mm )     Schraub-Drehmoment (max)
+    4/5/6/8/10/12kW               6AWG                       10                    1.2Nm
+
+                          Tabelle 3-3 Empfohlene Stärke für AC-Leitungen
+
+
+
+  Bitte verfahren Sie wie folgt, um die NETZ-, LAST- und GEN-Verbindung zu
+  implementieren:
+  1. Bevor Sie die Netz-, Last- und Gen-Verbindung herstellen, schalten Sie zuerst den AC-Schalter
+    oder Schutzschalter aus.
+  2. Entfernen Sie die 10mm lange Isolierhülse und schrauben Sie die Bolzen ab. Führen Sie die Drähte
+  zuerst durch den Magnetring und stecken Sie sie dann gemäß der Polarität auf der Klemmleiste in
+  die Klemmen. Ziehen Sie die Klemmenschrauben fest und stellen Sie sich, dass die Drähte komplett
+  und fest verbunden sind.
+
+
+
+                                                - 15 -
+                                                  NETZ LAST           GEN
+
+                          GEN
+             LAST
+NETZ
+
+
+
+
+                                                                                        5
+
+
+
+
+                                          PE                                                NETZ
+                                                                                     NRST
+                                   R
+                               N
+                                                          5
+                                                          Führen Sie die Drähte der Netzklemme
+                               T                          durch den Magnetring.
+                           S
+
+
+
+
+                                    5                                                             5
+
+
+
+
+                                          LAST                                                          GEN
+                                   NRST                                                          NRST
+
+
+
+5                                                         5
+Wickeln Sie die 4 Drähte des Lastanschlusses              Wickeln Sie die 4 Drähte des GEN-Anschlusses
+eine Runde um den Magnetring und führen                   eine Runde um den Magnetring und führen
+Sie dann die Drahtenden durch den Magnetring.             Sie dann die Drahtenden durch den Magnetring.
+
+
+
+
+                                                 - 16 -
+             Vergewissern Sie sich, dass die AC-Stromquelle abgetrennt ist, bevor Sie versuchen,
+             sie mit dem Gerät zu verdrahten.
+
+
+3. Führen Sie dann die AC-Ausgangsdrähte entsprechend der auf der Klemmleiste angegebenen
+  Polarität ein und ziehen Sie die Klemme fest. Achten Sie darauf, die entsprechenden N- und
+  PE-Drähte ebenfalls an die entsprechenden Klemmen anzuschließen.
+4. Stellen Sie sicher, dass die Drähte sicher verbunden sind.
+5. Geräte wie z. B. Klimaanlagen benötigen mind. 2-3 Min. für den Neustart, da genügend Zeit
+  benötigt wird, um das Kältemittel im Kreislauf auszugleichen. Wenn ein Stromausfall auftritt
+  und in kurzer Zeit wiederhergestellt wird, kann dies zu Schäden an den angeschlossenen
+  Geräten führen. Um diese Art von Schäden zu vermeiden, überprüfen Sie bitte vor der
+  Installation der Klimaanlage, ob diese mit einer Zeitverzögerungsfunktion ausgestattet ist.
+  Andernfalls löst dieser Wechselrichter einen Überlastungsfehler aus und schaltet die
+  Leistung ab, um Ihr Gerät zu schützen. Dennoch verursacht er manchmal interne Schäden
+  an der Klimaanlage.
+
+
+ 3.6 PV-Anschluss
+ Bevor Sie die PV-Module anschließen, installieren Sie bitte einen separaten DC-Schutzschalter
+ zwischen Wechselrichter und PV-Modulen. Für die Sicherheit und den eﬀizienten Betrieb des
+ Systems ist es sehr wichtig, ein geeignetes Kabel für die Verbindung mit den PV-Modulen zu
+ verwenden. Um die Sicherheitsrisiken zu verringern, verwenden Sie bitte die empfohlene
+ Kabelstärke wie unten angegeben.
+
+          Modell                     Drahtstärke                          Kabel (mm2 )
+
+     4/5/6/8/10/12kW                   10AWG                                    4
+
+                                        Tabelle 3-4 Kabelstärke
+
+            Um Fehlfunktionen zu vermeiden, dürfen Sie keine PV-Module mit möglichem
+            Leckstrom an den Wechselrichter anschließen. Beispielsweise verursachen geerdete
+            PV-Module Leckströme zum Wechselrichter. Wenn Sie PV-Module verwenden, stellen
+            Sie bitte sicher, dass die PV+ & PV- des Solarmoduls nicht mit der Erdungsschiene
+            des Systems verbunden ist.
+
+            Es wird empfohlen, eine PV-Anschlussdose mit Überspannungsschutz zu verwenden.
+            Andernfalls wird der Wechselrichter bei Blitzeinschlag in die PV-Module beschädigt.
+
+
+
+
+                                                - 17 -
+3.6.1 Wahl der PV-Module
+Bei der Wahl der richtigen PV-Module sind folgende Parameter unbedingt zu beachten:
+1) Die Leerlaufspannung (Voc) der PV-Module darf die max. PV-Anlage-Leerlaufspannung des
+   Wechselrichters nicht überschreiten.
+2) Die Leerlaufspannung (Voc) der PV-Module sollte höher sein als die minimale Startspannung.
+3) Die PV-Module, die an diesen Wechselrichter angeschlossen werden, müssen der Klasse A
+   angehören und nach IEC 61730 zertifiziert sein.
+
+      Wechselrichter-Modell             4kW       5kW         6kW         8kW     10kW         12kW
+
+PV-Eingangsspannung                                           550V (160V-800V)
+
+PV-Anlage MPPT Spannungsbereich                                  200V-650V
+
+Anzahl der MPP-Tracker                                                2
+
+Anzahl der Stränge pro MPP-Tracker                      1+1                              2+2
+                                         Tabelle 3-5
+3.6.2 Verkabelung der PV-Module
+1. Schalten Sie den Hauptschalter der Netzversorgung (AC) AUS.
+2. Schalten Sie den DC-Schutzschalter AUS.
+3. Montieren Sie den PV-Eingangsstecker an den Wechselrichter.
+
+
+            Sicherheitshinweis:
+            Bei der Verwendung von PV-Modulen stellen Sie bitte sicher, dass die PV+ & PV- des
+            Solarmoduls nicht mit der System-Erdungsschiene verbunden ist.
+
+            Sicherheitshinweis:
+            Vor der Verbindung stellen Sie bitte sicher, dass die Polarität der Ausgangsspannung der
+            PV-Anlage mit den Symbolen "DC+" und "DC-" übereinstimmt.
+
+
+            Sicherheitshinweis:
+            Vor der Verbindung mit dem Wechselrichter stellen Sie bitte sicher, dass die
+            Leerlaufspannung der PV-Anlage innerhalb der 800V des Wechselrichters liegt.
+
+
+
+
+          Bild 3.1 DC+ Stecker                                Bild 3.2 DC- Buchse
+
+
+                                               - 18 -
+           Sicherheitshinweis:
+           Bitte verwenden Sie zugelassene DC-Kabel für die PV-Anlage.
+
+
+
+
+Die Schritte zum Zusammenbau der DC-Steckverbinder sind im Folgenden aufgeführt:
+a) Das DC-Kabel ca. 7 mm abisolieren, die Überwurfmutter des Steckers abdrehen (siehe
+Bild 3.3).
+
+
+
+
+                                7mm
+
+
+
+
+                                 7mm
+
+                    Bild 3.3 Abdrehen der Überwurfmutter des Steckers
+
+
+b) Crimpen von Metallklemmen mit einer Crimpzange (siehe Bild 3.4).
+
+
+
+
+                  Crimpzange
+
+
+                         Bild 3.4 Crimpen des Kontaktstifts an Draht
+
+
+
+
+                                          - 19 -
+c) Den Kontaktstift in den oberen Teil des Steckers einsetzen und die Überwurfmutter auf
+den oberen Teil des Steckers aufschrauben (siehe Bild 3.5).
+
+
+
+
+                         Bild 3.5 Stecker mit aufgeschraubter Überwurfmutter
+
+
+d) Zum Schluss die DC-Stecker in den Plus- und Minus-Eingang des Wechselrichters einsteck-
+en (siehe Bild 3.6)
+
+
+
+
+                                Bild 3.6 DC-Eingangsverbindung
+
+
+
+           Warnung:
+           Sonnenlicht scheint auf das Modul und erzeugt Spannung. Hohe Spannung in
+           der Reihenschaltung kann lebensgefährlich sein. Daher muss das Solarmodul vor
+           der Verbindung der DC-Eingangsleitung mit einem lichtdichten Material abgedeckt
+           werden, und der DC-Schalter sollte auf "AUS" stehen, da sonst die hohe Spannung
+           des Wechselrichters zu lebensbedrohlichen Zuständen führen kann.
+
+
+
+          Warnung:
+          Verwenden Sie DC-Verbinder aus dem mitgelieferten Wechselrichter-Zubehör. Verbinden
+          Sie nicht die Stecker verschiedener Hersteller miteinander. Max. DC-Eingangsstrom sollte
+          20A betragen. Wird dieser überschritten, kann der Wechselrichter beschädigt werden, was
+          nicht von der Deye-Garantie abgedeckt ist.
+
+
+
+
+                                             - 20 -
+3.7 CT-Anschluss
+
+
+                                                                NETZ
+
+
+
+
+                                                                                   PE
+                                                                               R
+                                                                           N
+
+                                                                           T
+                                                                       S
+
+
+
+                                                             Erdung
+   Wechselrichter
+
+
+
+
+                          Schwarz-Kabel
+ Weiß-Kabel 3 4 5 6 7 8
+
+
+
+
+                     CT
+
+
+
+
+                     Pfeil zeigt auf
+                     Wechselrichter                R
+
+                                                   CT1
+
+                                                   S
+
+                                                   CT2
+                                                   T
+
+                                                   CT3
+                                                         N
+
+                   NETZ
+
+*Hinweis: Wenn die Ablesung der Lastleistung auf der LCD-Anzeige nicht
+          korrekt ist, drehen Sie bitte den CT-Pfeil um.
+
+
+
+
+                                          - 21 -
+ 3.7.1 Zähleranschluss
+                                                                                                                                                                                                                                         Netz
+
+
+
+
+                                                                                                                                                                                                                                                                             PE
+                                                                                                                                                                                                                                                                         R
+                                                                                                                                                                                                                                                                     N
+
+                                                                                                                                                                                                                                                                     T
+                                                                                                                                                                                                                                                                 S
+
+
+
+                                                                                                                                                                                                                                Erdung
+
+                     Wechselrichter
+
+                                                                        Parallel_A Parallel_B Meter-485 port                                                         RS485A      3       6        9        10
+
+
+
+
+                                                                                                                                                        RS485B
+                                                                                                                                                                                                  Three-Phase Smart Meter
+
+
+
+
+                 3   6         9        10
+                                                                                                                                                                                             SET        ESC
+
+
+
+
+                                                                     L1                                                                                                                                   24 25
+
+
+                           Three-Phase Smart Meter
+                                                            Netz     L2
+                                                          (1,4,7,10) L3
+                                                                                                                   Wechselrichter
+                                                                                                                    (3,6,9,10)
+                                                                                                                                                                                     1        4           7         10
+                                                                                                                                                                                                                                                        PE
+                         SET    ESC
+                                                                                                                                                                                                                                                        N
+                                                               RS 485
+                                                                                                                                                                                                                                                        R
+                 1   4         7
+                                   24 25
+
+                                        10
+                                                                                                                                                                                                                                                         S
+             CHNT DTSU666                                      CHNT-Zähler                                                                                                                                                                              T
+                                                                                                                                                                                                                                                                             Netz
+
+
+
+
+                                                                                                                                                                                                                                 Netz
+
+
+
+
+                                                                                                                                                                                                                                                            PE
+                                                                                                                                                                                                                                                        R
+                                                                                                                                                                                                                                                    N
+
+                                                                                                                                                                                                                                                    T
+                                                                                                                                                                                                                                                S
+
+
+
+                                                                                                                                                                                                                            Erdung
+    Wechselrichter
+
+                                                                                                                                          RS485B
+
+
+                                                                                                                                      RS485A
+                                                                                                                                                       N TSR
+                                                          Parallel_A Parallel_B Meter-485 port                                                     8   7         6       5
+
+
+                                                                                                                                    GND
+
+
+
+
+                                                                                                                                                                       Eastron
+
+
+
+                                                                                                                                                                                                                                        PE
+                                                                        1 2 3 4                5 6 7 8                                                                                                                                  R
+                                                          L1
+                                                                                                                                                                                                                                        S
+                                                          L2                                                         L3
+   Eastron
+                                                          L3                                                         L2                                                                                                                 T
+                                                                                                                     L1
+                                                                      Netz                               LAST                                                                                                                           N
+                                                                    (1,2,3,4)                          (5,6,7,8)                                                                                                                                            Netz
+                                                                    B A G
+       5     6   7   8
+                                                     RS 485
+                                                               RS485B   RS485A   GND
+
+Eastron SDM630-Modbus V2                                        Eastron-Zähler
+
+
+
+
+                                                                                                                                               - 22 -
+Anmerkung:
+Wenn sich der Wechselrichter im Inselbetrieb befindet, muss die N-Leitung an
+die Erde angeschlossen werden.
+
+
+
+
+                           2
+
+
+
+
+                       2
+
+
+
+                        Das Zähler-Kommunikationskabel des
+                        Zähler durch den Magnetring führen und
+                        4-mal um ihn wickeln.
+
+
+
+
+                               - 23 -
+3.8 Erdungsanschluss (obligatorisch)
+Das Erdungskabel muss mit der Erdungsplatte auf der Netzseite verbunden werden, um
+einen Stromschlag bei Ausfall des ursprünglichen Schutzleiters zu vermeiden.
+
+
+
+
+                               Erdungsanschluss (Kupferdrähte)
+                                                                  2
+        Modell              Drahtstärke                Kabel (mm )        Drehmoment (max)
+         4kW                   14AWG                      1.5                     1.2Nm
+        5/6kW                  12AWG                      2.5                     1.2Nm
+         8kW                   10AWG                      4.0                     1.2Nm
+       10/12kW                 8AWG                       6.0                     1.2Nm
+
+                          Erdungsanschluss (Kupferdrähte)(bypass)
+                                                                  2
+        Modell              Drahtstärke                Kabel (mm )         Drehmoment (max)
+   4/5/6/8/10/12kW             6AWG                        10                      1.2Nm
+
+
+
+           Warnung:
+           Der Wechselrichter verfügt über einen eingebauten Fehlerstrom-Schutzschalter des Typs A
+           (RCD). Er kann zum Schutz gemäß den geltenden Vorschriften an den Wechselrichter
+           angeschlossen werden. Wird ein externes Fehlerstrom-Schutzgerät angeschlossen, muss
+           der Betriebsstrom mind. 300mA betragen, andernfalls funktioniert der Wechselrichter
+           möglicherweise nicht richtig.
+
+
+
+
+3.9 WiFi-Verbindung
+Für die Konfiguration des WiFi-Steckers beachten Sie bitte die Illustrationen des WiFi-
+Steckers. Der WiFi-Stecker gehört nicht zur Standardkonfiguration, er ist optional.
+
+                                              - 24 -
+                                                    PV             Dieses Diagramm ist ein Beispiel für eine Anwendung, bei der der Neutralleiter
+                                                                   mit dem PE-Leiter in Verteilerbox verbunden ist.
+                                                                   In Ländern wie Australien, Neuseeland usw. sind die örtlichen Vorschriften für die
+                          DC-Schutzschalter                        Verdrahtung zu beachten!
+
+                    BMS
+                                                                     N                                                                                   N
+                                                                     R                                                                                   R
+                                                                     S                                                                     RCD           S
+                                                                                                                                                              Last
+                                                                     T                                                                                   T
+         Batterie                                                                        AC-Schutzschalter
+                                                                     PE or                                                                               PE
+                    DC-Schutzschalter                                         Diese Klemme nicht verbinden, wenn der Nullleiter
+                                                                              und der PE-Leiter zusammen verbunden sind.
+                                                                   Last
+                                          Hybrid-Wechselrichter
+                                                                                                                            CT
+                                                                     N                                                                                   N
+                                     N
+- 25 -                                                               R                                                                                   R
+                                                                                                                         CT1
+                                     R                               S                                                                                   S    Netz
+          GEN-                       S                                                                                   CT2
+                                     T                               T                                                                                   T
+                                                                                                                         CT3
+          PORT
+                                                                                                                                                                     3.10 Verdrahtungssystem für Wechselrichter
+
+
+
+                                                                     PE        AC-Schutzschalter                                  AC-Schutzschalter
+                     AC-Schutzschalter                                                                                                                   PE
+                                                                   Netz
+                           PE
+
+                                         Erdung des Gehäuses des                                                                  E-LEISTE
+                                                                                                        RCD
+                                             Wechselrichters                                                                                      E-N
+                                                                                                                                                  Link
+
+                                                                                 E-LEISTE                                                 E-LEISTE
+
+
+
+
+                                                                                              N     R     S T PE
+
+                                                                                                Hauslasten
+                                                                     Dieses Diagramm ist ein Beispiel für eine Anwendung, bei der der Neutralleiter in
+                                                                     Verteilerbox vom PE-Leiter getrennt ist.
+                                                    PV               In Ländern wie China, Deutschland, der Tschechischen Republik, Italien usw. beachten
+                                                                     Sie bitte die örtlichen Vorschriften für die Verdrahtung!
+                                                                     Anmerkung: Die Backup-Funktion ist auf dem deutschen Markt optional. Bitte lassen Sie
+                                                                     die Backup-Seite leer, wenn die Backup-Funktion im
+                          DC-Schutzschalter
+                                                                     Wechselrichter nicht verfügbar ist.
+                    BMS                                                                                                   Verteilerbox
+                                                                     L1                                                                             L1
+                                                                     L2                                                                             L2
+                                                                                                                                                                        3.11 Verdrahtungsplan
+
+
+                                                                     L3                                                   RCD                       L3
+                                                                                                                                                         Ersatzlasten
+                                                                     N                                                                              N
+         Batterie
+                                                                     PE or                                                                          PE
+                    DC-Schutzschalter
+                                                                 Backup
+                                         Hybrid-Wechselrichter                   CT
+                                                                                             300mA RCD
+                                                                                            (Empfohlen)
+- 26 -                                                               L1                                                                             L1
+                                     R                                                                                    CT1
+                                     S                               L2                                                                             L2
+                                                                                                                          CT2
+          GEN-                       T                               L3                     RCD                                                     L3      Netz
+                                                                                                                          CT3
+          PORT                       N                               N                                                                              N
+                     AC-Schutzschalter                               PE                                                                             PE
+                                                                 Netzgekoppelt
+                           PE
+
+                                                                                                              RCD
+              Schraubenloch in der unteren
+              rechten Ecke                                                       E-LEISTE                                                E-LEISTE
+
+
+
+
+                                                                                                          L1 L2 L3 N PE
+
+                                                                                                            Hauslasten
+                              CAN                L-Leiter      N-Leiter          PE-Leiter
+
+
+
+
+                                                                                   BMS 485/CAN
+
+
+
+
+                                                                                 Erdung
+Wechselrichter
+                   ①DC-
+                   Schutzschalter
+
+
+
+   Batterie-Pack                                                                     ②AC-Schutzschalter
+
+
+
+
+                                                            ③AC-Schutzschalter
+
+
+
+                             CT1 CT2    CT3
+                                                                                                          T
+  Netz    PE N R S T                                                                                      S
+                                                                 ④AC-Schutzschalter                       R
+                                                                                                          N
+                                            N                                                             PE
+                                            R
+                                            S
+                                            T
+                                           PE
+                       Hauslast
+① DC-Schutzschalter für Batterie
+SUN-4K-SG05LP3-EU-SM2: 120A DC-Schutzschalter                                             Ersatzlast
+SUN-5K-SG05LP3-EU-SM2: 150A DC-Schutzschalter
+SUN-6K-SG05LP3-EU-SM2: 200A DC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 250A DC-Schutzschalter
+SUN-10K-SG05LP3-EU-SM2: 300A DC-Schutzschalter
+SUN-12K-SG05LP3-EU-SM2: 300A DC-Schutzschalter
+
+② AC-Schutzschalter für Ersatzlast
+SUN-4K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-5K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-6K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-10K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-12K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+
+③ AC-Schutzschalter für Netz
+SUN-4K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-5K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-6K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-10K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-12K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+
+④AC Breaker for home load
+Depends on household loads
+                                                  - 27 -
+3.12 Typisches Anwendungsdiagramm eines Dieselgenerators
+                 CAN                L-Leiter         N-Leiter                PE-Leiter
+
+                                                   CN2:
+                     Spule                         G-Start (1,2): Trockenkontakt-Signal
+                   Oﬀener
+                                          Relais   zum Starten des Dieselgenerators.
+                   Kontakt
+                                                                   1 2
+
+
+
+                       G              S
+            GS (Startsignal für Dieselgenerator)
+
+
+
+                                                                                               BMS 485/CAN
+
+
+
+
+                                                                                          Erdung
+Wechselrichter
+               ①DC-
+               Schutzschalter
+                                                                                                        ③AC-Schutzschalter
+
+
+ Batterie-Pack
+
+
+
+                                                          ②AC-Schutzschalter
+
+
+
+                                                                                                   T
+                                                                                                   S
+                                                                                                   R
+① DC-Schutzschalter für Batterie                                                                   N
+                                                                                                   PE
+SUN-4K-SG05LP3-EU-SM2: 120A DC-Schutzschalter
+SUN-5K-SG05LP3-EU-SM2: 150A DC-Schutzschalter
+SUN-6K-SG05LP3-EU-SM2: 200A DC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 250A DC-Schutzschalter                                                                                T
+                                                                                                                             S
+SUN-10K-SG05LP3-EU-SM2: 300A DC-Schutzschalter                                                                               R
+SUN-12K-SG05LP3-EU-SM2: 300A DC-Schutzschalter                                    Ersatzlast                                 N
+                                                                                                                             PE
+
+② AC-Schutzschalter für Ersatzlast                        Signalleitung der Fernsteuerung
+SUN-4K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-5K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-6K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 63A AC-Schutzschalter                                                                 Generator
+SUN-10K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-12K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+
+③ AC-Schutzschalter für GEN-Port (Generator)
+SUN-4K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-5K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-6K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-10K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-12K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+
+
+
+
+                                                          - 28 -
+    3.13 Dreiphasen-Parallelschaltplan
+    Hinweis: Für das Parallelsystem wählen Sie bitte den Modus "Null-Export an CT".
+                                                                  CAN                            L-Leiter                            N-Leiter                        PE-Leiter
+
+                                                                                Wechselrichter
+                                                                                Nr.3 (Slave)
+                                                                                                                                                                                                       Parallel_A Parallel_B Meter-485
+
+
+
+
+                                                                                                                                                                                            Erdung
+
+
+
+
+           Wechselrichter
+①②③ DC-Schutzschalter für Batterie        ①                                     Wechselrichter
+SUN-4K-SG05LP3-EU-SM2: 120A DC-Schutzschalter                                                                                                                                                   ④               ⑤
+SUN-5K-SG05LP3-EU-SM2: 150A DC-Schutzschalter                                   Nr.2 (Slave)
+SUN-6K-SG05LP3-EU-SM2: 200A DC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 250A DC-Schutzschalter
+SUN-10K-SG05LP3-EU-SM2: 300A DC-Schutzschalter                                                                                                                                        Erdung
+SUN-12K-SG05LP3-EU-SM2: 300A DC-Schutzschalter
+
+
+④⑥⑧ AC-Schutzschalter für Netz                                                                                                                                                              ⑦
+SUN-4K-SG05LP3-EU-SM2: 63A AC-Schutzschalter                                                 ②
+SUN-5K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-6K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-10K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-12K-SG05LP3-EU-SM2: 63A AC-Schutzschalter                                                                                                                      ⑥
+
+⑤⑦⑨ AC-Schutzschalter für Ersatzlast
+SUN-4K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-5K-SG05LP3-EU-SM2: 63A AC-Schutzschalter                                    Wechselrichter
+SUN-6K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-8K-SG05LP3-EU-SM2: 63A AC-Schutzschalter                                    Nr.1 (Master)
+SUN-10K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+SUN-12K-SG05LP3-EU-SM2: 63A AC-Schutzschalter
+                                                                                                                                                                                      Erdung
+
+⑩⑦AC-Schutzschalter für Hauslast
+Abhängig von der Haushaltslasten
+                                                                                             ③                                                                                              ⑨
+
+
+
+                       Batterie-Pack
+                                                                                                                                                                   ⑧
+
+
+
+
+                                                                                                 CT1 CT2                      CT3
+                    CT                                                                                                                                                                                                                   T
+                                                               Netz    PE N R S T                                                                                                                                                        S
+                                                                                                                                                                                                                                         R
+                                                                                                                                                           ⑩                                                                             N
+                                                                                                                                                                                                                                         PE
+
+                    Pfeil zeigt auf
+                    Wechselrichter                                                               Hauslast
+                      Master-Wechselrichter                                       Slave- Wechselrichter                                        Slave- Wechselrichter                                          Ersatzlast
+                   Advanced Function                                           Advanced Function                                             Advanced Function
+                      Parallel          Modbus SN                                 Parallel          Modbus SN                                   Parallel          Modbus SN
+
+                      Master               01                                     Master               02                                       Master               03
+                                                                      Paral.                                                        Paral.                                                           Paral.
+                      Slave                                           Set3        Slave                                             Set3        Slave                                                Set3
+
+
+                      EX_Meter For CT           Meter Select                      EX_Meter For CT           Meter Select                        EX_Meter For CT           Meter Select
+                                                 No Meter   0/3                                              No Meter   0/3                                                No Meter   0/3
+
+
+
+
+                                                                                                            - 29 -
+4. BEDIENUNG
+4.1 Einschalten/Ausschalten
+Sobald das Gerät ordnungsgemäß installiert ist und die Batterien gut angeschlossen sind,
+drücken Sie einfach die Ein/Aus-Taste (auf der linken Seite des Gehäuses), um das Gerät
+einzuschalten. Wenn das System ohne Batterie angeschlossen ist, aber entweder mit PV
+oder Netz verbunden ist und die Ein/Aus-Taste ausgeschaltet ist, leuchtet die LCD-Anzeige
+immer noch auf (Anzeige zeigt AUS an). In diesem Zustand, wenn Sie mit der Ein/Aus-Taste
+einschalten und KEINE Batterie auswählen, kann das System immer noch funktionieren.
+
+
+4.2 Bedien- und Anzeigefeld
+Das Bedien- und Anzeigefeld befindet sich auf der Vorderseite des Wechselrichters und
+besteht aus vier Funktionstasten und einer LCD-Anzeige, die den Betriebsstatus und die
+Informationen zur Eingangs-/Ausgangsleistung anzeigt.
+
+
+   Funktionstaste                                  Beschreibung
+
+         Esc                          Zum Verlassen des Einstellungsmodus
+
+         Auf                              Zur vorherigen Auswahl gehen
+
+          Ab                              Zur nächsten Auswahl gehen
+
+       Eingabe                            Zur Bestätigung der Auswahl
+
+
+                              Tabelle 4-1 Funktionstasten
+
+
+
+
+                                          - 30 -
+5. Symbole auf der LCD-Anzeige
+5.1 Hauptbildschirm
+Der LCD-Bildschirm ist ein Touchscreen. Der folgende Bildschirm zeigt die allgemeinen
+Informationen des Wechselrichters.
+
+                                          05/28/2019 15:34:40
+
+
+
+
+                           0 8.30     12                        0 -3.00     8
+                                KW                                     KW
+                                                   ON
+
+
+                              25%
+
+                           0 -2.00
+                                 KW
+                                      8                         0   3.00
+                                                                       KW
+                                                                            8
+
+
+
+
+1. Das Symbol in der Mitte des Startbildschirms zeigt an, dass das System im Normalbetrieb
+ist. Wenn es sich in "comm./F01~F64" verwandelt, bedeutet dies, dass der Wechselrichter
+Kommunikationsfehler oder andere Fehler hat. Die Fehlermeldung wird unter diesem Symbol
+angezeigt (Fehler F01-F64, detaillierte Fehler-Infos können im Menü "Systemalarme"
+eingesehen werden).
+
+2.Am oberen Bildschirmrand wird die Uhrzeit angezeigt.
+
+3.Symbol für "Systemeinstellung". Wenn Sie diese Taste drücken, gelangen Sie in den
+Bildschirm der Systemeinstellung, der Sie zu der Grundeinstellung, Batterieeinstellung,
+Netzeinstellung, dem Systemarbeitsmodus, dem Generator-Port, der erweiterten Funktion
+und den Li-Batt-Info weiterleitet.
+
+4.Der Hauptbildschirm zeigt die Informationen einschließlich Solar, Netz, Last und Batterie.
+Er zeigt auch die Energieflussrichtung durch Pfeile an. Wenn die Leistung annähernd auf
+hohem Niveau ist, wird die Farbe auf den Panels von grün auf rot wechseln, um die System-
+Infos lebendig darzustellen.
+
+· PV-Leistung und Lastleistung sind immer positiv.
+· Netzleistung negativ bedeutet Verkauf an das Netz, positiv bedeutet Zukauf vom Netz.
+· Batterieleistung negativ bedeutet Laden, positiv bedeutet Entladen.
+
+
+
+
+                                                 - 31 -
+5.1.1 LCD-Bedienungsablaufplan (Menü-Struktur)
+
+
+
+                          Solar-Seite            Solar-Diagramm
+
+
+                          Netz-Seite              Netz-Diagramm
+
+
+                       Wechselrichter-Seite
+
+    EIN
+                         Batterie-Seite             BMS-Seite
+
+
+                          Last-Seite              Last-Diagramm
+
+
+                                                 Batt.-Einstellung
+
+
+                                                 Sys.Arbeitsmodi
+
+
+                                                 Netz-Einstellung
+
+                        Sys.-Einstellung
+                                                 Gen-Port Nutzung
+
+
+                                                 Grundeinstellung
+
+
+                                                  Erweiterte Fkt.
+
+
+                                                    Geräte-Info
+
+
+
+
+                                  - 32 -
+5.2 Solarstrom-Kurve
+
+Solar                                                                Dies ist Detailseite zu Solarmodul.
+        Power: 1560W               ①     Today=8.0 KWH        ③      ① Solarmodul-Erzeugung
+                                                                     ② Spannung, Strom, Leistung für jeden MPPT.
+ PV1-V: 286V        PV2-V: 45V
+                                   ②     Total =12.00 KWH
+ PV1-I: 5.5A        PV2-I: 0.0A                                      ③ Tages- und Gesamte Solarmodul-Erzeugung
+ PV1-P: 1559W PV2-P: 1W
+
+
+
+
+                                                         Energy       Drücken Sie auf "Energie", um die Seite der
+                                                                      Leistungskurve aufzurufen.
+
+        1166w
+                                1244w
+                                 50Hz
+                                                     -81w
+                                                      50Hz
+                                                              ①      Dies ist die Detailseite zu Wechselrichter.
+                           222v      0.8w       222v      0.1A       ① Wechselrichter-Erzeugung
+ 221v        0w            229v      5.0w       230v      0.1A
+ 229v      1166w           229v      0.9w       223v      0.1A         Spannung, Strom, Leistung für jede Phase.
+ 225v        0w            HM:        LD:       INV_P:
+                                                                           AC-T: mittlere Temperatur des Kühlkörpers.
+                           -10W       28W       -30W
+     Load                    5W      1192W      -26W      AC_T:
+                             0W      24W        -25W      38.8C
+    SOC:99%
+     -21w                         Grid              Inverter
+ BAT_V:53.65V
+                         DC_P1: 0W                DC_P2: 0W
+ BAT_I: -0.41A           DC_V1: 0V                DC_V2: 0V
+ BAT_T: 27.0C            DC_I1: 0.0A              DC_I2: 0.0A
+     Battery                  PV1                       PV2
+
+
+
+Load                                                           Dies ist die Detailseite zu Last.
+                                                               ① Lastleistung
+        Power: 55W                ① Today=0.5 KWH ③ ② Spannung, Leistung für jede Phase.
+                                          Total =1.60 KWH      ③ Tages- und Gesamter Lastverbrauch.
+                                                               Wenn Sie "Verkauf zuerst" oder "Null-Export an Last"
+               L1: 220V           P1: 19W
+                                                               auf der Seite für System-Abeitsmodi aktivieren, betriﬀt
+               L2: 220V           P2: 18W             ②        die Information auf dieser Seite die Ersatzlast am
+               L3: 220V           P3: 18W                      Lastanschluss des Hybrid-Wechselrichters.
+                                                               Wenn Sie "Null-Export an CT" auf der Seite für System-
+                                                               Arbeitsmodi aktivieren, umfasst die Information auf
+                                                               dieser Seite die Ersatzlast und Hauslast.
+                                                        Energy Drücken Sie auf "Energie", um die Seite der
+                                                               Leistungskurve aufzurufen.
+
+Grid                                                                 Dies ist die Detailseite zu Netz
+                                                               ① Zustand, Leistung, Frequenz.
+         Stand by                 ①       BUY                 ③
+                0W                       Today=2.2KWH          ② L: Spannung für jede Phase
+                                         Total =11.60 KWH         CT: Von externen Stromsensoren erfasste Leistung
+            0.0Hz                         SELL                    LD: Leistung, die über interne Sensoren am AC
+                                                                  Netz-Eingangs-/Ausgangs-Schutzschalter erkannt
+ CT1： 0W            LD1：0W ②             Today=0.0KWH             wird.
+ CT2: 0W            LD2：0W               Total =8.60 KWH       ③ KAUF: Energie vom Netz zum Wechselrichter,
+ CT3: 0W            LD3：0W                                        VERKAUF: Energie vom Wechselrichter zum Netz.
+
+ L1: 0V        L2: 0V      L3: 0V                       Energy Drücken  Sie auf "Energie", um die Seite der
+                                                               Leistungskurve aufzurufen
+
+
+
+                                                                  - 33 -
+                                                                                                    Li-BMS
+
+                                                                                                     Mean Voltage:50.34V         Charging Voltage :53.2V
+
+ Batt                                                                                                Total Current:55.00A        Discharging Voltage :47.0V               Sum
+                                                                                                     Mean Temp :23.5C            Charging current :50A                    Data
+
+          Discharge                                                                                  Total SOC        :38%       Discharging current :25A
+                                                                                                     Dump Energy:57Ah
+                                                                                                                                                                         Details
+                                                                                                                                                                         Data
+                                                                                                     Request Force Charge
+          U:49.58V
+
+          I:2.04A                                                                                 Zwangsaufladen anfordern: Es zeigt an,
+     Power: 101W
+                                                                                                  dass das BMS den Hybrid-Wechselrichter
+                                                                                                  auﬀordert, die Batterie aktiv aufzuladen.
+        Temp:25.0C
+                                                                    Energy                          Li-BMS
+                                                                                                        Volt   Curr   Temp     SOC     Energy      Charge        Fault
+                                                                                                                                                 Volt    Curr
+                                                                                                    1 50.38V 19.70A    30.6C   52.0%   26.0Ah    0.0V    0.0A    0|0|0
+
+Dies ist die Detailseite zu Batterie.                                                               2 50.33V 19.10A
+                                                                                                    3 50.30V 16.90A
+                                                                                                                       31.0C
+                                                                                                                       30.2C
+                                                                                                                               51.0%
+                                                                                                                               12.0%
+                                                                                                                                       25.5Ah
+                                                                                                                                       6.0Ah
+                                                                                                                                                 53.2V
+                                                                                                                                                 53.2V
+                                                                                                                                                         25.0A
+                                                                                                                                                         25.0A
+                                                                                                                                                                 0|0|0
+                                                                                                                                                                 0|0|0
+                                                                                                                                                                          Sum
+                                                                                                    4 0.00V 0.00A      0.0C    0.0%    0.0Ah     0.0V    0.0A    0|0|0    Data
+    Wenn Sie Lithium-Batterie verwenden, können Sie die                                             5 0.00V 0.00A
+                                                                                                    6 0.00V 0.00A
+                                                                                                                       0.0C
+                                                                                                                       0.0C
+                                                                                                                               0.0%
+                                                                                                                               0.0%
+                                                                                                                                       0.0Ah
+                                                                                                                                       0.0Ah
+                                                                                                                                                 0.0V
+                                                                                                                                                 0.0V
+                                                                                                                                                         0.0A
+                                                                                                                                                         0.0A
+                                                                                                                                                                 0|0|0
+                                                                                                                                                                 0|0|0
+                                                                                                    7 0.00V 0.00A      0.0C    0.0%    0.0Ah     0.0V    0.0A    0|0|0
+    BMS-Seite aufrufen.                                                                             8 0.00V 0.00A
+                                                                                                    9 0.00V 0.00A
+                                                                                                                       0.0C
+                                                                                                                       0.0C
+                                                                                                                               0.0%
+                                                                                                                               0.0%
+                                                                                                                                       0.0Ah
+                                                                                                                                       0.0Ah
+                                                                                                                                                 0.0V
+                                                                                                                                                 0.0V
+                                                                                                                                                         0.0A
+                                                                                                                                                         0.0A
+                                                                                                                                                                 0|0|0
+                                                                                                                                                                 0|0|0
+                                                                                                    10 0.00V 0.00A     0.0C    0.0%    0.0Ah     0.0V    0.0A    0|0|0   Details
+                                                                                                    11 0.00V 0.00A     0.0C    0.0%    0.0Ah     0.0V    0.0A    0|0|0   Data
+                                                                                                    12 0.00V 0.00A     0.0C    0.0%    0.0Ah     0.0V    0.0A    0|0|0
+                                                                                                    13 0.00V 0.00A     0.0C    0.0%    0.0Ah     0.0V    0.0A    0|0|0
+                                                                                                    14 0.00V 0.00A     0.0C    0.0%    0.0Ah     0.0V    0.0A    0|0|0
+                                                                                                    15 0.00V 0.00A     0.0C    0.0%    0.0Ah     0.0V    0.0A    0|0|0
+
+
+
+
+5.3 Kurvenseite - Solar & Last & Netz
+
+ Solar Power Production:Day                                                      System Solar Power:Month
+    3000W                          2019-5-28                                             2000Wh                        5-2019
+   100%                                                                              2000
+    80%                                                                              1600
+    60%                                                                              1200
+    40%                                                                              800
+    20%                                                                              400
+                                                                                     0
+             1 3 5 7 9 11 13 15 17 19 21 23                                                        05          10      15         20        25           30
+
+
+   CANCEL            Day                Month         Year          Total            CANCEL             Day             Month              Year                   Total
+
+
+
+
+ System Solar Power:Year                                                         System Grid Power:Total
+    KWh                                 2019                                         2000KWh                            TOTAL
+    200                                                                              2000
+    160                                                                              1600
+    120                                                                              1200
+    80                                                                               800
+    40                                                                               400
+                                                                                     0
+             1   2   3     4   5    6    7   8   9   10   11   12                            20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20
+                                                                                             16 18 20 22 24 26 28 30 32 34 36 38 40 42 44 46 48
+
+   CANCEL            Day                Month         Year          Total            CANCEL             Day             Month               Year                  Total
+
+
+
+
+Solarstrom-Kurve für Tag, Monat, Jahr und Gesamt kann grob auf LCD-Bildschirm überprüft
+werden. Genauere Stromerzeugung prüfen Sie bitte auf Überwachungssystem. Drücken Sie
+Auf-/Ab-Pfeil, um die Leistungskurve für verschiedene Zeiträume zu überprüfen.
+                                                                            - 34 -
+5.4 Menü Systemeinstellung
+
+System Setup
+                                                               Dies ist die Seite zur Systemeinstellung.
+
+                         System Work Mode
+ Battery
+ Setting                                   Gen Port
+                    Grid Setting             Use
+
+  Basic              Advanced
+  Setting            Function             Device Info.
+
+
+
+
+5.5 Menü Grundeinstellung
+
+Basic Setting                                                 Zeit-Synchr.: Aktiviert die automatische Zeitsynchronisation
+                                                              des Wechselrichters mit der Cloud-Plattform.
+  Time Syncs           Beep          Auto Dim                 Piep: Zum Ein- und Ausschalten des Signaltons im Alarmstatus
+   Year               Month               Day         Basic   des Wechselrichters.
+    2019                03                 17
+                                                       Set    Auto-Dimmen: Zur automatischen Anpassung der Helligkeit
+                                                              des LCD-Bildschirms.
+                      Hour              Minute                Werks-Reset: Zum Zurücksetzen aller Wechselrichter-
+                                                              Parameter.
+    24-Hour             09                 15
+                                                              Sperren aller Änderungen: Zum Sperren programmierbarer
+                                                              Parameter gegen Änderungen.
+    Factory Reset             Lock out all changes
+
+
+
+
+PassWord                                                      Wenn wir "Werks-Reset oder "Sperren aller Änderungen
+                                                              wählen, verlangt das System zuerst die Eingabe eines
+                        X--X--X--X         DEL
+                                                              Passworts, um den Vorgang zu bestätigen.
+
+              1               2             3
+                                                              Passwort für "Werks-Reset": 9999
+
+              4               5             6                 Passwort für "Sperren aller Änderungen": 7777
+              7               8             9
+
+           CANCEL             0            OK
+
+
+
+
+                                                              - 35 -
+5.6 Menü Batterieeinstellung
+Battery Setting                                                         Batteriekapazität: Wenn Sie den Modus "Batt-% nutzen"
+                                                                        wählen, ist die Gesamtkapazität Ihrer Batteriebank
+Batt Mode                                                               einzugeben, um den Batterie-SOC zu kalibrieren.
+                                                                        Batt-V nutzen: Benutzt Batteriespannung zum Einstellen aller
+     Lithium             Batt Capacity             400Ah
+                                                               Batt     auf die verbleibende Batteriekapazität bezogenen Parameter.
+     Use Batt V          Max A Charge              40A
+                                                               Mode     Batt-% nutzen: Benutzt Batterie-% (SOC) zum Einstellen aller
+                                                                        auf die verbleibende Batteriekapazität bezogenen Parameter.
+     Use Batt %          Max A Discharge           40A                  Max. A Laden/Entladen: Max. Batterie-Lade-/Entladestrom
+     No Batt
+                                                                        (0-95A für das 4kW-Modell, 0-120A für das 5kW-Modell,
+                              Activate Battery                          0-150A für das 6kW-Modell, 0-190A für das 8kW-Modell,
+                                                                        0-210A für das 10kW-Modell, 0-240 A für das 12kW-Modell).
+                              Gen Force                                 Für AGM- und Nassbatterie empfehlen wir: Batt-Ah x 20%=
+                                                                        Lade-/Entlade-Strom (A)
+                                                                        . Für Lithium-Batterie empfehlen wir: Batt-Ah x 50% = Lade-/
+                                                                        Entlade-Strom (A)
+                                                                        . Für Gel-Batterie: gemäß den Angaben des Herstellers.
+                                                                        Keine Batterie: Wähle diesen Punkt aus, wenn keine
+                                                                        Batterie an das System angeschlossen ist.
+                                                                        Aktiviert Batterie: Diese Funktion hilft bei der Regenerierung
+                                                                        einer übermäßig entladenen Batterie durch langsames
+                                                                        Aufladen über PV oder Netz.
+                                                                        Gen-Zwang: Der angeschlossene Generator wird zum Start
+                                                                        gezwungen, ohne dass weitere Bedingungen erfüllt sind.
+
+Battery Setting                                                         Dies ist die Seite zur Batterieeinstellung. ①③
+ Start         30%                   30%       ②                        Start=30%: Wenn der Batterie-SOC oder die Spannung
+                                                                        auf diesen eingestellten Wert abfällt, startet der
+ A
+         ①     40A                       40A
+                                                               Batt     Wechselrichter automatisch den Generator durch
+                                                               Set2
+                                                                        Aktivierung des "Gen-Signals", um die Batterie zu laden.
+         Gen Charge               Grid Charge
+                                                                        A=40A: Die Obergrenze des Ladestroms zum Laden von
+                                                                        Batterien mit Strom aus einem Generator am GEN-Port.
+         Gen Signal               Grid Signal
+                                                                        Gen-Laden: Erlaubt die Nutzung der Stromversorgung
+ Gen Max Run Time             24.0 hours
+                                               ③                        über den GEN-Port, um die Batterie zu laden.
+ Gen Down Time                 0.0 hours                                Gen-Signal: Das N/O-Relais schließt, wenn der Batterie-
+                                                                        SOC oder die Spannung auf den eingestellten Wert "Start"
+                                                                        abfällt.
+Zum Laden mit Netz wählen Sie wie folgt. ②
+Start=30%: Wenn der Batterie-SOC oder die Spannung auf diesen eingestellten Wert abfällt, startet der
+Wechselrichter automatisch den Generator am Netzanschluss, indem er das "Netz-Signal" aktiviert, um
+die Batterie zu laden.
+A=40A: Die Obergrenze des Ladestroms zum Laden von Batterien mit Strom aus dem Netzanschluss.
+Netz-Laden: Es ist zulässig, die vom Netzanschluss gelieferte Energie (aus Netz oder Generator), zum
+Laden der Batterie zu verwenden.
+Netz-Signal: Ist ein Generator am Netzanschluss des Hybrid-Wechselrichters angeschlossen, kann dieses
+"Netz-Signal" zur Steuerung des Trockenkontakts zum Starten/Stoppen des Generators verwendet werden.
+Gen Max. Laufzeit: Die max. Generator-Betriebsdauer pro Tag. Nach Ablauf dieser Zeit wird der Generator
+ausgeschaltet. 24 Stunden bedeutet, dass er nicht ausgeschaltet wird.
+Gen-Auszeit: Die Auszeit des Generators, bevor der Wechselrichter ihn wieder startet. ③
+
+                  07/08/2021 11:11:10                    Thu
+                                                                                  Wenn das "GEN-Signal" aktiv ist, wird das
+                                                                                  Generator-Symbol auf dem Hauptbildschirm
+                                                                                  des Wechselrichters (LCD-Display) angezeigt.
+
+
+     0   2.00     7                                       0    0.00 5
+          KW                                                    KW
+                                         ON
+
+
+         76%                    Signal
+                                  on
+
+
+
+     0 -1.39
+         KW
+                     5                                   0     2.00
+                                                                KW  5
+
+                                                                         - 36 -
+ Generator                                                           Tippen Sie auf das Generator-Symbol auf dem
+                                                                     Hauptbildschirm, um die Detailseite "Generator"
+     Power: 6000W                            Today=10 KWH
+                                                                     aufzurufen. Diese Seite enthält die folgenden
+                                              Total =10 KWH
+                                                                     Informationen:
+     V_L1: 230V                       P_L1: 2KW
+                                                                     (1) Wie viel Strom aus Generator verbraucht wird;
+     V_L2: 230V                       P_L2: 2KW
+                                                                     (2) Wie viel Energie aus Generator heute oder insgesamt
+     V_L3: 230V                       P_L3: 2KW
+                                                                     verbraucht wurde;
+                                                                     (3) Die Ausgangsspannung und Leistung an jeder Phase
+                                                                     des Generators.
+
+
+
+ Battery Setting                                                     Wenn der Modus "Lithium" ausgewählt ist, sieht der Inhalt der
+                                                                     Seite "Batt-Set3" wie die linke Abbildung aus.
+                                                                     Lithium-Modus: Dies ist der Code für das BMS-
+ Lithium Mode                00                                      Kommunikationsprotokoll, der in der "Liste der zugelassenen
+                                                              Batt   Batterien" anhand des von Ihnen verwendeten Batterie-Modells
+ Shutdown                10%                                  Set3   überprüft werden kann.
+                                                                     Abschaltung: Gilt im Insel-Betrieb. Batterie kann bis zu diesem
+                                                                     SOC entladen werden, dann wird das DC/AC-Modul dieses
+ Low Batt                20%
+                                                                     Wechselrichters abgeschaltet und die Solarenergie kann nur
+                                                                     zum Laden der Batterie verwendet werden.
+ Restart                 40%                                         Niedrige Batterie: Gilt im Netz-Betrieb. Wenn das "Netz-Laden"
+                                                                     gewählt ist und der auf der Seite "Nutzungszeit“ eingestellte Ziel-
+                                                                     SOC der Batterie nicht unter dem Wert "Niedrige Batterie" liegt,
+                                                                     bleibt der Batterie-SOC dann über dem Wert "Niedrige Batterie".
+                                                                     Neustart: Gilt im Insel-Betrieb. Nach Abschaltung des DC/AC-
+                                                                     Moduls dieses Wechselrichters kann die PV-Leistung nur zum
+                                                                     Laden der Batterie verwendet werden. Sobald der Batterie-SOC
+                                                                     wieder diesen "Neustart"-Wert erreicht hat, startet das DC/AC-
+                                                                     Modul neu und gibt wieder AC-Strom aus.
+
+
+ Battery Setting                                                     Wenn der Modus "Batt-V nutzen" oder "Batt-% nutzen" ausgewählt
+                                                                     ist, sieht der Inhalt der Seite "Batt Set3" wie die linke Abbildung aus.
+Float V     ① 53.6V               Shutdown     ③ 20%                 Dreistufige Ladestrategie für Blei-Säure- und inkompatible
+                                                                     Lithium-Batterien.
+                                  Low Batt          35%                                                                                  ①
+Absorption V         57.6V                                    Batt   Dies ist für Profi-Installateure, aber gut zu Ihren wissen.
+                                  Restart           50%       Set3
+                                                                                                                                        ②
+Equalization V       57.6V        TEMPCO(mV/C/Cell)                  Abschaltung: Gilt im Insel-Betrieb. Wenn der SOC/Spannung
+
+Equalization Days 30 days
+                                               ② -5                  der Batterie auf diesen Wert fällt, dann wird das DC/AC-Modul
+                                                                     dieses Wechselrichters abgeschaltet und der PV-Strom wird nur
+                                                                     noch zum Laden der Batterie verwendet.                       ③
+                                            Batt Resistance
+Equalization Hours 3.0 hours                                         Niedrige Batterie: Gilt im Netz-Betrieb, wenn das "Netz-Laden"
+                                               25mOhms
+                                                                     gewählt ist und der SOC/Spannung der Batterie auf der Seite
+                                                                     "Nutzungszeit" nicht unter den Wert "Niedrige Batterie" fällt,
+                                                                     bleibt der SOC/Spannung der Batterie über diesem Wert.
+                                                                     Neustart 50%: Gilt im Inselbetrieb. Nachdem das DC/AC-Modul
+                                                                     dieses Wechselrichters abgeschaltet ist, wird der PV-Strom nur
+                                                                     zum Laden der Batterie verwendet. Wenn der Batterie-SOC
+                                                                     wieder auf diesen "Neustart"-Wert zurückgekehrt ist, startet
+                                                                     das DC/AC-Modul des Wechselrichters neu und gibt wieder AC-
+                                                                     Strom aus.
+Empfohlene Batterieeinstellungen
+                                                                                                         Ausgleichs-Spannung
+      Batterie-Typ                           Aufnahmephase                Erhaltungsphase                 (alle 30 Tage 3Std.)
+    AGM (oderPCC)                               14.2V (57.6V)                 13.4V (53.6V)                      14.2V (57.6V)
+               Gel                              14.1V (56.4V)                 13.5V (54.0V)
+            Nass                                14.7V (59.0V)                 13.7V (55.0V)                      14.7V (59.0V)
+           Lithium                                            Die BMS-Spannungsparameter befolgen
+
+                                                                     - 37 -
+5.7 Einstellmenü für Systemarbeitsmodus
+System Work Mode                                       Arbeitsmodus
+                                                       Verkauf zuerst: In diesem Modus kann der Hybrid-
+                                                       Wechselrichter Überschuss-Strom, der von PV-Modulen
+     Selling First         12000 Max Solar Power       erzeugt wird, an das Netz zurück verkaufen. Wenn
+                                                  Work "Nutzungszeit" aktiviert ist, kann auch der Batterie-Strom
+     Zero Export To Load        Solar Sell       Mode1 ans Netz verkauft werden.
+                                                       Die PV-Energie wird zur Last-Versorgung und zum Laden
+     Zero Export To CT          Solar Sell             der Batterie verwendet, und der Überschuss-Strom wird
+                                                       dann ins Netz eingespeist.
+Max Sell Power 12000 Zero-export Power 20              Die Priorität der Stromquelle für die Last ist wie folgt:
+Energy pattern       BattFirst       LoadFirst
+                                                       1. Solarmodul
+                                                       2. Batterien (wenn der aktuelle Batterie-SOC höher als der
+    Grid Peak Shaving    8000 Power                    Ziel-SOC ist)
+                                                       3. Netz
+                                                       Max Solar-Power: die maximal zulässige DC-Eingangsleistung.
+Null-Export an Last: Der Hybrid-Wechselrichter versorgt nur die angeschlossene Backup-Last mit Strom. Er
+liefert weder Strom an die Hauslast noch verkauft er Strom an das Netz, wenn der "Solar-Verkauf" dahinter
+nicht aktiviert ist. Der integrierte CT erkennt den Strom-Rückfluss ins Netz fließt und reduziert die Leistung
+des Wechselrichters so, dass nur die Backup-Last versorgt und die Batterie geladen wird.
+Lastverbrauch = Backup-Last
+
+
+
+
+                      Solar                              Ersatzlast    Netzgekoppelte Hauslast   Netz
+
+
+
+
+                                     Batterie
+Null-Export an CT: Der Hybrid-Wechselrichter versorgt nicht nur die angeschlossene Backup-Last, sondern auch
+die angeschlossene Hauslast mit Strom. Wenn der PV-Strom und der Batteriestrom nicht ausreichen, nimmt er
+zusätzlich Strom aus dem Netz. Der Hybrid-Wechselrichter verkauft keinen Strom an das Netz, wenn die Option
+"Solar-Verkauf" nicht aktiviert ist. in diesem Modus muss ein externer CT oder Smart-Zähler installiert werden.
+Zur Installation des CT oder des Smart-Zählers siehe Abschnitt 3.7. Der externe CT oder Smart-Zähler erkennt
+den Strom-Rückfluss ins Netz und reduziert die Leistung des Wechselrichters so, dass nur die Backup-Last und
+Hauslast versorgt und die Batterie geladen wird.
+Lastverbrauch = Backup-Last + Hauslast
+
+
+
+
+                      Solar                              Ersatzlast    Netzgekoppelte Hauslast   Netz
+
+                                                                                                    CT
+
+
+
+
+                                    Batterie
+Solar-Verkauf: "Solar-Verkauf" kann für Null-Export an Last oder Null-Export an CT ausgewählt werden. Bei
+Aktivierung kann der Überschuss von PV-Strom zurück ins Netz verkauft werden. In diesem Fall versorgt der
+PV-Strom zuerst die Lasten oder das Laden der Batterie, und wird anschließend ins Netz eingespeist.
+Max. VK-Strom: Maximaler Strom, der ins Netz eingespeist werden darf.
+Null-Export Strom: Dieser Parameter stellt den Null-Export sicher, indem er dem Netz eine kleine Strom-Menge
+entnimmt, die mit diesem Wert festgelegt ist. Es wird empfohlen, den Wert auf 20-100W zu setzen, damit der
+Hybrid-Wechselrichter keinen Strom ins Netz einspeist.
+Energie-Muster: Priorität der PV-Stromnutzung. Wenn "Netz-Laden" aktiviert ist, ist das Standard-Energiemuster
+"Last zuerst", diese Einstellung ist dann ungültig.
+Batt. zuerst: Der PV-Strom wird zuerst zum Laden der Batterie und der Überschuss-Strom dann zur Versorgung
+der Last verwendet. Wenn der PV-Strom nicht ausreicht, wird das Netz gleichzeitig die Batterie laden und die
+Last versorgen.
+Last zuerst: Der PV-Strom wird zuerst zur Versorgung der Last und der Überschuss-Strom zum Laden der Batterie
+verwendet. Wenn der PV-Strom nicht ausreicht, versorgt das Netz die Last mit Strom.
+Netzspitzenausgleich: Wenn diese Funktion aktiviert ist, wird die Netzleistung auf den eingestellten Wert begrenzt.
+Wenn der Netzspitzenausgleich plus PV-Strom plus Batterie-Strom den Stromverbrauch der Last nach dem
+Spitzenausgleich nicht decken können, wird der Netzspitzenausgleich deaktiviert und der Strombezug aus dem
+Netz kann diesen eingestellten Wert überschreiten.
+
+                                                     - 38 -
+System Work Mode                                                    Nutzungszeit: Hier wird festgelegt, wann das Netz oder der
+                                                                    Generator zum Laden der Batterie verwendet und wann die
+ Grid                       Time Of Use                             Batterie zur Versorgung der Last entladen werden soll.
+Charge Gen               Time     Power           Batt              Wird "Nutzungszeit" aktiviert, dann werden die folgenden
+                                                           Work
+                 00:00       5:00      12000      49.0V    Mode2
+                                                                    Optionen (Netz, Laden, Zeit, Power usw.) wirksam.
+                                                                    Hinweis: Wenn im Modus "Verkauf zuerst" die "Nutzungszeit"
+                 05:00       9:00      12000      50.2V
+                                                                    aktivert, kann der Batterie-Strom ins Netz verkauft werden.
+                 09:00       13:00     12000      50.9V             Netz-Laden: Nutzt das Netz, um die Batterie in einem
+                 13:00       17:00     12000      51.4V
+                                                                    bestimmten Zeitraum zu laden.
+                                                                    Gen-Laden: Nutzt den Dieselgenerator, um die Batterie in
+                 17:00       21:00     12000      47.1V             einem bestimmten Zeitraum zu laden.
+                 21:00       00:00     12000      49.0V             Zeit: Echtzeit, Bereich von 01:00 bis 24:00 Uhr.
+                                                                    Hinweis: Wenn das Netz vorhanden ist und nur
+                                                                    "Nutzungszeit" aktiviert ist, wird die Batterie entladen.
+                                                                    Andernfalls wird die Batterie nicht entladen, selbst wenn
+Battery Setting                                                     der Batterie-SOC voll ist. Im Insel-Modus (wenn kein Netz
+                                                                    verfügbar ist, arbeitet der Wechselrichter automatisch im
+  Start        30%                    30%                           Insel-Modus) ist dies jedoch nicht der Fall.
+                                                                    Power: Maximal zulässige Entladeleistung der Batterie.
+                                                             Batt
+  A            40A                    40A
+                                                             Set2
+                                                                    Batt (V oder SOC%): Spannung oder SOC-% der Spannung,
+                                                                    bei der die Aktion ausgeführt werden soll.
+          Gen Charge            Grid Charge
+                                                                    Zum Beispiel
+                                                                    Während 00:00-05:00 Uhr,
+          Gen Signal            Grid Signal
+                                                                    wenn der Batterie-SOC unter 80% ist, wird die Batterie über das
+  Gen Max Run Time            0.0 hours                             Netz geladen, bis der SOC 80% erreicht.
+                                                                    Während 05:00-08:00 Uhr,
+  Gen Down Time               0.5 hours                             wenn der Batterie-SOC höher als 40% ist, entlädt der Hybrid-
+                                                                    Wechselrichter die Batterie, bis der SOC 40% erreicht. Gleichzeitig
+                                                                    lädt das Netz die Batterie auf 40% auf, wenn der SOC unter 40%
+System Work Mode                                                    liegt.
+                                                                    Während 08:00-10:00 Uhr,
+ ② Grid                         Time Of Use                         wenn der Batterie-SOC höher als 40% ist, entlädt der Hybrid-
+ Charge Gen                  Time     Power         Batt
+                                                            Work
+                                                                    Wechselrichter die Batterie, bis der SOC 40% erreicht hat.
+                     00:00     5:00     12000      80%      Mode2   Während 10:00-15:00 Uhr,
+                                                                    wenn der Batterie-SOC höher als 80% ist, entlädt der Hybrid-
+                     05:00     8:00     12000      40%
+                                                                    Wechselrichter die Batterie, bis der SOC 80% erreicht.
+                     08:00    10:00     12000      40%              Während 15:00-18:00 Uhr,
+                     10:00    15:00     12000      80%              wenn der Batterie-SOC höher als 40% ist, entlädt der Hybrid-
+                                                                    Wechselrichter die Batterie, bis der SOC 40% erreicht.
+                     15:00    18:00     12000      40%              Während 18:00-00:00 Uhr,
+                     18:00    00:00     12000      35%              wenn der Batterie-SOC höher als 35% ist, entlädt der Hybrid-
+                                                                    Wechselrichter die Batterie, bis der SOC 35% erreicht.
+
+
+
+
+System Work Mode                                                    Benutzer können auswählen, an welchem Tag die
+                                                                    Einstellung "Nutzungszeit" ausgeführt werden soll.
+Mon   Tue      Wed     Thu      Fri         Sat    Sun
+                                                                    Beispielsweise führt der Wechselrichter die Seite
+                                                           Work     "Nutzungszeit" nur an Mo/Di/Mi/Do/Fr/Sa aus.
+                                                           Mode4
+
+
+
+
+                                                                    - 39 -
+   5.8 Einstellmenü für Netzstrom
+   Grid Setting/Grid code selection                     Netz-Modus: General Standard、UL1741 & IEEE1547、
+                                                        CPUC RULE21、SRD-UL-1741、CEI 0-21、Australia A、
+   Grid Mode                    General Standard               0/11
+                                                        Australia B、Australia C、EN50549_CZ-PPDS(>16A)、
+   Grid Frequency         50HZ        Phase Type   Grid NewZealand、VDE4105、OVE-Directive R25.
+                          60HZ           0/120/240 Set1 Bitte beachten Sie die örtlichen Netzvorschriften und
+                                         0/240/120
+                                                        wählen Sie den entsprechenden Netzstandard aus.
+                                                        Netz-Ebene: Es gibt mehrere Spannungspegel für die
+   Grid Level         LN:220VAC LL:380VAC
+                                                        Ausgangsspannung des Wechselrichters, wenn er sich
+                                                        im Insel-Modus befindet.
+                                                        LN:230VAC LL:400VAC, LN:240VAC LL:420VAC,
+       IT system-neutral is not grounded                LN:120VAC LL:208VAC, LN:133VAC LL:230VAC,
+                                                        LN:220VAC LL:380VAC.
+   IT-System: Wenn das Netzsystem ein IT-System ist, aktivieren Sie bitte diese Option. Alle stromführenden
+   Leitungen des IT-Systems sind von der Erde isoliert, und der Nullpunkt des IT-Systems ist über eine hohe
+   Impedanz geerdet oder nicht geerdet (wie in der folgenden Abbildung dargestellt).
+
+    U                                                                                        Grid Setting/Grid code selection
+    V
+                                                                                             Grid Mode            General Standard        0/11
+    W
+                                                                                             Grid Frequency        50HZ         Phase Type       Grid
+    N                                                                                                              60HZ              0/120/240   Set1
+
+                                               220VAC 220VAC           220VAC
+                                                                                                                                     0/240/120
+
+                  Rz
+                                                                                             Grid Level         LN:133VAC LL:230VAC
+
+
+
+
+  Rz: Großer Erdungswiderstand. Oder das System hat                                              IT system-neutral is not grounded
+  keinen Nullleiter.
+
+
+   Grid Setting/Connect                                                           Normal-Verbindung: Der zulässige Netzspannungs-/
+                                                                                  Frequenzbereich bei Normalbetrieb des Wechselrichters.
+   Normal connect                 Normal Ramp rate             10s                Normal-Anstiegsrate: Die Rampe des Anlaufstroms
+   Low frequency 48.00Hz             High frequency           51.50Hz
+                                                                                  Neuverbindung nach Abschaltung: Der zulässige
+                                                                           Grid   Netzspannungs-/ Frequenzbereich für die Verbindung
+   Low voltage          185.0V       High voltage             265.0V       Set2   des Wechselrichters mit Netz nach Ablösen vom Netz.
+                                                                                  Neuverbindungs-Anstiegsrate: Die Leistungsrampe nach
+   Reconnect after trip         Reconnect Ramp rate            36s                Wiederverbindung.
+   Low frequency 48.20Hz             High frequency           51.30Hz             Wiederzuschaltzeit: Die Wartezeit, bis sich der Wechselrichter
+                                                                                  wieder mit dem Netz verbindet.
+   Low voltage          187.0V       High voltage             263.0V              PF: Leistungsfaktor ist das Verhältnis von Wirkleistung zu
+                                                                                  Scheinleistung in Wechselstromkreisen und kann zur
+   Reconnection Time               60s               PF        1.000
+                                                                                  Anpassung der Ausgangs-Wirkleistung und -Blindleistung
+                                                                                  des Wechselrichters verwendet werden.
+
+  Grid Setting/IP Protection                                                         HV1: Überspannungsschutzpunkt der Ebene 1;
+                                                                                  ①HV2: Überspannungsschutzpunkt der Ebene 2;②0,10s-
+            Over voltage U>(10 min. running mean)             260.0V                 HV3: Überspannungsschutzpunkt der Ebene 3.            Abschaltzeit
+   HV3   265.0V                          HF3 51.50Hz                       Grid
+                                                                                     LV1: Unterspannungsschutzpunkt der Ebene 1;
+                                                                           Set3      LV2: Unterspannungsschutzpunkt der Ebene 2;
+①HV2 265.0V        --   0.10s    ② HF2 51.50Hz --              0.10s                 LV3: Unterspannungsschutzpunkt der Ebene 3.
+   HV1   265.0V    --   0.10s            HF1 51.50Hz     --    0.10s                 HF1: Überfrequenzschutzpunkt der Ebene 1;
+                   --                                    --
+                                                                                     HF2: Überfrequenzschutzpunkt der Ebene 2;
+   LV1   185.0V         0.10s            LF1   48.00Hz         0.10s
+                                                                                     HF3: Überfrequenzschutzpunkt der Ebene 3.
+   LV2             --                    LF2             --
+         185.0V         0.10s                  48.00Hz         0.10s
+                                                                                     LF1: Unterfrequenzschutzpunkt der Ebene 1;
+   LV3   185.0V                          LF3   48.00Hz                               LF2: Unterfrequenzschutzpunkt der Ebene 2;
+                                                                                     LF3: Unterfrequenzschutzpunkt der Ebene 3.
+
+
+                                                                                  - 40 -
+Grid Setting/F(W)                                                                F(W): Zur Anpassung der Ausgangswirkleistung des
+                      F(W)                                                       Wechselrichters gemäß der Netzfrequenz.
+Over frequency
+                                                                                 Absenk F: Prozentsatz der Nennleistung pro Hz.
+                                 Droop F                40%PE/Hz
+                                                                         Grid    Z.B.: "Start-Freq f > 50,2Hz, Stopp-Freq F < 51,5, Absenk
+Start freq F         50.20Hz     Stop freq F                51.5Hz       Set4    f = 40% PE/Hz". Wenn die Netzfrequenz 51,2Hz erreicht,
+Start delay F         0.00s      Stop delay F                0.00s
+                                                                                 verringert der Wechselrichter seine Wirkleistung mit
+                                                                                 Absenk f von 40%. Wenn dann die Netzfrequenz unter
+Under frequency                  Droop F                40%PE/Hz                 50,1Hz fällt, stoppt der Wechselrichter die Verringerung
+                                                                                 der Ausgangsleistung.
+Start freq F         49.80Hz     Stop freq F               49.80Hz
+                                                                                 Detaillierte Einstellwerte entnehmen Sie bitte dem
+Start delay F         0.00s      Stop delay F                0.00s               örtlichen Netzcode.
+
+
+Grid Setting/V(W) V(Q)                                                          V(W): Zur Anpassung der Wirkleistung des Wechselrichters
+                                                                                gemäß der eingestellten Netzspannung.
+                     V(W)                                  V(Q)                 V(Q): Zur Anpassung der Blindleistung des Wechselrichters
+                                        Lock-in/Pn         Lock-out/Pn          gemäß der eingestellten Netzspannung.
+                                                                         Grid
+                                           5%                 20%
+                                                                         Set5
+                                                                                Diese beiden Funktionen dienen zur Anpassung der
+                                                                                Ausgangsleistung (Wirk- und Blindleistung) des
+                P1                                   Q1
+V1    108.0%          100%        V1      94.0%              44%                Wechselrichters bei Änderungen der Netzspannung.
+V2    110.0%    P2     80%        V2      97.0%      Q2       0%
+                                                                                Sperr.Ein/Pn 5%: Wenn die Wirkleistung des
+                                                                                Wechselrichters unter 5% der Nennleistung liegt,
+V3    112.0%    P3     60%        V3     105.0%      Q3       0%                wird der V(Q)-Modus nicht wirksam.
+                                                                                Sperr.Aus/Pn 20%: Wenn die Wirkleistung des
+V4              P4                V4                 Q4
+      114.0%           40%               108.0%              -44%
+                                                                                Wechselrichters von 5% auf 20% der Nennleistung
+                                                                                ansteigt, wird der V(Q)-Modus wieder wirksam.
+ Z.B.: V2=110%, P2=80%. Wenn die Netzspannung 110% der Nenn-Netzspannung erreicht, reduziert der
+ Wechselrichter seine Ausgangswirkleistung auf 80% der Nennleistung.
+ Z.B.: V1=94%, Q1=44%. Wenn die Netzspannung 94% der Nenn-Netzspannung erreicht, gibt die
+ Ausgangsleistung des Wechselrichters 44% der Ausgangsblindleistung ab.
+ Detaillierte Einstellwerte entnehmen Sie bitte dem örtlichen Netzcode.
+
+
+
+Grid Setting/P(Q) P(F)                                                           P(Q): Zur Anpassung der Ausgangsblindleistung des
+                                                                                 Wechselrichters gemäß der eingestellten Wirkleistung.
+                     P(Q)                                  P(PF)                 P(PF): Zur Anpassung des Leistungsfaktors (PF) des
+                                        Lock-in/Pn         Lock-out/Pn
+                                                                                 Wechselrichters gemäß der eingestellten Wirkleistung.
+                                                                         Grid    Detaillierte Einstellwerte entnehmen Sie bitte dem
+                                           50%                50%        Set6    örtlichen Netzcode.
+P1     0%       Q1     2%         P1       0%        PF1 -0.000                  Sperr.Ein/Pn 50%: Wenn die Ausgangswirkleistung des
+                                                                                 Wechselrichters unter 50% der Nennleistung ist, wird der
+P2     2%       Q2     0%         P2       0%        PF2    -0.000               P(PF)-Modus nicht aktiviert.
+                                                                                 Sperr.Aus/Pn 50%: Wenn die Ausgangswirkleistung des
+P3              Q3                P3                 PF3
+       0%              21%                 0%                0.000
+                                                                                 Wechselrichters über 50% der Nennleistung ist, wird der
+P4     22%      Q4     25%        P4      62%        PF4     0.264
+                                                                                 P(PF)-Modus aktiviert.
+                                                                                 Hinweis: Der P(PF)-Modus wird nur aktiviert, wenn die
+                                                                                 Netzspannung mindestens 105% der Nennnetzspannung beträgt.
+
+
+Grid Setting/LVRT                                                                LVRT/HVRT: Wenn die Spannung des Stromnetzes den
+      L/HVRT                                                                     eingestellten HV- oder LV-Wert erreicht, bleibt das Relais
+                                                                                 am Netzanschluss des Wechselrichters für die eingestellte
+                                                                         Grid    Zeit geschlossen, um eine stabile Netzverbindung ohne
+HV3      0%          HV3_T 30.24s                                        Set7    Aussetzen aufrechtzuerhalten.
+HV2      0%          HV2_T     0.04s
+
+HV1      0%          HV1_T 22.11s
+
+LV1      0%          LV1_T     22.02s
+
+LV2      0%          LV2_T     0.04s
+
+
+
+
+                                                                                - 41 -
+ 5.9 Einstellmenü für Generator-Port
+ GEN PORT USE                                                          Gen-Eingangs-Nennleistung: maximal zulässige Leistung des
+                                                                       Dieselgenerators.
+          Mode                        AC couple on Grid side           AC-Kopplung auf der Netzseite: Anschluss eines oder mehrerer
+                                                                       netzgekoppelter Wechselrichter auf der Netzanschluss-Seite
+       Generator Input
+                                      AC couple on Load side           dieses Hybrid-Wechselrichters.
+       Rated Power                                             PORT    AC-Kopplung auf der Lastseite: Anschluss eines oder mehrerer
+         8000W                     GEN connect to Grid input    Set1   netzgekoppelter Wechselrichter auf der Lastanschluss-Seite
+                                                                       dieses Hybrid-Wechselrichters.
+       SmartLoad Output                On Grid always on               GEN Verbinden mit Netz-Eingang: Anschluss des Dieselgenerators
+                     AC Couple Frz High                                an den Netzeingang.
+                         55.00Hz
+                                                                       Smartlast-Ausgang: Verwenden des GEN-Ports als AC-Ausgang.
+                                             OFF(V)   51.0V            Die an diesen Port angeschlossene Last kann über den Hybrid-
+       Micro Inv Input                       ON(V)
+                                                                       Wechselrichter ein- und ausgeschaltet werden.
+                                                      54.0V
+                                                                       z.B. EIN:100%, AUS=95%: Wenn der SOC der Batteriebank 100%
+              Ml export to Grid cutoff                                 erreicht, schaltet sich der Smartlast-Port automatisch ein und
+                                                                       versorgt die angeschlossene Last mit Strom. Wenn der SOC der
+                                                                       Batteriebank unter 95% fällt, schaltet sich der Smartlast-Port
+Smartlast-AUS Batt                                                     automatisch aus.
+• Batterie-SOC/Spannung, bei der sich die Smartlast ausschaltet.
+Smartlast-EIN Batt
+• Batterie-SOC/Spannung, bei der sich die Smartlast einschaltet.
+Bei Netz immer ein: Wenn "Bei Netz immer ein" aktiviert ist, bleibt der Smartlast-Port immer eingeschaltet, wenn der Hybrid-
+Wechselrichter im Netzbetrieb läuft.
+Mikro-Inv-Eingang: Verwenden des GEN-Ports als AC-gekoppelter Eingang, der mit einem Mikro-Wechselrichter oder einem
+anderen netzgekoppelten Wechselrichter verbunden werden kann.
+* Mikro-Inv-Eingang AUS: Wenn Batterie-SOC/Spannung auf diesen eingestellten Wert ansteigt und der Hybrid-Wechselrichter
+im Insel-Modus arbeitet, wird die Frequenz des GEN-Ports des Hybrid-Wechselrichters auf "AC-Kopplung
+Frz Hoch” erhöht, um den netzgekoppelten Wechselrichter auszuschalten. Dies ist im Netz-Modus ungültig.
+* Mikro-Inv-Eingang EIN: Wenn Batterie-SOC/Spannung unter diesen eingestellten Wert fällt, wird das Relais am GEN-Port des
+Hybrid-Wechselrichters eingeschaltet, woraufhin der netzgekoppelte Wechselrichter Strom erzeugt und in den Hybrid-
+Wechselrichter einspeist.
+AC-Kopplung Frz Hoch: Wenn "Mikro-Inv-Eingang" ausgewählt ist, verringert sich die Ausgangsleistung des Mikro-Wechselrichters
+linear, sobald der Batterie-SOC allmählich den Einstellwert (AUS) erreicht. Wenn der Batterie-SOC dem Einstellwert (AUS)
+entspricht, wird die Systemfrequenz auf den Einstellwert (AC-Kopplung Frz hoch) gesetzt und der Mikro-Wechselrichter stellt
+seinen Betrieb ein.
+MI-Export ans Netz abschalten: Stoppt die Einspeisung des vom Mikro-Wechselrichter oder netzgekoppelten Wechselrichter
+erzeugten Stroms in das Netz.
+* Hinweis: Die Optionen "Mikro-Inv-Eingang AUS" und "Mikro-Inv-Eingang EIN" sind nur für bestimmte Firmware-Versionen verfügbar.
+
+
+5.10 Einstellmenü für erweiterte Funktionen
+Advanced Function                                           Solar-Lichtbogenfehler EIN (optional): Diese Funktion ist optional.
+                                                            Nach Aktivierung dieser Funktion erkennt der Wechselrichter, ob auf
+     Solar Arc Fault ON(Optional)  Backup Delay             der PV-Seite ein Lichtbogenfehler vorliegt. Bei Auftreten eines
+                                       0ms
+                                                            Lichtbogens meldet der Wechselrichter einen Fehler und stoppt die
+         Clear Arc_Fault(Optional)                     Func Leistungsabgabe.
+                                                       Set1 Löschen Lichtbogenfehler (optional): Nach Beheben des
+     System selfcheck                 Gen peak-shaving      Lichtbogenfehlers auf der PV-Seite kann durch Aktivieren dieser
+                                                            Funktion der Lichtbogenfehler-Alarm des Wechselrichters deaktiviert
+     DRM                           2000：1    CT Ratio       und der normale Betrieb des Wechselrichters wiederhergestellt werden.
+                                                            System-Selbsttest: Deaktivieren. Dies ist nur für die Fabrik.
+     Signal Island Mode                BMS_Err_Stop
+                                                            Gen-Spitzenausgleich: Aktivieren. Wenn der Generator-Strom seinen
+                                                            Nennwert überschreitet, übernimmt der Wechselrichter den
+     Asymmetric phase feeding              CEI Report
+                                                            redundanten Teil, um eine Überlastung des Generators zu verhindern.
+                                                            DRM: Demand-Response-Modus. Empfang externer Befehle zur
+                                                            Steuerung von Wirk- und Blindleistung.
+Backup-Verzögerung: Wenn das Netz abgeschaltet wird, liefert der Wechselrichter nach Ablauf der Einstellzeit die
+Ausgangsleistung.
+Z.B. Backup-Verzögerung: 3ms. Der Wechselrichter liefert nach 3ms Ausgangsleistung, wenn das Netz abgeschaltet wird.
+Hinweis: für einige alte FW-Versionen ist die Funktion nicht verfügbar.
+CT-Ratio: Bei Verwendung eines externen CTs muss dieser Parameter eingestellt werden. Bei Verwendung eines externen
+Zählers muss er nicht eingestellt werden.
+BMS_Err_Stop: Wenn diese Funktion aktiv ist und die Batterie-BMS keine Kommunikation mit dem Wechselrichter herstellen
+kann, wird der Wechselrichter außer Betrieb gesetzt und ein Fehler gemeldet.            Wechselrichter
+                                                                                                Last-Port
+* Signal Insel-Modus: Wenn "Signal Insel-Modus" aktiviert und der                                                      Gehäuse
+Wechselrichter im Insel-Modus ist, schaltet sich das Relais an der                           L1 L2 L3 N
+Neutralleitung (Last-Port Null-Leiter) ein, woraufhin der Null-Leiter
+(Last-Port) mit der Erdung des Wechselrichters verbunden wird.                                                       Erdungskabel
+
+* Bei Auswahl dieser Option muss das Gehäuse des Wechselrichters
+geerdet sein, da sonst bei Berührung des Gehäuses ein Stromschlag droht.                                    Relais
+
+
+                                                                       - 42 -
+Asymmetrische Phasenansteuerung: Wenn die Lasten am Lastanschluss ungleichmäßig auf die drei
+Phasen verteilt sind und der Wechselrichter im Netz-Betrieb arbeitet, wird durch Aktivieren dieser
+Funktion eine gleichmäßige Leistungsaufnahme aus den drei Phasen des Netzes sichergestellt.
+
+
+
+
+Advanced Function                                                        Dies ist für Windturbine
+     DC 1 for WindTurbine                DC 2 for WindTurbine            DC 1 für Windturbine:       I/A
+                                                                         Anschluss der Windturbine
+V1          90V       0.0A         V7        210V       9.0A
+                                                                Wind     an den MPPT 1 des Hybrid- 16.5
+                                                                Set2     Wechselrichters.
+V2          110V      1.5A         V8        230V       10.5A
+                                                                         DC 2 für Windturbine:
+V3          130V      3.0A         V9        250V       12.0A            Anschluss der Windturbine
+V4          150V      4.5A         V10       270V       13.5A
+                                                                         an den MPPT 2 des Hybrid-
+                                                                         Wechselrichters.
+V5          170V      6.0A         V11       290V       15.0A
+                                                                                                      0                                 U/V
+                                                                                                                           310
+V6          190V      7.5A         V12       310V       16.5A
+
+
+
+
+Advanced Function                                                        Parallel: Aktivieren Sie diese Funktion, wenn mehrere Wechselrichter
+                                                                         desselben Hybridmodells parallel geschaltet werden.
+     Parallel           Modbus SN           Baud Rate                    Master: Wählen Sie einen beliebigen Hybrid-Wechselrichter im
+                              00               0000                      Parallelsystem als Master-Wechselrichter aus, und der Master-
+     Master
+                                                                Paral.   Wechselrichter muss den Arbeitsmodus des Parallelsystems verwalten.
+     Slave                                                      Set3     Slave: Stellen Sie die anderen Wechselrichter, die vom Master-
+                                                                         Wechselrichter verwaltet werden, als Slave-Wechselrichter ein.
+                                                                         Modbus SN: Die Modbus-Adresse der einzelnen Wechselrichter
+     EX_Meter For CT                 Grid Tie Meter2                     sollte unterschiedlich sein.
+Meter Select                         CT check                            Baudrate: Die Rate, mit der der Wechselrichter die Daten überträgt.
+                                                                         Ex Zähler Für CT: Wenn der Modus "Null-Export an CT" verwendet
+ No Meter       0/3                  MPPT Scan
+                                                                         wird, kann der Hybrid-Wechselrichter diese Funktion auswählen
+  CHNT                                                                   und die verschiedenen Zähler verwenden, z. B. CHINT und Eastron.
+ Eastron                                                                 Netzanschlusszähler 2: Wenn ein oder mehrere netzgekoppelte
+                                                                         Wechselrichter auf der Netz- oder Lastseite des Hybrid-
+                                                                         Wechselrichters AC-gekoppelt sind und für diese netzgekoppelten
+                                                                         Wechselrichter ein externer Zähler installiert ist, muss diese
+                                                                         Funktion aktiviert werden, um die Daten des externen Zählers
+                                                                         auf den Hybrid-Wechselrichter zu übertragen und sicherzustellen,
+                                                                         dass die Stromverbrauchsdaten der Last korrekt sind.
+                                                                         CT-Test: Der Wechselrichter führt einen Selbsttest des externen
+                                                                         CT durch und gibt die Testergebnisse zurück.
+                                                                         MPPT-Scan: Nach Aktivierung dieser Funktion führt MPPT alle 5
+                                                                         Minuten eine I-V-Kurvenabtastung durch, um den max. Leistungspunkt
+                                                                         erneut zu ermitteln und MPPT-Fehler durch Schatten zu beheben.
+
+                        CT SelfCheck                                     CT_Data: Die Ergebnisdaten des CT-Selbsttests im Dezimalformat
+                                                                         müssen in das Binärformat umgewandelt werden, um anzuzeigen,
+                                                                         ob die drei CTs korrekt angeschlossen sind.
+
+                              CT_Data: 0                                 CT_CTA: Analyse des A-Phase-CT-Selbsttestergebnisses
+                                                                         CT_CTB: Analyse des B-Phase-CT-Selbsttestergebnisses
+                             CT_CTA: FAIL                                CT_CTC: Analyse des C-Phase-CT-Selbsttestergebnisses
+                         CT_CTB: FAIL
+                         CT_CTB: FAIL
+
+
+
+
+                                                                         - 43 -
+5.11 Einstellmenü für Geräte-Info
+Li-BMS Info.
+Device                                                                         Li-BMS Info.
+                                                                               Device
+                                                                                12K
+
+
+                                                                                                        Inverter SN: 2404098579    Flash
+
+            Version Info                 Fault Log                                                            HMI: Ver 1001-C047
+
+                                                                                                            MAIN:Ver 2021-1145-1807
+
+                                                                                                                 ARC:VerD206
+
+
+
+
+Li-BMS Info.
+Device
+                                                                          Auf dieser Seite werden Wechselrichter-ID,
+ Alarms Code                       Occurred                               Wechselrichter-Version und Alarmcodes angezeigt.
+1 50.38V 19.70A 30.6C  52.0%   26.0Ah 0.0V  0.0A 0|0|0
+2 50.33V 19.10A 31.0C  51.0%   25.5Ah 53.2V 25.0A 0|0|0     Device
+                                                            Sum
+3 F56  DC_VoltLow_Fault
+   50.30V 16.90A 30.2C 12.0%   6.0Ah2024-04-29
+                                      53.2V     09:33
+                                            25.0A  0|0|0
+                                                             Info
+4 0.00V 0.00A    0.0C  0.0%    0.0Ah  0.0V  0.0A 0|0|0      Data
+5 F13  Grid_Mode_changed
+   0.00V 0.00A   0.0C  0.0%    0.0Ah2024-04-29
+                                      0.0V  0.0A 07:22
+                                                   0|0|0                  HMI: LCD-Version
+6 0.00V 0.00A    0.0C  0.0%    0.0Ah2024-04-29
+                                      0.0V  0.0A 03:22
+                                                   0|0|0
+  F13  Grid_Mode_changed
+7 0.00V 0.00A    0.0C  0.0%    0.0Ah  0.0V  0.0A 0|0|0
+8 F56  DC_VoltLow_Fault
+   0.00V 0.00A   0.0C  0.0%    0.0Ah2024-04-29
+                                      0.0V  0.0A 03:11
+                                                   0|0|0                  MAIN: FW-Version der Steuerplatine
+   0.00V 0.00A   0.0C  0.0%    0.0Ah  0.0V  0.0A 0|0|0
+10                                                         Details
+                                                           Data
+
+
+
+
+6. Modus
+Modus I: Basic
+                                                                AC-Kabel       DC-Kabel        COM-Kabel
+
+
+
+
+                                                 Ersatzlast          Netzgekoppelte Hauslast
+
+
+    Solar
+
+
+
+
+                                                                                CT
+   Batterie
+                                                                                                Netz
+
+
+
+Modus II: Mit Generator
+                                                                                  DC-Kabel       DC cable
+
+
+
+
+              Solar                                Ersatzlast        Netzgekoppelte Hauslast
+
+
+
+
+                                                                                                 Netz
+                                                                                     CT
+
+              Batterie
+
+                                                                         Generator
+
+
+
+
+                                                                       - 44 -
+Modus III: Mit Smartlast
+                                                                         AC-Kabel   DC-Kabel
+
+
+
+
+          Solar                           Ersatzlast     Netzgekoppelte Hauslast
+
+
+
+
+                                                                                    Netz
+                                                                            CT
+
+          Batterie
+
+                                                             Smartlast
+
+
+
+
+Modus IV: AC-Kopplung
+   On-GEN+ AC-Kopplung                                                AC-Kabel      DC-Kabel
+
+
+
+
+          Solar                           Ersatzlast     Netzgekoppelte Hauslast
+
+
+
+
+                                                                                    Netz
+                                                                            CT
+
+          Batterie
+
+
+                                                          Netzgekoppelter
+                                                          Wechselrichter
+
+
+
+
+                     Die erste Priorität des Systems ist immer der PV-Strom, die zweite und dritte
+                     Priorität ist je nach Einstellung die Batteriebank oder das Netz. Die letzte
+                     Stromreserve ist der Generator, wenn er verfügbar ist.
+
+
+
+
+7. Einschränkung der Haftung
+Zusätzlich zu der einzeln beschriebenen Produktgarantie sehen die staatlichen und örtlichen
+Gesetze und Vorschriften eine finanzielle Entschädigung für den Anschluss des Produkts an die
+Stromversorgung vor (einschließlich der Verletzung stillschweigender Bedingungen und
+Garantien). Das Unternehmen erklärt hiermit, dass die Bedingungen und Konditionen des
+Produkts und der Policen jede Haftung nur in einem begrenzten Umfang rechtlich
+ausschließen können und dürfen.
+
+Fehlercode                Beschreibung                                                         Lösungen
+
+                                                 1. Prüfen Sie die PV-Eingangspolarität;
+    F01              DC-Eingang Verpolungsfehler 2. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                                         zurückkehren können.
+
+                                                       1. Die BUS-Spannung kann nicht von PV oder Batterie
+                                                         aufgebaut werden;
+    F07               DC_START_Fehlfunktion            2. Neustart des Wechselrichters, wenn der Fehler weiterhin
+                                                         besteht, kontaktieren Sie uns bitte für Hilfe.
+
+
+                                                              - 45 -
+Fehlercode        Beschreibung                                       Lösungen
+                                      1. Wenn sich der Netztyp und die Frequenz geändert haben, wird F13
+                                         gemeldet;
+                                      2. Wenn der Batteriemodus in den Modus "Keine Batterie" geändert
+                                         wurde, wird F13 gemeldet;
+                                      3. Bei einigen alten FW-Versionen wird F13 gemeldet, wenn der
+                                        System-Arbeitsmodus geändert wurde;
+   F13       Wechsel des Arbeitsmodus 4. Im Allgemeinen verschwindet es automatisch, wenn F13 angezeigt
+                                         wird;
+                                      5. Wenn der Wert gleich bleibt, schalten Sie den DC- und AC-Schalter
+                                          für eine Minute aus und schalten Sie dann den DC-und AC-Schalter
+                                          wieder ein;
+                                      6. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                         zurückkehren können.
+                                      AC-seitiger Überstromfehler
+                                      1. Prüfen Sie, ob die Leistung der Ersatzlast und die Leistung der
+               AC-Überstromfehler        gemeinsamen Last innerhalb des Bereichs liegen;
+   F15                                2. Starten Sie neu und prüfen Sie, ob der Vorgang normal verläuft;
+                  der Software
+                                      3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                         zurückkehren können.
+                                      Leckstrom-Fehler
+                                      1.Überprüfen Sie den Erdungsanschluss des PV-Kabels
+   F16         AC-Leckstrom-Fehler    2.Starten Sie das System 2-3 Mal neu
+                                      3.Wenn der Fehler weieterhin besteht, kontaktieren Sie uns
+                                      bitte für Hilfe.
+                                      AC-seitiger Überstromfehler
+                                      1. Prüfen Sie, ob die Ersatzlastleistung und die gemeinsame
+               AC-Überstromfehler       Lastleistung innerhalb des Bereichs liegen;
+   F18                                2. Starten Sie neu und prüfen Sie, ob der Vorgang normal verläuft;
+                  der Hardware
+                                      3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                         zurückkehren können.
+                                      DC-seitiger Überstromfehler
+                                      1. Prüfen Sie den Anschluss der PV-Module und der Batterie;
+                                      2. Wenn der Wechselrichter im Insel-Modus mit einer hohen
+                                        Leistungslast startet, kann er F20 melden. Bitte reduzieren Sie
+                                        die angeschlossene Lastleistung;
+               DC-Überstromfehler     3. Wenn der Wert gleich bleibt, schalten Sie den DC- und AC-
+   F20
+                  der Hardware          Schalter für eine Minute aus, dann schalten Sie den DC- und
+                                        AC-Schalter wieder ein;
+                                      4. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                         zurückkehren können.
+
+                                           BUS-Überstrom.
+                                           1, Überprüfen Sie den PV-Eingangsstrom und die Batteriestrom-
+   F21       Tz_HV_Überstrom-Fehler           Einstellung
+                                           2. Starten Sie das System 2~3 Mal neu.
+                                           3. Wenn der Fehler weiterhin besteht, kontaktieren Sie uns bitte
+                                             für Hilfe.
+
+   F22           Tz_NotStop_Fehler         Ferngesteuertes Herunterfahren
+                                           1. Das bedeutet, dass der Wechselrichter ferngesteuert ist.
+
+                                           Leckstrom-Fehler
+               Tz_GFCI_OC_Strom ist        1. Erdungsanschluss des PV-Kabels prüfen.
+   F23                                     2. Starten Sie das System 2~3 Mal neu.
+               transienter Überstrom       3. Wenn der Fehler weiterhin besteht, kontaktieren Sie uns
+                                              bitte für Hilfe.
+                                           PV-Isolationswiderstand ist zu niedrig
+                                           1.Prüfen Sie, ob die Verbindung von PV-Modulen und
+                                             Wechselrichter fest und korrekt ist;
+   F24           DC-Isolationsfehler       2.Prüfen Sie, ob das PE-Kabel des Wechselrichters mit der Erde
+                                             verbunden ist;
+                                           3.Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                             zurückkehren können.
+
+                                                 - 46 -
+Fehlercode        Beschreibung                                         Lösungen
+                                           1. Bitte warten Sie eine Weile und prüfen Sie, ob es normal ist;
+                                           2. Wenn der Laststrom der 3 Phasen sehr unterschiedlich ist,
+   F26        Die DC-Sammelschiene            wird die Meldung F26 ausgegeben.
+                                           3 .Wenn ein DC-Leckstrom auftritt, meldet er F26
+                ist unsymmetrisch          4. Starten Sie das System 2~3 Mal neu.
+                                           5. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                              zurückkehren können.
+
+                                           1. Überprüfen Sie im Parallel-Modus den Anschluss des Parallel-
+                                              Kommunikationskabels und die Einstellung der
+                                              Kommunikationsadresse des Hybrid-Wechselrichters;
+   F29       Paralleler CAN-Bus-Fehler     2. Während der Startphase des Parallel-Systems melden die
+                                              Wechselrichter F29, aber wenn alle Wechselrichter im EIN-
+                                              Status sind, verschwindet diese Meldung automatisch;
+                                           3. Wenn der Fehler weiterhin besteht, kontaktieren Sie uns bitte
+                                              für Hilfe.
+
+                                           1. Prüfen Sie die angeschlossene Ersatzlast und stellen Sie sicher,
+   F34          AC-Überstromfehler            dass sie im zulässigen Leistungsbereich liegt.
+                                           2. Wenn der Fehler weiterhin besteht, kontaktieren Sie uns bitte
+                                             für Hilfe.
+                                           1. Überprüfen Sie den Arbeitsstatus des Hybrid-Wechselrichters.
+                                              Wenn 1 Stück des Hybrid-Wechselrichters abgeschaltet wird,
+   F41         Parallel-System stoppt         melden alle Hybrid-Wechselrichter den Fehler F41.
+                                           2. Wenn der Fehler weiterhin besteht, kontaktieren Sie uns bitte
+                                              für Hilfe.
+                                      Netzspannungs-Fehler
+                                      1. Prüfen Sie, ob die AC-Spannung im Bereich der Standard-
+                                         Spannungsinspektion liegt;
+   F42       AC-Leitung Unterspannung 2. Prüfen Sie, ob die AC-Netzkabel fest und korrekt
+                                        angeschlossen sind;
+                                      3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                         zurückkehren können.
+
+                                           1. Bitte überprüfen Sie jeden Batteriestatus, wie Spannung/SOC
+                                             und Parameter usw., und stellen Sie sicher, dass alle
+   F46          Puﬀerbatterie-Fehler         Parameter gleich sind.
+                                           2. Wenn der Fehler weiterhin besteht, kontaktieren Sie uns bitte
+                                             für Hilfe.
+                                           Netzfrequenz außerhalb des Bereichs
+                                           1. Prüfen Sie, ob die Frequenz innerhalb des spezifizierten
+                  AC-Überfrequenz            Bereichs liegt oder nicht;
+   F47                                     2. Prüfen Sie, ob die AC-Kabel fest und richtig angeschlossen sind;
+                                           3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                              zurückkehren können.
+                                           Netzfrequenz außerhalb des Bereichs
+                                           1. Prüfen Sie, ob die Frequenz innerhalb des spezifizierten Bereichs
+                 AC-Unterfrequenz             liegt oder nicht;
+   F48                                     2. Prüfen Sie, ob die AC-Kabel fest und richtig angeschlossen sind;
+                                           3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                              zurückkehren können.
+                                       BUS-Spannung ist zu hoch
+                                       1. Prüfen Sie, ob die Batteriespannung zu hoch ist;
+   F55       DC-Sammelschienenspannung 2. Prüfen Sie die PV-Eingangsspannung, stellen Sie sicher, dass sie
+                    ist zu hoch           innerhalb des zulässigen Bereichs liegt;
+                                       3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                          zurückkehren können.
+
+
+
+
+                                                 - 47 -
+ Fehlercode         Beschreibung                                    Lösungen
+                                        Batteriespannung zu niedrig
+                                        1. Prüfen Sie, ob die Batteriespannung zu niedrig ist;
+    F56       DC-Sammelschienenspannung 2. Wenn die Batteriespannung zu niedrig ist, verwenden Sie PV
+                     ist zu niedrig       oder Netz, um die Batterie zu laden;
+                                        3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                           zurückkehren können.
+                                       1. Es zeigt an, dass die Kommunikation zwischen Hybrid-
+                                         Wechselrichter und Batterie-BMS unterbrochen wurde, wenn
+                                         "BMS_Err-Stop" aktiv ist.
+    F58       BMS-Kommunikationsfehler 2. Wenn Sie dies nicht sehen wollen, können Sie die Option
+                                         "BMS_Err-Stop auf LCD" deaktivieren.
+                                       3. Wenn der Fehler weiterhin besteht, kontaktieren Sie uns bitte
+                                         für Hilfe.
+                                           1. Prüfen Sie, ob die DRM-Funktion aktiv ist.
+    F62              DRMs0_stop            2. Suchen Sie Hilfe bei uns, wenn das System nach Neustart
+                                             nicht zum Normalzustand zurückkehren kann.
+                                           1. Die ARC-Fehlererkennung gilt nur für den US-Markt;
+                                           2. Überprüfen Sie die Kabelverbindung der PV-Module und
+                                             beheben Sie den Fehler;
+    F63               ARC-Fehler           3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                              zurückkehren können.
+                                           Die Temperatur des Kühlkörpers ist zu hoch
+                                           1. Prüfen Sie, ob die Temperatur der Arbeitsumgebung zu hoch
+                Hochtemperaturfehler          ist.
+    F64                                    2. Schalten Sie den Wechselrichter für 10 Minuten aus und
+                  des Kühlkörpers             starten Sie ihn neu;
+                                           3. Suchen Sie Hilfe von uns, wenn Sie nicht zum Normalzustand
+                                              zurückkehren können.
+
+                                   Tabelle 7-1 Fehler-Informationen
+Unter der Leitung unseres Unternehmens senden die Kunden unsere Produkte zurück, damit
+unser Unternehmen einen Wartungsservice oder Ersatz für gleichwertige Produkte anbieten
+kann. Die Kunden müssen die notwendigen Frachtkosten und andere damit verbundene Kosten
+tragen. Jeder Ersatz oder jede Reparatur des Produkts deckt die verbleibende Garantiezeit des
+Produkts ab. Wenn ein Teil des Produkts oder des Produkts während der Garantiezeit durch das
+Unternehmen selbst ersetzt wird, gehen alle Rechte und Interessen an dem Ersatzprodukt oder
+der Komponente auf das Unternehmen über.
+Die Werksgarantie gilt nicht für Schäden, die auf folgende Ursachen zurückzuführen sind:
+· Schäden beim Transport der Ausrüstung；
+· Schäden durch falsche Installation oder Inbetriebnahme；
+· Schäden, die durch Nichtbeachtung von Betriebs-, Installations- oder Wartungsanweisungen
+  verursacht werden；
+· Schäden, die durch Versuche verursacht werden, Produkte zu modifizieren, zu verändern
+  oder zu reparieren；
+· Schäden durch unsachgemäßen Gebrauch oder Betrieb；
+· Schäden durch unzureichende Belüftung der Geräte；
+· Schäden, die durch die Nichteinhaltung geltender Sicherheitsnormen oder -vorschriften
+  verursacht wurden；
+· Schäden durch Naturkatastrophen oder höhere Gewalt (z. B. Überschwemmungen,
+  Blitzschlag, Überspannung, Stürme, Brände usw.)
+Darüber hinaus beeinträchtigen normaler Verschleiß oder andere Fehler die grundlegende
+Funktionsweise des Produkts nicht. Äußere Kratzer, Flecken oder natürliche mechanische
+Abnutzung stellen keinen Mangel des Produkts dar.
+                                                 - 48 -
+8. Datenblatt
+                                                       SUN-4K-     SUN-5K-      SUN-6K-         SUN-8K-    SUN-10K-   SUN-12K-
+Modell                                                 SG05LP3-
+                                                        EU-SM2
+                                                                   SG05LP3-
+                                                                    EU-SM2
+                                                                                SG05LP3-
+                                                                                 EU-SM2
+                                                                                                SG05LP3-
+                                                                                                 EU-SM2
+                                                                                                           SG05LP3-
+                                                                                                            EU-SM2
+                                                                                                                      SG05LP3-
+                                                                                                                       EU-SM2
+Batterie Eingangsdaten
+Batterie-Typ                                                             Blei-Säure oder Lithium-Ionen
+Batteriespannungsbereich(V)                                                          40-60
+Max. Ladestrom(A)                                        95          120        135         190        210               240
+Max. Entladestrom(A)                                     95          120        135         190        210               240
+Ladestrategie für Li-Ionen-Batterie                                        Selbstanpassung an BMS
+Anzahl der Batterieeingänge                                                            1
+PV-Strang Eingangsdaten
+Max. PV-Zugangsleistung(W)                              8000        10000        12000           16000      20000      24000
+Max. PV-Eingangsleistung(W)                             6400        8000         9600            12800      16000      19200
+Max. PV-Eingangsspannung(V)                                                            800
+Start-up Spannung(V)                                                                   160
+PV-Eingangsspannungsbereich (V)                                                      160-800
+MPPT-Spannungsbereich (V)                                                            200-650
+Volllast MPPT-Spannungsbereich(V)                                          250-650                              350-650
+PV-Eingangsnennspannung (V)                                                                550
+Max. Betriebs-PV-Eingangsstrom(A)                                           20+20                                26+26
+Max. Eingangs-Kurzschlussstrom(A)                                           30+30                                39+39
+Anzahl der MPP-Tracker/Strang-Anzahl der MPP-Tracker                        2/1+1                                2/2+2
+Max. Rückspeisestrom des Wechselrichters zum Array                                          0
+AC-Eingangs/Ausgangsdaten
+AC-Nenn-Eingangs-/Ausgangs-Wirkleistung (W) 4000                     5000         6000        8000     10000           12000
+Max. AC-Eingang/Ausgang Scheinleistung(VA) 4400                      5500         6600        8800     11000           13200
+Spitzenleistung (netzunabhängig)(W)                                         2-fache Nennleistung, 10s
+AC-Nenn-Eingangs-/Ausgangsstrom(A) 6,1/5,8                          7,6/7,3      9,1/8,7    12,2/11,6 15,2/14,5       18,2/17,4
+Max. AC-Eingangs-/Ausgangsstrom(A) 6,7/6,4                           8,4/8       10/9,6     13,4/12,8 16,7/16          20/19,2
+Max. Kontinuierlicher AC-Durchgangsstrom (Netz zu Last)(A)                               45
+Max. Ausgangs-Fehlerstrom (A)                              13,4      16,8          20         26,8      33,4              40
+Max. Überstromschutz am Ausgang (A)                                                      65
+Eingangs-/Ausgangsbemessungsspannung/Bereich(V)                         220/380V, 230/400V 0,85Un-1,1Un
+Form des Netzanschlusses                                                              3L+N+PE
+Nenn-Eingangs-/Ausgangsnetzfrequenz/Bereich                            50Hz/45Hz-55Hz 60Hz/55Hz-65Hz
+Leistungsfaktor-Einstellbereich                                          0,8 vorlaufend - 0,8 nachlaufend
+Harmonische Gesamtstromverzerrung THDi                                        <3% (der Nennleistung)
+DC-Einspeisestrom                                                                     <0,5%In
+Wirkungsgrad
+Max. Wirkungsgrad                                                                     97,60%
+Euro-Wirkungsgrad                                                                     97,00%
+MPPT-Wirkungsgrad                                                                      >99%
+Geräteschutz
+Schutz bei verpoltem DC-Anschluss                                                          Ja
+Überstromschutz am AC-Ausgang                                                              Ja
+Überspannungsschutz am AC-Ausgang                                                          Ja
+Kurzschlussschutz am AC-Ausgang                                                            Ja
+Thermischer Schutz                                                                         Ja
+Überwachung der DC-Klemmen-Isolationsimpedanz                                              Ja
+
+                                                                  - 49 -
+Überwachung von DC-Komponenten                                           Ja
+Erdschlussstrom-Überwachung                                              Ja
+Störlichtbogen-Schutzschalter (AFCI)                                  Optional
+Überwachung des Stromnetzes                                              Ja
+Überwachung des Inselschutzes                                            Ja
+Erkennung von Erdungsfehlern                                             Ja
+DC-Eingangsschalter                                                      Ja
+Überspannungs-Lastabwurfschutz                                           Ja
+Fehlerstrom (RCD)-Erkennung                                              Ja
+Überspannungs-Schutzstufe                                      TYPE II(DC), TYPEII(AC)
+Schnittstellen
+Display-Anzeige                                                    LCD+LED
+Kommunikationsschnittstelle                                   RS232, RS485, CAN
+Monitor-Modus                                        GPRS/WiFi/Bluetooth/4G/LAN (optional)
+Allgemeine Daten
+Betriebstemperaturbereich                          -40 bis +60℃, >45℃ Leistungsminderung
+Zulässige Umgebungsluftfeuchtigkeit                                 0-100%
+Zulässige Höhenlage                                                  3000m
+Geräusch                                                            ≤ 55 dB
+Schutzart (IP)                                                        IP 65
+Wechselrichter-Topologie                                         Nicht-isoliert
+Überspannungskategorie                                       OVC II(DC), OVC III(AC)
+Größe des Gehäuses (B*H*T)[mm]               386B × 660H × 250T(ohne Anschlüsse und Halterungen)
+Gewicht (kg)                                                           35,2
+                                                                    5 Jahre/10 Jahre
+Garantie                               Garantiezeit hängt vom endgültigen Installationsort des Wechselrichters ab.
+                                                    Weitere Informationen siehe Garantiebedingungen
+Art der Kühlung                                              Intelligente Luftkühlung
+                                           IEC 61727, IEC 62116, CEI 0-21, EN 50549, NRS 097, RD 140,
+Netzregelung
+                                              UNE 217002, OVE-Richtlinie R25, G99, VDE-AR-N 4105
+Sicherheit EMC/Standard                     EC/EN 61000-6-1/2/3/4, IEC/EN 62109-1, IEC/EN 62109-2
+
+
+
+
+                                                   - 50 -
+9. Anhang I
+Definition des RJ45-Ports, Pins für BMS
+                                            BMS 485/CAN Port
+     Nr.              RS485 Pin
+       1                485_B
+       2                485_A                    12345678
+
+       3                  --
+       4               CAN-H
+                                                                    321
+       5               CAN-L                                       87654
+
+       6              GND_485
+       7                485_A
+       8                485_B
+
+
+
+Definition des RJ45-Ports, Pins für Zähler-485
+
+     Nr.              Zähler-485 Pin             Zähler-485 Port
+
+       1             ZÄHLER-485-B
+       2             ZÄHLER-485-A                 12345678
+
+       3               COM-5V
+       4             ZÄHLER-485-B
+                                                                       321
+       5             ZÄHLER-485-A                                     87654
+
+       6               COM-GND
+       7             ZÄHLER-485-A
+       8             ZÄHLER-485-B
+
+
+
+Definition des RJ45-Ports, Pins des Modbus-
+Ports für die Fernüberwachung
+
+     Nr.              Modbus-Port                Modbus port
+       1            SUNSPE-485_B
+       2            SUNSPE-485_A                  12345678
+
+       3          GND_SUNSPE-485
+       4                   --
+                                                                       321
+       5                   --                                         87654
+
+       6          GND_SUNSPE-485
+       7            SUNSPE-485_A
+       8            SUNSPE-485_B
+
+                                              - 51 -
+DRM：dient zur Annahme des externen Steuerbefehls.
+Definition des RJ45-Ports, Pins für DRM
+
+     Nr.                   DRM
+                                                                     12345678
+      1                     DI 1
+      2                     DI 2
+      3                     DI 3
+      4                     DI 4
+                                                              321
+      5                     REF                              87654
+
+      6                    GND
+      7                  Reserviert
+      8                  Reserviert
+
+
+      PIN 1 DI 1
+                                                                                  K1   0%
+
+      PIN 2 DI 2
+                                                                                  K2   30%
+
+      PIN 3 DI 3
+                                                                                  K3   60%
+
+      PIN 4 DI 4
+                                                                                  K4   100%
+
+      PIN 5 REF
+                                            15K
+      PIN 6 GND
+    Wechselreichter                                                             RCR
+
+
+
+
+            1        2        3        4        5   6        7        8
+                                                                                        5678
+
+                                           K4                                          1234
+                                  K3
+                         K2
+                K1
+
+                                                    - 52 -
+Dieses Wechselrichter-Modell verfügt über zwei Arten von Logger-Schnittstellen, DB9 und USB.
+Den tatsächlichen Schnittstellentyp entnehmen Sie bitte dem jeweils erhaltenen Wechselrichter.
+
+
+RS232
+      Nr.               RS232
+       1
+       2                  TX
+       3                  RX
+                                                             5 4 3 2 1
+       4                                                      9 8 7 6
+
+
+       5                D-GND
+       6
+       7
+                                                          DB9 (RS232)
+       8
+       9                12Vdc
+
+
+
+
+                                                                USB
+
+
+
+
+                                           - 53 -
+10. Anhang II
+1. Abmessungen des Stromwandlers (CT) mit geteiltem Kern: (mm)
+2. Die Länge des sekundären Ausgangskabels beträgt 4 m.
+
+
+
+
+                                                                   Leitet nach außen
+
+
+
+
+11. EU-Konformitätserklärung
+Im Geltungsbereich der EU-Richtlinie
+· Elektromagnetische Verträglichkeit ����/��/EU (EMC)
+· Niederspannungsrichtlinie ����/��/EU (LVD)
+· Beschränkung der Verwendung bestimmter gefährlicher Stoﬀe ����/��/EU (RoHS)
+
+Ningbo Deye Inverter Technology Co., Ltd. bestätigt hiermit, dass die in diesem Dokument
+beschriebenen Produkte entsprechen den grundlegenden Anforderungen und anderer
+einschlägiger Bestimmungen der oben genannten Richtlinien.
+Die vollständige EU-Konformitätserklärung ﬁnden und Zertiﬁkat Sie auf
+https://www.deyeinverter.com/download/#hybrid-inverter-�.
+
+                                          - 54 -
+                                                                                                        231101001
+                                                                                            www.deyeinverter.com
+
+                          EU Declaration of Conformity
+Product:Hybrid Inverter
+Models:SUN-3K-SG05LP3-EU-SM2;SUN-4K-SG05LP3-EU-SM2;SUN-5K-SG05LP3-EU-SM2;SUN-6K-SG05LP3-EU-SM2;
+         SUN-8K-SG05LP3-EU-SM2;SUN-10K-SG05LP3-EU-SM2;SUN-12K-SG05LP3-EU-SM2;
+Name and address of the manufacturer: Ningbo Deye Inverter Technology Co., Ltd.
+No. 26 South YongJiang Road, Daqi, Beilun, NingBo, China
+
+
+This declaration of conformity is issued under the sole responsibility of the manufacturer. Also this product
+is under manufacturer’s warranty.
+This declaration of conformity is not valid any longer: if the product is modified, supplemented or changed in
+any other way, as well as in case the product is used or installed improperly.
+
+The object of the declaration described above is in conformity with the relevant Union harmonization legislation:
+The Low Voltage Directive (LVD) 2014/35/EU;the Electromagnetic Compatibility (EMC) Directive 2014/30/EU;the
+restriction of the use of certain hazardous substances (RoHS) Directive 2011/65/EU.
+
+References to the relevant harmonized standards used or references to the other technical specifications in
+relation to which conformity is declared:
+
+                                     LVD:
+                               EN 62109-1:2010                                                🔴
+                               EN 62109-2:2011                                                🔴
+                                     EMC:
+                            EN IEC 61000-6-1:2019                                             🔴
+                            EN IEC 61000-6-3:2021                                             🔴
+                            EN 62920:2017+A11+A1                                              🔴
+                          EN 55011:2016+A1+A11+A2                                             🔴
+                             CISPR 11:2015+A1+A2                                              🔴
+
+
+
+  Nom et Titre / Name and Title:                           Bard Dai
+                                                           Senior Standard and Certification Engineer
+
+
+  Au nom de / On behalf of:                                Ningbo Deye Inverter Technology Co., Ltd.
+  Date / Date (yyyy-mm-dd):                                2023-11-1
+  A / Place：                                               Ningbo, China
+
+
+
+
+EU DoC – v1                                                                Ningbo Deye Inverter Technology Co., Ltd.
+                                                            No. 26 South YongJiang Road, Daqi, Beilun, NingBo, China
+
+
+
+
+                                                                                                           2025-06-19
+                                                      - 55 -
+Add.: No.26 South YongJiang Road, Daqi, Beilun, NingBo, China.
+Tel.: +86 (0) 574 8622 8957
+Fax.: +86 (0) 574 8622 8852
+E-mail: service@deye.com.cn
+Web.: www.deyeinverter.com
+

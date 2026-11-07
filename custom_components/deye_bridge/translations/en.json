@@ -1,0 +1,64 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connection type",
+        "description": "How should Home Assistant talk to the inverter?",
+        "data": {
+          "transport": "Transport"
+        }
+      },
+      "connection": {
+        "title": "Connection",
+        "description": "Details for the logger or gateway. The Solarman V5 serial number is printed on the dongle and is also shown in the SolarMAN app.",
+        "data": {
+          "host": "Host / IP address",
+          "port": "Port",
+          "serial": "Logger serial number",
+          "unit_id": "Modbus unit id",
+          "scan_interval": "Poll interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to the inverter. Check the IP address, port and (for Solarman V5) the logger serial number.",
+      "unknown": "Unexpected error while connecting."
+    },
+    "abort": {
+      "already_configured": "This inverter is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Deye Power Bridge options",
+        "data": {
+          "max_grid_charge_power": "Maximum grid charge power (W)",
+          "max_export_power": "Maximum export power (W)",
+          "max_charge_current": "Battery max charge current (A)",
+          "max_discharge_current": "Battery max discharge current (A)",
+          "base_mode": "Base work mode",
+          "manage_charge_current": "Let the bridge manage register 108",
+          "current_deadband": "Charge current deadband (A)",
+          "export_deadband": "Export power deadband (W)",
+          "verify_every": "Verify registers every N cycles",
+          "scan_interval": "Poll interval (seconds)"
+        }
+      }
+    }
+  },
+  "services": {
+    "snapshot": {
+      "name": "Snapshot control registers",
+      "description": "Save the inverter's current control registers so they can be restored later."
+    },
+    "restore": {
+      "name": "Restore control registers",
+      "description": "Write the saved snapshot back to the inverter."
+    },
+    "apply": {
+      "name": "Apply now",
+      "description": "Re-run the translation immediately instead of waiting for the next poll."
+    }
+  }
+}

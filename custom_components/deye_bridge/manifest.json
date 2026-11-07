@@ -1,0 +1,12 @@
+{
+  "domain": "deye_bridge",
+  "name": "Deye Power Bridge",
+  "codeowners": ["@larsk"],
+  "config_flow": true,
+  "documentation": "https://github.com/larsk/deye-power-bridge",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/larsk/deye-power-bridge/issues",
+  "requirements": ["pysolarmanv5>=3.0.0", "pymodbus>=3.6.0"],
+  "version": "0.1.0"
+}

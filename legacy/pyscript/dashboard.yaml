@@ -1,0 +1,52 @@
+# Lovelace cards for the Deye power bridge.
+# Paste into a view (Raw configuration editor) or use "Add card > Manual".
+
+type: vertical-stack
+cards:
+  - type: entities
+    title: Deye power bridge
+    entities:
+      - entity: input_boolean.deye_bridge_enabled
+        name: Bridge enabled
+      - entity: input_text.deye_bridge_status
+        name: Status
+      - entity: input_select.deye_conflict_policy
+        name: Both sliders set
+      - entity: input_boolean.deye_allow_battery_export
+        name: Allow battery export
+
+  - type: gauge
+    entity: input_number.deye_input_power
+    name: Grid charge power
+    min: 0
+    max: 12000
+    needle: true
+    severity:
+      green: 0
+      yellow: 6000
+      red: 10000
+
+  - type: gauge
+    entity: input_number.deye_export_power
+    name: Export power
+    min: 0
+    max: 12000
+    needle: true
+    severity:
+      green: 0
+      yellow: 6000
+      red: 10000
+
+  - type: entities
+    title: Limits
+    entities:
+      - entity: input_number.deye_min_soc
+      - entity: input_number.deye_max_soc
+
+  - type: history-graph
+    title: Last 24 h
+    hours_to_show: 24
+    entities:
+      - entity: sensor.deye_battery_soc
+      - entity: sensor.deye_battery_power
+      - entity: sensor.deye_total_grid_power

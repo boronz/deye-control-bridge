@@ -1,0 +1,79 @@
+# Home Assistant helpers for the Deye power bridge.
+# Put this in your packages folder (or include it from configuration.yaml):
+#
+#   homeassistant:
+#     packages:
+#       deye_bridge: !include deye_bridge/helpers.yaml
+#
+# Entity ids are pre-declared so the pyscript config works unchanged.
+
+input_number:
+  deye_input_power:
+    name: Deye grid charge power
+    min: 0
+    max: 12000
+    step: 100
+    initial: 0
+    unit_of_measurement: W
+    mode: box
+    icon: mdi:battery-charging
+
+  deye_export_power:
+    name: Deye export power
+    min: 0
+    max: 12000
+    step: 100
+    initial: 0
+    unit_of_measurement: W
+    mode: box
+    icon: mdi:transmission-tower-export
+
+  deye_min_soc:
+    name: Deye discharge floor
+    min: 0
+    max: 90
+    step: 1
+    initial: 20
+    unit_of_measurement: "%"
+    mode: slider
+    icon: mdi:battery-arrow-down
+
+  deye_max_soc:
+    name: Deye charge ceiling
+    min: 10
+    max: 100
+    step: 1
+    initial: 100
+    unit_of_measurement: "%"
+    mode: slider
+    icon: mdi:battery-arrow-up
+
+input_boolean:
+  deye_bridge_enabled:
+    name: Deye bridge enabled
+    icon: mdi:connection
+
+  deye_allow_battery_export:
+    name: Deye allow battery export
+    icon: mdi:battery-arrow-up-outline
+
+input_select:
+  deye_conflict_policy:
+    name: Deye both-sliders policy
+    options:
+      - charge_priority
+      - export_priority
+      - net
+    initial: charge_priority
+    icon: mdi:source-branch
+
+input_text:
+  deye_bridge_status:
+    name: Deye bridge status
+    max: 255
+    icon: mdi:information-outline
+
+  deye_bridge_snapshot:
+    name: Deye bridge register snapshot
+    max: 255
+    icon: mdi:content-save-outline

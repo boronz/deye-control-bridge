@@ -1,0 +1,2 @@
+class SelectEntity:
+    pass

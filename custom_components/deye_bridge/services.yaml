@@ -1,0 +1,35 @@
+snapshot:
+  name: Snapshot control registers
+  description: Save the inverter's current control registers so they can be restored later.
+  fields:
+    entry_id:
+      name: Config entry
+      description: Optional config entry id. Omit to act on every configured inverter.
+      required: false
+      example: "01HXYZ..."
+      selector:
+        text:
+
+restore:
+  name: Restore control registers
+  description: Write the saved snapshot back to the inverter.
+  fields:
+    entry_id:
+      name: Config entry
+      description: Optional config entry id. Omit to act on every configured inverter.
+      required: false
+      example: "01HXYZ..."
+      selector:
+        text:
+
+apply:
+  name: Apply now
+  description: Re-run the translation immediately instead of waiting for the next poll.
+  fields:
+    entry_id:
+      name: Config entry
+      description: Optional config entry id. Omit to act on every configured inverter.
+      required: false
+      example: "01HXYZ..."
+      selector:
+        text:
