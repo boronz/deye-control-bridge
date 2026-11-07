@@ -144,6 +144,11 @@ class Inputs:
     max_soc: float = 100.0
     conflict_policy: Optional[str] = None   # overrides Config.conflict_policy
 
+    # Keep the charge path open with zero current.  Used by the absorption loop
+    # so the plan does not flap between "charging" (TOU off) and
+    # "self-consumption" (TOU on) while the export settles.
+    charge_hold: bool = False
+
 
 @dataclass
 class Plan:
@@ -218,8 +223,123 @@ def _tou_blocks(tou_power_w: int, tou_soc: int, charge_bits: int) -> list:
 
 
 # --------------------------------------------------------------------------
+# Operating modes
+# --------------------------------------------------------------------------
+MODE_MANUAL = "manual"
+MODE_SELF_CONSUMPTION = "self_consumption"
+OPERATING_MODES = (MODE_MANUAL, MODE_SELF_CONSUMPTION)
+
+
+@dataclass
+class ExcessConfig:
+    """Tuning for the AC-coupled export absorption loop."""
+
+    enter_export_w: float = 150.0   # start absorbing above this export
+    exit_export_w: float = 50.0     # stop absorbing below this export
+    enter_hold_s: float = 10.0      # export must persist this long to start
+    exit_hold_s: float = 30.0       # no export must persist this long to stop
+    absorb_ratio: float = 0.95      # charge this fraction of the export
+    min_absorb_w: float = 50.0      # ignore tiny targets
+
+    def __post_init__(self) -> None:
+        if self.exit_export_w > self.enter_export_w:
+            raise ValueError("exit_export_w must be <= enter_export_w")
+        if not 0 < self.absorb_ratio <= 1:
+            raise ValueError("absorb_ratio must be in (0, 1]")
+        if self.min_absorb_w < 0:
+            raise ValueError("min_absorb_w must be >= 0")
+
+
+class ExcessController:
+    """Decide how much export to absorb into the battery.
+
+    With an AC-coupled PV inverter on the house side, the hybrid cannot curtail
+    it.  The only way to keep that energy is to charge the battery from the AC
+    bus at (roughly) the exported power, so the CT settles near zero.
+
+    The controller is a small hysteresis state machine: it starts absorbing when
+    export persists above ``enter_export_w`` and stops after ``exit_hold_s``
+    without export.  While absorbing it returns ``export * absorb_ratio`` so the
+    loop biases slightly towards export instead of importing.
+    """
+
+    def __init__(self, config: ExcessConfig | None = None) -> None:
+        self.config = config or ExcessConfig()
+        self.absorbing = False
+        self._enter_since: float | None = None
+        self._exit_since: float | None = None
+
+    def reset(self) -> None:
+        self.absorbing = False
+        self._enter_since = None
+        self._exit_since = None
+
+    def update(
+        self,
+        now: float,
+        grid_power_w: float,
+        soc: float,
+        max_soc: float,
+    ) -> float:
+        """Return the charge power in watts (0 = do not charge)."""
+        cfg = self.config
+
+        if soc >= max_soc - 0.5:
+            self.reset()
+            return 0.0
+
+        export_w = max(0.0, -grid_power_w)
+
+        if self.absorbing:
+            if export_w < cfg.exit_export_w:
+                if self._exit_since is None:
+                    self._exit_since = now
+                if now - self._exit_since >= cfg.exit_hold_s:
+                    self.reset()
+                    return 0.0
+            else:
+                self._exit_since = None
+            target = export_w * cfg.absorb_ratio
+            return target if target >= cfg.min_absorb_w else 0.0
+
+        if export_w >= cfg.enter_export_w:
+            if self._enter_since is None:
+                self._enter_since = now
+            if now - self._enter_since >= cfg.enter_hold_s:
+                self.absorbing = True
+                self._enter_since = None
+                target = export_w * cfg.absorb_ratio
+                return target if target >= cfg.min_absorb_w else 0.0
+        else:
+            self._enter_since = None
+
+        return 0.0
+
+
+# --------------------------------------------------------------------------
 # The translation
 # --------------------------------------------------------------------------
+def _charge_writes(cfg: Config, current_a: int, max_soc: float) -> list:
+    """Registers that put the inverter in "charge from grid" mode."""
+    writes = [
+        # Stop the schedule first: with TOU off the global grid-charge switch
+        # (130), its start SOC (127) and its current (128) rule.
+        Write(REG_TOU_ENABLE, (TOU_DISABLED,)),
+        Write(REG_SOLAR_SELL, (0,)),
+        Write(REG_MAX_SELL_POWER, (0,)),
+        Write(REG_WORK_MODE, (cfg.base_mode,)),
+        Write(REG_GRID_CHARGE_START_SOC, (_round_watts(max_soc),)),
+    ]
+    if cfg.manage_max_charge_current:
+        writes.append(Write(REG_MAX_CHARGE_CURRENT, (cfg.max_charge_current_a,)))
+    writes += [
+        Write(REG_MAX_DISCHARGE_CURRENT, (cfg.max_discharge_current_a,)),
+        Write(REG_GRID_CHARGE_CURRENT, (current_a,)),
+        Write(REG_GRID_CHARGE_ENABLE, (1,)),
+    ]
+    return writes
+
+
 def build_plan(cfg: Config, inputs: Inputs) -> Plan:
     """Translate (charge power, export power) into ordered register writes."""
 
@@ -255,28 +375,24 @@ def build_plan(cfg: Config, inputs: Inputs) -> Plan:
     if p_in > 0:
         current = _clamp(p_in / voltage, 1.0, float(cfg.max_charge_current_a))
         current = _round_watts(current)
-
-        writes = [
-            # Stop the schedule first: with TOU off the global grid-charge
-            # switch (130), its start SOC (127) and its current (128) rule.
-            Write(REG_TOU_ENABLE, (TOU_DISABLED,)),
-            Write(REG_SOLAR_SELL, (0,)),
-            Write(REG_MAX_SELL_POWER, (0,)),
-            Write(REG_WORK_MODE, (cfg.base_mode,)),
-            Write(REG_GRID_CHARGE_START_SOC, (_round_watts(max_soc),)),
-        ]
-        if cfg.manage_max_charge_current:
-            writes.append(Write(REG_MAX_CHARGE_CURRENT, (cfg.max_charge_current_a,)))
-        writes += [
-            Write(REG_MAX_DISCHARGE_CURRENT, (cfg.max_discharge_current_a,)),
-            Write(REG_GRID_CHARGE_CURRENT, (current,)),
-            Write(REG_GRID_CHARGE_ENABLE, (1,)),
-        ]
         return Plan(
             state="charging",
             reason=f"grid charge {p_in:.0f} W at {voltage:.1f} V",
-            writes=writes,
+            writes=_charge_writes(cfg, current, max_soc),
             charge_current_a=float(current),
+            export_power_w=0.0,
+            tou_soc=None,
+        )
+
+    if inputs.charge_hold:
+        # Absorption hold: keep TOU off and grid charging enabled, but draw
+        # nothing.  This avoids flapping between two different plans while the
+        # export is low.
+        return Plan(
+            state="charging",
+            reason="absorption hold (no excess)",
+            writes=_charge_writes(cfg, 0, max_soc),
+            charge_current_a=0.0,
             export_power_w=0.0,
             tou_soc=None,
         )

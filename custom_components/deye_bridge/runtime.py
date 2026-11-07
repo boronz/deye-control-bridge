@@ -20,6 +20,7 @@ class DeyeRuntime:
     enabled: bool = False
     allow_battery_export: bool = True
     conflict_policy: str = "charge_priority"
+    mode: str = "manual"                # manual | self_consumption
 
     def reset_setpoints(self) -> None:
         self.input_power = 0.0

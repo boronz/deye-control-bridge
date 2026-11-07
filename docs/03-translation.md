@@ -16,6 +16,7 @@ Two writable numbers, both in watts, plus a small set of safety settings:
 | `number.deye_inverter_discharge_floor_soc` | 0 … 90 % | Discharge floor (safety) |
 | `number.deye_inverter_charge_ceiling_soc` | 10 … 100 % | Charge ceiling (safety) |
 | `switch.deye_inverter_allow_battery_export` | — | If off, only PV surplus may be exported; the battery holds |
+| `select.deye_inverter_operating_mode` | — | `manual` (sliders) or `self_consumption` (absorb AC-coupled export) |
 | `select.deye_inverter_both_sliders_policy` | — | What to do when both sliders are > 0 |
 | `switch.deye_inverter_control_enabled` | — | Master interlock, off by default; off = read-only, on = control (and snapshot) |
 
@@ -38,7 +39,10 @@ because the inverter always prefers the house.
 
 ---
 
-## 2. The three states
+## 2. The states
+
+A fourth state, `absorbing`, is the CHARGING state driven by the self-consumption
+loop described in 2.4.
 
 ```
                     charge > 0
@@ -127,6 +131,45 @@ exported in that mode, capped by 143.
 | 9 | 143 | `0` |
 
 The battery discharges to the floor for self-consumption, nothing is exported.
+
+### 2.4 SELF-CONSUMPTION — absorb AC-coupled export
+
+Selected by `operating_mode = self_consumption`; the two power sliders are ignored.
+
+An AC-coupled PV inverter on the house side appears at the CT as export that the
+Deye cannot curtail. The integration turns that into battery charging:
+
+```
+export_w = max(0, -grid_power)          # register 625, positive = import
+```
+
+`ExcessController` adds hysteresis so the plan does not flap:
+
+| Condition | Result |
+|---|---|
+| export ≥ 150 W for 10 s | absorbing = true |
+| export < 50 W for 30 s | absorbing = false |
+| export between 50 and 150 W | keep the previous state |
+| SOC ≥ charge ceiling | absorbing = false, target 0 |
+
+While absorbing, the plan is the **CHARGING** plan of 2.1 with
+
+```
+P_in = export_w * 0.95
+I    = P_in / battery_voltage
+```
+
+and `charge_hold = true`. The hold keeps TOU off and grid charging enabled even when
+`P_in` momentarily drops to 0, so the plan does not flip between "charging" (TOU off)
+and "self-consumption" (TOU on) on every cloud. While not absorbing, the plan is the
+normal self-consumption plan of 2.3.
+
+Consequences:
+
+* The loop is as fast as the poll interval. 30 s is fine for a slowly moving PV
+  surplus; use 10 s if the AC-coupled array is jumpy.
+* The 5 % bias keeps a small export rather than importing to charge.
+* With the battery full there is nowhere for the surplus to go; it exports.
 
 ---
 

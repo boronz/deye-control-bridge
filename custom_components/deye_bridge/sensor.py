@@ -20,6 +20,7 @@ from .coordinator import DeyeCoordinator, DeyeData
 from .entity import DeyeEntity
 
 BRIDGE_STATES = [
+    "absorbing",
     "charging",
     "exporting",
     "self_consumption",

@@ -12,7 +12,7 @@ Internally it drives the inverter's real rule engine (work mode, solar sell, max
 power, grid-charge switch/current/SOC, and a *flattened* time-of-use schedule) with a
 state machine that only writes what changed.
 
-> **Status:** the translation logic is unit-tested (26 tests) and the integration code
+> **Status:** the translation logic is unit-tested (38 tests) and the integration code
 > imports cleanly against Home Assistant stubs, but it has **not** been run against a
 > live inverter yet. Do the commissioning steps in
 > [docs/03-translation.md](docs/03-translation.md#6-commissioning-procedure) before
@@ -130,8 +130,9 @@ name if you rename it.
 | `number.deye_inverter_charge_ceiling_soc` | number (%) | Charge ceiling (default 100) |
 | `switch.deye_inverter_control_enabled` | switch | **Master interlock, off by default**; off = read-only, on = control (and snapshot) |
 | `switch.deye_inverter_allow_battery_export` | switch | Off = only PV surplus may be exported |
+| `select.deye_inverter_operating_mode` | select | `manual` (sliders) / `self_consumption` (absorb AC-coupled export) |
 | `select.deye_inverter_both_sliders_policy` | select | `charge_priority` / `export_priority` / `net` |
-| `sensor.deye_inverter_bridge_state` | sensor | `charging` / `exporting` / `self_consumption` / `blocked` / `disabled` |
+| `sensor.deye_inverter_bridge_state` | sensor | `absorbing` / `charging` / `exporting` / `self_consumption` / `blocked` / `disabled` |
 | `sensor.deye_inverter_battery_soc` | sensor | Battery SOC |
 | `sensor.deye_inverter_battery_voltage` | sensor | Battery voltage (used for W → A) |
 | `sensor.deye_inverter_battery_power` | sensor | Battery power (W) |
@@ -233,6 +234,38 @@ Three states:
   always served before anything leaves.
 * **Self-consumption** — both zero: TOU on with the floor, no export.
 
+### Operating mode
+
+`select.deye_inverter_operating_mode` chooses between:
+
+* **`manual`** — the two number sliders drive the plan, as described above.
+* **`self_consumption`** — the sliders are ignored and the integration runs a
+  zero-export absorption loop for AC-coupled PV.
+
+#### Self-consumption with an AC-coupled inverter
+
+A second, AC-coupled PV inverter on the house side is invisible to the Deye's own
+control: it cannot curtail it. The only way to keep that energy is to charge the
+battery from the AC bus at (roughly) the exported power, so the CT settles near zero.
+
+In `self_consumption` mode the coordinator reads grid power (register 625) every cycle:
+
+| CT reading | Action |
+|---|---|
+| Export > 150 W for 10 s | Start absorbing. Charge the battery at ≈ 95 % of the export: TOU off, grid charge enabled, `128` = export / battery voltage |
+| Export between 50–150 W | Keep the current state (hysteresis) |
+| Export < 50 W for 30 s | Stop absorbing, return to normal zero-export self-consumption (TOU on, battery discharges to the floor) |
+| Battery at charge ceiling | Stop absorbing |
+
+The 95 % bias means the loop prefers a small export over importing; the reaction
+speed is the poll interval (30 s default, 10 s for tighter control). If the battery is
+full there is nowhere for the AC-coupled surplus to go — the Deye cannot curtail a
+house-side inverter, so it will export.
+
+> If the AC-coupled inverter is wired to the **GEN port** instead, use the Deye's own
+> micro-inverter input mode (`133 = 2`); the inverter handles it natively and this loop
+> is not needed.
+
 Full specification: [docs/03-translation.md](docs/03-translation.md).
 Register map: [docs/02-register-map.md](docs/02-register-map.md).
 
@@ -280,13 +313,16 @@ The long form is in [docs/03-translation.md](docs/03-translation.md#6-commission
   [the caveats](docs/01-solarman-and-deye-control.md#5-firmware-differences-you-must-verify-on-your-unit).
 * Battery export in Selling First depends on the TOU engine and, on some firmware, on
   an undocumented "sell" bit in registers 172–177.
+* AC-coupled absorption is a slow outer loop: it reacts once per poll, and it cannot
+  stop a house-side inverter from exporting when the battery is full.
 
 ---
 
 ## Development
 
 ```bash
-python tests/test_core.py        # 26 translation tests
+python tests/test_core.py        # 32 translation tests
+python tests/test_coordinator.py # 6 interlock / self-consumption tests
 python tests/test_imports.py     # imports the integration against HA stubs
 python tools/dry_run.py          # prints the register plan for scenarios
 python tools/probe_transport.py 192.168.1.50

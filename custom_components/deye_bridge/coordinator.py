@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
@@ -46,7 +46,9 @@ from .core import (
     REG_SOLAR_SELL,
     REG_TOU_ENABLE,
     REG_WORK_MODE,
+    MODE_SELF_CONSUMPTION,
     Config,
+    ExcessController,
     Inputs,
     build_plan,
 )
@@ -119,6 +121,7 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
         self._cycle = 0
         self._state = "idle"
         self._last_error: str | None = None
+        self.excess = ExcessController()
 
         scan = int(self.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL))
         super().__init__(
@@ -376,7 +379,23 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
                 self._last_error = str(exc)
                 raise UpdateFailed(str(exc)) from exc
 
-            plan = build_plan(self._config(), self._inputs(raw))
+            inputs = self._inputs(raw)
+            if self.runtime.enabled and self.runtime.mode == MODE_SELF_CONSUMPTION:
+                charge_w = self.excess.update(
+                    time.monotonic(),
+                    raw["grid_power"],
+                    raw["soc"],
+                    self.runtime.max_soc,
+                )
+                inputs = replace(
+                    inputs,
+                    charge_power_w=charge_w,
+                    charge_hold=self.excess.absorbing,
+                )
+            else:
+                self.excess.reset()
+
+            plan = build_plan(self._config(), inputs)
             try:
                 await self.hass.async_add_executor_job(self._execute, plan)
                 verify_every = int(self.options.get(CONF_VERIFY_EVERY, DEFAULT_VERIFY_EVERY))
@@ -387,7 +406,8 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
                 self._last_error = str(exc)
 
             self._cycle += 1
-            self._state = plan.state
+            state = "absorbing" if self.excess.absorbing else plan.state
+            self._state = state
 
             return DeyeData(
                 battery_soc=raw["soc"],
@@ -396,7 +416,7 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
                 grid_power=raw["grid_power"],
                 pv_power=raw["pv_power"],
                 load_power=raw["load_power"],
-                state=plan.state,
+                state=state,
                 reason=plan.reason,
                 charge_current_a=plan.charge_current_a,
                 export_power_w=plan.export_power_w,

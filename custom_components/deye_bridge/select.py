@@ -9,6 +9,7 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.restore_state import RestoreEntity
 
 from .const import CONFLICT_POLICIES
+from .core import OPERATING_MODES
 from .coordinator import DeyeCoordinator
 from .entity import DeyeEntity
 
@@ -19,7 +20,41 @@ async def async_setup_entry(
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     coordinator: DeyeCoordinator = entry.runtime_data
-    async_add_entities([DeyeConflictPolicySelect(coordinator)])
+    async_add_entities(
+        [
+            DeyeModeSelect(coordinator),
+            DeyeConflictPolicySelect(coordinator),
+        ]
+    )
+
+
+class DeyeModeSelect(DeyeEntity, SelectEntity, RestoreEntity):
+    """manual (sliders) or self_consumption (absorb AC-coupled export)."""
+
+    _attr_name = "Operating mode"
+    _attr_icon = "mdi:auto-mode"
+    _attr_options = list(OPERATING_MODES)
+
+    def __init__(self, coordinator: DeyeCoordinator) -> None:
+        super().__init__(coordinator, "mode")
+
+    @property
+    def current_option(self) -> str:
+        return self.coordinator.runtime.mode
+
+    async def async_added_to_hass(self) -> None:
+        await super().async_added_to_hass()
+        last_state = await self.async_get_last_state()
+        if last_state is not None and last_state.state in OPERATING_MODES:
+            self.coordinator.runtime.mode = last_state.state
+            self.async_write_ha_state()
+
+    async def async_select_option(self, option: str) -> None:
+        if option not in OPERATING_MODES:
+            raise ValueError(f"Unsupported operating mode: {option}")
+        self.coordinator.runtime.mode = option
+        self.async_write_ha_state()
+        await self.coordinator.async_apply_now()
 
 
 class DeyeConflictPolicySelect(DeyeEntity, SelectEntity, RestoreEntity):

@@ -7,6 +7,7 @@ cards:
     entities:
       - entity: switch.deye_inverter_control_enabled
       - entity: sensor.deye_inverter_bridge_state
+      - entity: select.deye_inverter_operating_mode
       - entity: select.deye_inverter_both_sliders_policy
       - entity: switch.deye_inverter_allow_battery_export
       - entity: binary_sensor.deye_inverter_connected

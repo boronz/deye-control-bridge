@@ -40,6 +40,8 @@ from deye_bridge_core import (  # noqa: E402
     REG_WORK_MODE,
     MODE_SELLING_FIRST,
     MODE_ZERO_EXPORT_CT,
+    ExcessConfig,
+    ExcessController,
     build_plan,
 )
 
@@ -268,6 +270,72 @@ def test_soc_margin_blocks_export_near_floor():
 def test_tou_floor_never_above_charge_target():
     plan = build_plan(_cfg(), _inputs(export_power_w=3000, min_soc=30))
     assert _writes(plan)[REG_TOU_SOC_BLOCK] == (30,) * 6
+
+
+
+
+# --------------------------------------------------------------------------
+# Self-consumption / AC-coupled export absorption
+# --------------------------------------------------------------------------
+def test_charge_hold_keeps_the_charge_path_open():
+    plan = build_plan(
+        _cfg(),
+        _inputs(enabled=True, charge_power_w=0, charge_hold=True),
+    )
+    assert plan.state == "charging"
+    w = _writes(plan)
+    assert w[REG_GRID_CHARGE_ENABLE] == (1,)
+    assert w[REG_GRID_CHARGE_CURRENT] == (0,)    # nothing drawn
+    assert w[REG_TOU_ENABLE] == (0,)             # TOU off
+
+
+def test_charge_hold_does_nothing_when_disabled():
+    plan = build_plan(_cfg(), _inputs(enabled=False, charge_hold=True))
+    assert plan.state == "disabled"
+    assert plan.writes == []
+
+
+def _controller(**kwargs) -> ExcessController:
+    return ExcessController(ExcessConfig(**kwargs))
+
+
+def test_absorb_starts_only_after_the_hold_time():
+    controller = _controller(enter_hold_s=10, exit_hold_s=60)
+    assert controller.update(0, -500, 50, 100) == 0.0
+    assert controller.absorbing is False
+    assert controller.update(5, -500, 50, 100) == 0.0
+    assert controller.absorbing is False
+    target = controller.update(10, -500, 50, 100)
+    assert controller.absorbing is True
+    assert target == 475.0            # 500 W * 0.95
+
+
+def test_absorb_ignores_small_export():
+    controller = _controller(enter_export_w=150, enter_hold_s=0)
+    assert controller.update(0, -100, 50, 100) == 0.0
+    assert controller.absorbing is False
+
+
+def test_absorb_stops_after_the_exit_hold():
+    controller = _controller(enter_hold_s=0, exit_hold_s=60)
+    controller.update(0, -500, 50, 100)
+    assert controller.absorbing is True
+
+    # export gone: charge target is zero immediately, state only flips later
+    assert controller.update(100, 0, 50, 100) == 0.0
+    assert controller.absorbing is True
+    assert controller.update(130, 0, 50, 100) == 0.0
+    assert controller.absorbing is True
+    controller.update(161, 0, 50, 100)
+    assert controller.absorbing is False
+
+
+def test_absorb_stops_at_the_charge_ceiling():
+    controller = _controller(enter_hold_s=0)
+    controller.update(0, -2000, 50, 100)
+    assert controller.absorbing is True
+    assert controller.update(1, -2000, 100, 100) == 0.0
+    assert controller.absorbing is False
 
 
 if __name__ == "__main__":
