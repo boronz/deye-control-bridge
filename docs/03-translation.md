@@ -164,10 +164,13 @@ and `charge_hold = true`. The hold keeps TOU off and grid charging enabled even 
 and "self-consumption" (TOU on) on every cloud. While not absorbing, the plan is the
 normal self-consumption plan of 2.3.
 
-Consequences:
+Consequences and tuning:
 
-* The loop is as fast as the poll interval. 30 s is fine for a slowly moving PV
-  surplus; use 10 s if the AC-coupled array is jumpy.
+* While the loop is active — or export is present — the coordinator polls at
+  `absorb_interval` (default 10 s); otherwise it uses the normal `scan_interval`
+  (default 30 s). Both are options, so the fast reaction is not paid for all day.
+* All five thresholds (`enter_export_w`, `exit_export_w`, `enter_hold_s`,
+  `exit_hold_s`, `absorb_ratio`) are exposed in the options flow.
 * The 5 % bias keeps a small export rather than importing to charge.
 * With the battery full there is nowhere for the surplus to go; it exports.
 

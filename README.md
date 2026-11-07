@@ -14,7 +14,7 @@ Internally it drives the inverter's real rule engine (work mode, solar sell, max
 power, grid-charge switch/current/SOC, and a *flattened* time-of-use schedule) with a
 state machine that only writes what changed.
 
-> **Status:** the translation logic is unit-tested (40 tests) and the integration code
+> **Status:** the translation logic is unit-tested (42 tests) and the integration code
 > imports cleanly against Home Assistant stubs, but it has **not** been run against a
 > live inverter yet. Do the commissioning steps in
 > [docs/03-translation.md](docs/03-translation.md#6-commissioning-procedure) before
@@ -159,6 +159,12 @@ After setup, **Configure** the entry:
 | Charge current / export deadband | Suppress tiny rewrites (±2 A, ±100 W) |
 | Verify every N cycles | Read-back check interval (default 10) |
 | Poll interval | Seconds (10–300, default 30) |
+| Fast poll interval while absorbing | Seconds (0–60, default 10; `0` = use the normal interval) |
+| Absorption ratio | Fraction of the export to charge (0.5–1.0, default 0.95) |
+| Start absorbing above export | W (default 150) |
+| Stop absorbing below export | W (default 50) |
+| Export must persist before starting | Seconds (default 10) |
+| No export must persist before stopping | Seconds (default 30) |
 
 ---
 
@@ -308,10 +314,13 @@ In `self_consumption` mode the coordinator reads grid power (register 625) every
 | Export < 50 W for 30 s | Stop absorbing, return to normal zero-export self-consumption (TOU on, battery discharges to the floor) |
 | Battery at charge ceiling | Stop absorbing |
 
-The 95 % bias means the loop prefers a small export over importing; the reaction
-speed is the poll interval (30 s default, 10 s for tighter control). If the battery is
-full there is nowhere for the AC-coupled surplus to go — the Deye cannot curtail a
-house-side inverter, so it will export.
+The 95 % bias means the loop prefers a small export over importing. The ratio and the
+four timing thresholds are all in **Configure**; while the loop is active (or export is
+present) the integration polls at the **fast interval** (default 10 s) and otherwise
+falls back to the normal scan interval (default 30 s), so the fast reaction does not
+cost you a fast poll all day. If the battery is full there is nowhere for the
+AC-coupled surplus to go — the Deye cannot curtail a house-side inverter, so it will
+export.
 
 > If the AC-coupled inverter is wired to the **GEN port** instead, use the Deye's own
 > micro-inverter input mode (`133 = 2`); the inverter handles it natively and this loop
@@ -373,7 +382,7 @@ The long form is in [docs/03-translation.md](docs/03-translation.md#6-commission
 
 ```bash
 python tests/test_core.py        # 32 translation tests
-python tests/test_coordinator.py # 8 interlock / self-consumption / battery / CT tests
+python tests/test_coordinator.py # 10 interlock / self-consumption / battery / CT tests
 python tests/test_imports.py     # imports the integration against HA stubs
 python tools/dry_run.py          # prints the register plan for scenarios
 python tools/probe_transport.py 192.168.1.50

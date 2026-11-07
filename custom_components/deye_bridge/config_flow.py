@@ -12,6 +12,12 @@ from homeassistant.data_entry_flow import FlowResult
 from homeassistant.helpers import config_validation as cv
 
 from .const import (
+    CONF_ABSORB_ENTER_HOLD,
+    CONF_ABSORB_ENTER_POWER,
+    CONF_ABSORB_EXIT_HOLD,
+    CONF_ABSORB_EXIT_POWER,
+    CONF_ABSORB_INTERVAL,
+    CONF_ABSORB_RATIO,
     CONF_BASE_MODE,
     CONF_CURRENT_DEADBAND,
     CONF_EXPORT_DEADBAND,
@@ -27,6 +33,12 @@ from .const import (
     CONF_TRANSPORT,
     CONF_UNIT_ID,
     CONF_VERIFY_EVERY,
+    DEFAULT_ABSORB_ENTER_HOLD,
+    DEFAULT_ABSORB_ENTER_POWER,
+    DEFAULT_ABSORB_EXIT_HOLD,
+    DEFAULT_ABSORB_EXIT_POWER,
+    DEFAULT_ABSORB_INTERVAL,
+    DEFAULT_ABSORB_RATIO,
     DEFAULT_BASE_MODE,
     DEFAULT_CURRENT_DEADBAND,
     DEFAULT_EXPORT_DEADBAND,
@@ -157,8 +169,12 @@ class DeyeBridgeOptionsFlow(OptionsFlow):
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
+        errors: dict[str, str] = {}
         if user_input is not None:
-            return self.async_create_entry(title="", data=user_input)
+            if user_input[CONF_ABSORB_EXIT_POWER] > user_input[CONF_ABSORB_ENTER_POWER]:
+                errors["base"] = "invalid_absorption"
+            else:
+                return self.async_create_entry(title="", data=user_input)
 
         options = {**self.config_entry.data, **self.config_entry.options}
 
@@ -216,7 +232,39 @@ class DeyeBridgeOptionsFlow(OptionsFlow):
                     CONF_SCAN_INTERVAL,
                     default=options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL),
                 ): vol.All(vol.Coerce(int), vol.Range(min=10, max=300)),
+                vol.Required(
+                    CONF_ABSORB_INTERVAL,
+                    default=options.get(CONF_ABSORB_INTERVAL, DEFAULT_ABSORB_INTERVAL),
+                ): vol.All(vol.Coerce(int), vol.Range(min=0, max=60)),
+                vol.Required(
+                    CONF_ABSORB_ENTER_POWER,
+                    default=options.get(
+                        CONF_ABSORB_ENTER_POWER, DEFAULT_ABSORB_ENTER_POWER
+                    ),
+                ): vol.All(vol.Coerce(int), vol.Range(min=0, max=5000)),
+                vol.Required(
+                    CONF_ABSORB_EXIT_POWER,
+                    default=options.get(
+                        CONF_ABSORB_EXIT_POWER, DEFAULT_ABSORB_EXIT_POWER
+                    ),
+                ): vol.All(vol.Coerce(int), vol.Range(min=0, max=5000)),
+                vol.Required(
+                    CONF_ABSORB_ENTER_HOLD,
+                    default=options.get(
+                        CONF_ABSORB_ENTER_HOLD, DEFAULT_ABSORB_ENTER_HOLD
+                    ),
+                ): vol.All(vol.Coerce(int), vol.Range(min=0, max=600)),
+                vol.Required(
+                    CONF_ABSORB_EXIT_HOLD,
+                    default=options.get(
+                        CONF_ABSORB_EXIT_HOLD, DEFAULT_ABSORB_EXIT_HOLD
+                    ),
+                ): vol.All(vol.Coerce(int), vol.Range(min=0, max=600)),
+                vol.Required(
+                    CONF_ABSORB_RATIO,
+                    default=options.get(CONF_ABSORB_RATIO, DEFAULT_ABSORB_RATIO),
+                ): vol.All(vol.Coerce(float), vol.Range(min=0.5, max=1.0)),
             }
         )
 
-        return self.async_show_form(step_id="init", data_schema=schema)
+        return self.async_show_form(step_id="init", data_schema=schema, errors=errors)

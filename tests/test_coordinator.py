@@ -14,8 +14,6 @@ import asyncio  # noqa: E402
 from custom_components.deye_bridge.coordinator import DeyeCoordinator  # noqa: E402
 from custom_components.deye_bridge.core import (  # noqa: E402
     MODE_SELF_CONSUMPTION,
-    ExcessConfig,
-    ExcessController,
     Inputs,
     build_plan,
 )
@@ -150,14 +148,17 @@ class GridTransport(FakeTransport):
 
 
 def _self_consumption(grid_power: int, enabled: bool = True):
+    entry = FakeEntry()
+    entry.options = {
+        "verify_every": 0,
+        "absorb_enter_hold": 0,
+        "absorb_exit_hold": 0,
+    }
     runtime = DeyeRuntime()
     runtime.enabled = enabled
     runtime.mode = MODE_SELF_CONSUMPTION
     transport = GridTransport(grid_power=grid_power)
-    coordinator = DeyeCoordinator(FakeHass(), FakeEntry(), transport, runtime)
-    coordinator.excess = ExcessController(
-        ExcessConfig(enter_hold_s=0, exit_hold_s=0)
-    )
+    coordinator = DeyeCoordinator(FakeHass(), entry, transport, runtime)
     data = asyncio.run(coordinator._async_update_data())
     return coordinator, transport, data
 
@@ -203,6 +204,46 @@ def test_ct_and_phase_values_are_parsed():
     assert data.grid_detail["external_ct_l1"] == -1000
     assert data.grid_detail["external_ct_total"] == -3000
     assert data.grid_detail["external_ct_current_l1"] == 10.0
+
+
+def test_absorption_uses_the_fast_poll_interval():
+    runtime = DeyeRuntime()
+    runtime.enabled = True
+    runtime.mode = MODE_SELF_CONSUMPTION
+    entry = FakeEntry()
+    entry.options = {"verify_every": 0, "absorb_enter_hold": 0, "absorb_exit_hold": 0}
+    transport = GridTransport(grid_power=-2000)
+    coordinator = DeyeCoordinator(FakeHass(), entry, transport, runtime)
+
+    asyncio.run(coordinator._async_update_data())
+    assert coordinator.update_interval.total_seconds() == 10   # absorb default
+
+    transport.grid_power = 500
+    asyncio.run(coordinator._async_update_data())
+    assert coordinator.update_interval.total_seconds() == 30   # back to normal
+
+
+def test_absorption_interval_is_configurable():
+    entry = FakeEntry()
+    entry.options = {
+        "verify_every": 0,
+        "scan_interval": 60,
+        "absorb_interval": 5,
+        "absorb_enter_hold": 0,
+        "absorb_exit_hold": 0,
+    }
+    runtime = DeyeRuntime()
+    runtime.enabled = True
+    runtime.mode = MODE_SELF_CONSUMPTION
+    transport = GridTransport(grid_power=-2000)
+    coordinator = DeyeCoordinator(FakeHass(), entry, transport, runtime)
+
+    asyncio.run(coordinator._async_update_data())
+    assert coordinator.update_interval.total_seconds() == 5
+
+    transport.grid_power = 500
+    asyncio.run(coordinator._async_update_data())
+    assert coordinator.update_interval.total_seconds() == 60
 
 
 def test_self_consumption_absorbs_export():

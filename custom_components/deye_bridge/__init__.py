@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 import logging
-from datetime import timedelta
-
 import voluptuous as vol
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EVENT_HOMEASSISTANT_STOP
@@ -14,8 +12,6 @@ from homeassistant.helpers import config_validation as cv
 
 from .const import (
     ATTR_ENTRY_ID,
-    CONF_SCAN_INTERVAL,
-    DEFAULT_SCAN_INTERVAL,
     DOMAIN,
     PLATFORMS,
     SERVICE_APPLY,
@@ -98,10 +94,7 @@ async def _async_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> Non
     coordinator: DeyeCoordinator | None = hass.data.get(DOMAIN, {}).get(entry.entry_id)
     if coordinator is None:
         return
-    coordinator.options = {**entry.data, **entry.options}
-    coordinator.update_interval = timedelta(
-        seconds=int(coordinator.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL))
-    )
+    coordinator.apply_options({**entry.data, **entry.options})
     await coordinator.async_request_refresh()
 
 

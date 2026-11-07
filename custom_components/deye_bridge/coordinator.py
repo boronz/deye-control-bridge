@@ -14,6 +14,12 @@ from homeassistant.helpers.storage import Store
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import (
+    CONF_ABSORB_ENTER_HOLD,
+    CONF_ABSORB_ENTER_POWER,
+    CONF_ABSORB_EXIT_HOLD,
+    CONF_ABSORB_EXIT_POWER,
+    CONF_ABSORB_INTERVAL,
+    CONF_ABSORB_RATIO,
     CONF_BASE_MODE,
     CONF_CURRENT_DEADBAND,
     CONF_EXPORT_DEADBAND,
@@ -24,6 +30,12 @@ from .const import (
     CONF_MAX_GRID_CHARGE_POWER,
     CONF_SCAN_INTERVAL,
     CONF_VERIFY_EVERY,
+    DEFAULT_ABSORB_ENTER_HOLD,
+    DEFAULT_ABSORB_ENTER_POWER,
+    DEFAULT_ABSORB_EXIT_HOLD,
+    DEFAULT_ABSORB_EXIT_POWER,
+    DEFAULT_ABSORB_INTERVAL,
+    DEFAULT_ABSORB_RATIO,
     DEFAULT_BASE_MODE,
     DEFAULT_CURRENT_DEADBAND,
     DEFAULT_EXPORT_DEADBAND,
@@ -48,6 +60,7 @@ from .core import (
     REG_WORK_MODE,
     MODE_SELF_CONSUMPTION,
     Config,
+    ExcessConfig,
     ExcessController,
     Inputs,
     build_plan,
@@ -195,14 +208,19 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
         self._cycle = 0
         self._state = "idle"
         self._last_error: str | None = None
-        self.excess = ExcessController()
+        self._normal_interval = timedelta(
+            seconds=int(self.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL))
+        )
+        self._absorb_interval = timedelta(
+            seconds=int(self.options.get(CONF_ABSORB_INTERVAL, DEFAULT_ABSORB_INTERVAL))
+        )
+        self.excess = ExcessController(self._excess_config())
 
-        scan = int(self.options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL))
         super().__init__(
             hass,
             _LOGGER,
             name=DOMAIN,
-            update_interval=timedelta(seconds=scan),
+            update_interval=self._normal_interval,
         )
         self._store: Store = Store(
             hass,
@@ -213,6 +231,41 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
     # ------------------------------------------------------------------
     # Translation configuration
     # ------------------------------------------------------------------
+    def _excess_config(self) -> ExcessConfig:
+        try:
+            return ExcessConfig(
+                enter_export_w=float(
+                    self.options.get(CONF_ABSORB_ENTER_POWER, DEFAULT_ABSORB_ENTER_POWER)
+                ),
+                exit_export_w=float(
+                    self.options.get(CONF_ABSORB_EXIT_POWER, DEFAULT_ABSORB_EXIT_POWER)
+                ),
+                enter_hold_s=float(
+                    self.options.get(CONF_ABSORB_ENTER_HOLD, DEFAULT_ABSORB_ENTER_HOLD)
+                ),
+                exit_hold_s=float(
+                    self.options.get(CONF_ABSORB_EXIT_HOLD, DEFAULT_ABSORB_EXIT_HOLD)
+                ),
+                absorb_ratio=float(
+                    self.options.get(CONF_ABSORB_RATIO, DEFAULT_ABSORB_RATIO)
+                ),
+            )
+        except ValueError as exc:
+            _LOGGER.warning("Invalid absorption settings (%s); using defaults", exc)
+            return ExcessConfig()
+
+    def apply_options(self, options: dict) -> None:
+        """Apply options without reloading (keeps the runtime and snapshot)."""
+        self.options = options
+        self._normal_interval = timedelta(
+            seconds=int(options.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL))
+        )
+        self._absorb_interval = timedelta(
+            seconds=int(options.get(CONF_ABSORB_INTERVAL, DEFAULT_ABSORB_INTERVAL))
+        )
+        self.update_interval = self._normal_interval
+        self.excess.config = self._excess_config()
+
     def _config(self) -> Config:
         return Config(
             max_grid_charge_power_w=int(
@@ -482,6 +535,15 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
             _LOGGER.info("Restored %d register entries", len(snapshot))
             return True
 
+    def _set_interval(self, fast: bool) -> None:
+        target = (
+            self._absorb_interval
+            if fast and self._absorb_interval.total_seconds() > 0
+            else self._normal_interval
+        )
+        if self.update_interval != target:
+            self.update_interval = target
+
     async def async_apply_now(self) -> None:
         await self.async_request_refresh()
 
@@ -513,7 +575,9 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
                 self._last_error = str(exc)
                 raise UpdateFailed(str(exc)) from exc
 
+            self.excess.config = self._excess_config()
             inputs = self._inputs(raw)
+
             if self.runtime.enabled and self.runtime.mode == MODE_SELF_CONSUMPTION:
                 charge_w = self.excess.update(
                     time.monotonic(),
@@ -528,6 +592,13 @@ class DeyeCoordinator(DataUpdateCoordinator[DeyeData]):
                 )
             else:
                 self.excess.reset()
+
+            fast = (
+                self.runtime.enabled
+                and self.runtime.mode == MODE_SELF_CONSUMPTION
+                and (self.excess.absorbing or raw["grid_power"] < 0)
+            )
+            self._set_interval(fast)
 
             plan = build_plan(self._config(), inputs)
             try:

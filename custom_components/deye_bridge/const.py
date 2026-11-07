@@ -30,6 +30,14 @@ CONF_CURRENT_DEADBAND = "current_deadband"
 CONF_EXPORT_DEADBAND = "export_deadband"
 CONF_VERIFY_EVERY = "verify_every"
 
+# Self-consumption / AC-coupled absorption
+CONF_ABSORB_RATIO = "absorb_ratio"
+CONF_ABSORB_ENTER_POWER = "absorb_enter_power"
+CONF_ABSORB_EXIT_POWER = "absorb_exit_power"
+CONF_ABSORB_ENTER_HOLD = "absorb_enter_hold"
+CONF_ABSORB_EXIT_HOLD = "absorb_exit_hold"
+CONF_ABSORB_INTERVAL = "absorb_interval"
+
 TRANSPORT_SOLARMAN = "solarman_v5"
 TRANSPORT_MODBUS = "modbus_tcp"
 TRANSPORTS = [TRANSPORT_SOLARMAN, TRANSPORT_MODBUS]
@@ -47,6 +55,13 @@ DEFAULT_MANAGE_CHARGE_CURRENT = False
 DEFAULT_CURRENT_DEADBAND = 2   # A
 DEFAULT_EXPORT_DEADBAND = 100  # W
 DEFAULT_VERIFY_EVERY = 10      # cycles
+
+DEFAULT_ABSORB_RATIO = 0.95
+DEFAULT_ABSORB_ENTER_POWER = 150   # W
+DEFAULT_ABSORB_EXIT_POWER = 50     # W
+DEFAULT_ABSORB_ENTER_HOLD = 10     # s
+DEFAULT_ABSORB_EXIT_HOLD = 30      # s
+DEFAULT_ABSORB_INTERVAL = 10       # s, 0 = use the normal scan interval
 
 MIN_SCAN_INTERVAL = 10
 MAX_SCAN_INTERVAL = 300

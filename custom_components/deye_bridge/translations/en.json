@@ -42,9 +42,18 @@
           "current_deadband": "Charge current deadband (A)",
           "export_deadband": "Export power deadband (W)",
           "verify_every": "Verify registers every N cycles",
-          "scan_interval": "Poll interval (seconds)"
+          "scan_interval": "Poll interval (seconds)",
+          "absorb_ratio": "Absorption ratio (0.5-1.0)",
+          "absorb_enter_power": "Start absorbing above export (W)",
+          "absorb_exit_power": "Stop absorbing below export (W)",
+          "absorb_enter_hold": "Export must persist before starting (s)",
+          "absorb_exit_hold": "No export must persist before stopping (s)",
+          "absorb_interval": "Fast poll interval while absorbing (s, 0 = normal)"
         }
       }
+    },
+    "error": {
+      "invalid_absorption": "The stop threshold must be lower than or equal to the start threshold."
     }
   },
   "services": {
