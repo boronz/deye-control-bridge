@@ -14,6 +14,7 @@ from homeassistant.components.sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import PERCENTAGE, UnitOfEnergy, UnitOfPower
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
@@ -322,14 +323,43 @@ async def async_setup_entry(
     coordinator: DeyeCoordinator = entry.runtime_data
     async_add_entities(DeyeSensor(coordinator, description) for description in SENSORS)
 
-    count = 1
-    if coordinator.data is not None and coordinator.data.battery_count:
-        count = max(1, min(int(coordinator.data.battery_count), 2))
-    for index in range(1, count + 1):
-        async_add_entities(
-            DeyeBatterySensor(coordinator, description, index)
-            for description in BATTERY_SENSORS
-        )
+    # If a battery device was created earlier but the input is empty now,
+    # drop it so the device list matches the hardware.
+    data = coordinator.data
+    if data is not None and data.battery_count >= 2:
+        parsed = {battery.index: battery for battery in data.batteries}
+        if 2 in parsed and not parsed[2].online:
+            _remove_battery_device(hass, entry, 2)
+
+    # Battery 1 is always created so an offline pack still has a device.
+    added: set[int] = {1}
+    async_add_entities(
+        DeyeBatterySensor(coordinator, description, 1)
+        for description in BATTERY_SENSORS
+    )
+
+    def add_present_batteries() -> None:
+        """Create battery devices only for inputs that report a real pack.
+
+        Register 24 reports how many inputs the inverter is *configured* for,
+        which is not the same as how many batteries are wired.  A battery's own
+        voltage is the reliable signal, and a second pack that comes online later
+        gets its entities added on the next poll.
+        """
+        data = coordinator.data
+        if data is None:
+            return
+        for battery in data.batteries:
+            if battery.index in added or not battery.online:
+                continue
+            added.add(battery.index)
+            async_add_entities(
+                DeyeBatterySensor(coordinator, description, battery.index)
+                for description in BATTERY_SENSORS
+            )
+
+    add_present_batteries()
+    entry.async_on_unload(coordinator.async_add_listener(add_present_batteries))
 
 
 class DeyeSensor(DeyeEntity, SensorEntity):
@@ -400,3 +430,13 @@ class DeyeBatterySensor(DeyeEntity, SensorEntity):
         if battery is None:
             return None
         return self.entity_description.value_fn(battery)
+
+
+def _remove_battery_device(hass: HomeAssistant, entry: ConfigEntry, index: int) -> None:
+    """Remove a battery device whose input no longer has a pack on it."""
+    registry = dr.async_get(hass)
+    device = registry.async_get_device(
+        identifiers={(DOMAIN, f"{entry.entry_id}_battery{index}")}
+    )
+    if device is not None:
+        registry.async_remove_device(device.id)

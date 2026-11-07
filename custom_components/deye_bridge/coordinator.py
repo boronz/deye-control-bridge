@@ -123,7 +123,7 @@ def _battery(index: int, detail: list[int], main: dict[int, int], brand: int) ->
         brand=int(brand),
         software_version=int(detail[15]),
         hardware_version=int(detail[17]),
-        online=detail[5] > 100,
+        online=detail[5] > 1000,  # >10 V; 0 V means nothing is wired there
     )
 
 

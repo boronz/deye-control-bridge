@@ -272,6 +272,29 @@ def test_import_hands_back_to_self_consumption():
     assert (142, [2]) in transport.writes        # zero export to CT
 
 
+class TwoBatteryTransport(GridTransport):
+    """Register 24 says two inputs, but the second one is empty."""
+
+    def read_holding(self, address: int, count: int) -> list[int]:
+        if address == 24:
+            return [2]
+        if address == 241:
+            return [0] * count
+        return super().read_holding(address, count)
+
+
+def test_absent_second_battery_is_offline():
+    runtime = DeyeRuntime()
+    transport = TwoBatteryTransport(grid_power=0, soc=50, voltage=5200)
+    coordinator = DeyeCoordinator(FakeHass(), FakeEntry(), transport, runtime)
+    data = asyncio.run(coordinator._async_update_data())
+
+    assert data.battery_count == 2          # the inverter is configured for two
+    assert len(data.batteries) == 2
+    assert data.batteries[0].online is True
+    assert data.batteries[1].online is False   # ...but nothing is wired there
+
+
 def test_self_consumption_absorbs_export():
     _, transport, data = _self_consumption(grid_power=-2000)
     assert data.state == "absorbing"

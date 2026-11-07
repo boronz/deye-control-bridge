@@ -14,7 +14,7 @@ Internally it drives the inverter's real rule engine (work mode, solar sell, max
 power, grid-charge switch/current/SOC, and a *flattened* time-of-use schedule) with a
 state machine that only writes what changed.
 
-> **Status:** the translation logic is unit-tested (44 tests) and the integration code
+> **Status:** the translation logic is unit-tested (45 tests) and the integration code
 > imports cleanly against Home Assistant stubs, but it has **not** been run against a
 > live inverter yet. Do the commissioning steps in
 > [docs/03-translation.md](docs/03-translation.md#6-commissioning-procedure) before
@@ -94,17 +94,22 @@ creates one HA device per battery:
 | Device | Entities | Created when |
 |---|---|---|
 | `Deye battery 1` | `sensor.deye_battery_1_*` | always |
-| `Deye battery 2` | `sensor.deye_battery_2_*` | register 24 reports two inputs |
+| `Deye battery 2` | `sensor.deye_battery_2_*` | a pack voltage is detected on input 2 |
 
 Each battery gets SOC, voltage, current, power, temperature, state of health, rated
 capacity, charge/discharge voltage, charge/discharge current limit, max charge/discharge
 current, alarm flags, fault flags, battery type, brand, software version and hardware
 version. The devices are linked to the inverter with `via_device`.
 
+Register 24 only says how many inputs the inverter is *configured* for, not how many
+packs are wired, so the device list follows the battery's own measurement instead: a
+second battery is created only when its block reports a pack voltage, and it is added
+automatically when it comes online. If a battery device exists for an empty input it is
+removed at startup, so the device list matches the hardware.
+
 If the firmware does not expose the detail block, the integration keeps working and the
 battery devices simply show as unavailable — the inverter-level `sensor.deye_inverter_*`
-battery sensors still work. Reload the config entry after adding a second battery so
-its entities are created.
+battery sensors still work.
 
 ## Safety: control is off by default
 
@@ -390,7 +395,7 @@ The long form is in [docs/03-translation.md](docs/03-translation.md#6-commission
 
 ```bash
 python tests/test_core.py        # 33 translation tests
-python tests/test_coordinator.py # 11 interlock / self-consumption / battery / CT tests
+python tests/test_coordinator.py # 12 interlock / self-consumption / battery / CT tests
 python tests/test_imports.py     # imports the integration against HA stubs
 python tools/dry_run.py          # prints the register plan for scenarios
 python tools/probe_transport.py 192.168.1.50

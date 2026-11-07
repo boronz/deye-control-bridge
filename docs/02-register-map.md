@@ -137,6 +137,9 @@ create one HA device per battery.
 > The detail block sits in the writable settings area. Reading is safe; the integration
 > never writes it. If a firmware does not answer for 210+ the coordinator catches the
 > error and keeps the rest of the poll working.
+>
+> Register 24 is the number of **configured** inputs, not of connected packs. Entity
+> creation uses each battery's own voltage instead.
 
 ---
 
